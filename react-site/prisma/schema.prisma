@@ -1,0 +1,167 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id         Int       @id @default(autoincrement())
+  email      String    @unique
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  Projects   Project[]
+}
+
+model Project {
+  id          Int        @id @default(autoincrement())
+  user_id     Int
+  name        String     @unique
+  description String
+  created_at  DateTime   @default(now())
+  updated_at  DateTime   @updatedAt
+  Page_IG     Page_IG[]
+  Users_FB    Users_FB[]
+  Users       Users      @relation(fields: [user_id], references: [id])
+}
+
+model Users_FB {
+  id         Int       @id @default(autoincrement())
+  project_id Int       @unique
+  name       String    @unique
+  id_FB      String    @unique
+  user_TOKEN String    @unique
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  Project    Project   @relation(fields: [project_id], references: [id])
+  Page_FB    Page_FB[]
+}
+
+model Page_FB {
+  id         Int        @id @default(autoincrement())
+  user_id    Int
+  name       String     @unique
+  id_FB      String     @unique
+  page_TOKEN String     @unique
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  Users_FB   Users_FB   @relation(fields: [user_id], references: [id])
+  Page_IG    Page_IG?
+  Posts_FB   Posts_FB[]
+}
+
+model Page_IG {
+  id         Int        @id @default(autoincrement())
+  project_id Int        @unique
+  page_fb_id Int?       @unique
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  name       String     @unique
+  id_IG      String     @unique
+  user_TOKEN String     @unique
+  Page_FB    Page_FB?   @relation(fields: [page_fb_id], references: [id])
+  Project    Project    @relation(fields: [project_id], references: [id])
+  Posts_IG   Posts_IG[]
+}
+
+model Posts_FB {
+  id                       Int        @id @default(autoincrement())
+  page_id                  Int
+  created_at               DateTime   @default(now())
+  updated_at               DateTime   @updatedAt
+  Name_page                String
+  Followers                Int
+  Heure_post               DateTime
+  Descriptions             String
+  Partages                 Int
+  Hashtags                 String
+  Nombre_de_commentaire    Int
+  Jadores                  Int
+  Jaimes                   Int
+  Solidaires               Int
+  Rires                    Int
+  Colere                   Int
+  Tristes                  Int
+  Wouah                    Int
+  Url_post                 String
+  Popularity               Int
+  Jour_de_la_semaine       String
+  Annee_post               Int
+  Mois                     String
+  langue_post              String
+  Season                   String
+  Nombre_Hashtags          Int
+  Found_Hash               String
+  Sentiment_post           String
+  Longueur_caracteres_text Int
+  sentiment_comments_POS   Int
+  sentiment_comments_NEG   Int
+  Timeline_visibility      String
+  Instagram_eligibility    String
+  Can_reply_privately      Boolean
+  is_sponsored             Boolean
+  prediction_label         Int
+  prediction_score         Float
+  Page_FB                  Page_FB    @relation(fields: [page_id], references: [id])
+  Comments                 Comments[]
+  Sponsor                  Sponsor[]
+}
+
+model Posts_IG {
+  id                    Int        @id @default(autoincrement())
+  page_id               Int
+  Page_name             String
+  Followers             Int
+  Post_text             String
+  Usernames             String
+  Likes                 Int
+  Total_NB_commentaires Int
+  len_post              Int
+  langue_post           String
+  Hashtags              String
+  hashtag_count         Int
+  Found_Hash            Int
+  Day_of_Week           String
+  Time_post             DateTime
+  Day                   Int
+  Month                 String
+  Year                  Int
+  Date_post             DateTime
+  Sentiment_POSTT       String
+  sentiment_comment     Json
+  positive              Int
+  negative              Int
+  nature                Int
+  prediction_label      Int
+  prediction_score      Float
+  created_at            DateTime   @default(now())
+  updated_at            DateTime   @updatedAt
+  Page_IG               Page_IG    @relation(fields: [page_id], references: [id])
+  Comments              Comments[]
+}
+
+model Sponsor {
+  id         Int        @id @default(autoincrement())
+  name       String     @unique
+  followers  Int
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  Posts_FB   Posts_FB[]
+}
+
+model Comments {
+  id       Int       @id @default(autoincrement())
+  FB_id    Int?
+  IG_id    Int?
+  username String
+  message  String
+  nb_likes Int
+  Posts_FB Posts_FB? @relation(fields: [FB_id], references: [id])
+  Posts_IG Posts_IG? @relation(fields: [IG_id], references: [id])
+}
