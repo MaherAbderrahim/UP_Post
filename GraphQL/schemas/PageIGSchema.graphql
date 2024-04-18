@@ -1,0 +1,35 @@
+scalar DateTime
+
+type PageIG {
+  id: Int!
+  project: Project!
+  page_fb: PageFB
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  id_IG: String!
+  user_TOKEN: String!
+  posts_IG: [PostIG!]!
+}
+
+input CreatePageIGInput {
+  project_id: Int!
+  name: String!
+  id_IG: String!
+  user_TOKEN: String!
+}
+
+input UpdatePageIGInput {
+  name: String
+}
+
+type Query {
+  pages_IG: [PageIG!]!
+  page_IG(id: Int!): PageIG
+}
+
+type Mutation {
+  createPageIG(data: CreatePageIGInput!): PageIG!
+  updatePageIG(id: Int!, data: UpdatePageIGInput!): PageIG!
+  deletePageIG(id: Int!): PageIG!
+}

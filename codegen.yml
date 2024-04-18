@@ -1,0 +1,21 @@
+overwrite: true
+schema: "./GraphQL/schemas/*.graphql"
+
+generates:
+  ./GraphQL/generated/types.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+    config:
+      useIndexSignature: true
+      contextType: "./context#DataSourceContext"
+    mappers:
+      Comments: ./models#Comments
+      PageFB: ./models#PageFB
+      PostFB: ./models#PostFB
+      UserSFB: ./models#UserSFB
+      PageIG: ./models#PageIG
+      PostIG: ./models#PostIG
+      Project: ./models#Project
+      User: ./models#User
+      Sponsor: ./models#Sponsor
