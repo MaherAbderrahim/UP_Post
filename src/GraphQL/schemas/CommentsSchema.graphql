@@ -1,0 +1,37 @@
+scalar DateTime
+
+type Comment {
+  id: Int!
+  FB_id: Int
+  IG_id: Int
+  username: String!
+  message: String!
+  nb_likes: Int
+  created_at: DateTime!
+  updated_at: DateTime!
+  post_FB: PostFB
+  post_IG: PostIG
+}
+
+input CreateCommentInput {
+  username: String!
+  message: String!
+  nb_likes: Int
+}
+
+input UpdateCommentInput {
+  username: String
+  message: String
+  nb_likes: Int
+}
+
+type Query {
+  getAllComments: [Comment!]!
+  getCommentById(id: Int!): Comment
+}
+
+type Mutation {
+  createComment(data: CreateCommentInput!): Comment!
+  updateComment(id: Int!, data: UpdateCommentInput!): Comment!
+  deleteComment(id: Int!): Comment!
+}

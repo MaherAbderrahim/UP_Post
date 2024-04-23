@@ -1,0 +1,34 @@
+scalar DateTime
+
+type UserFB {
+  id: Int!
+  project: Project!
+  name: String!
+  id_FB: String!
+  user_TOKEN: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  pages_FB: [PageFB!]!
+}
+
+input CreateUserFBInput {
+  project_id: Int!
+  name: String!
+  id_FB: String!
+  user_TOKEN: String!
+}
+
+input UpdateUserFBInput {
+  name: String
+}
+
+type Query {
+  getAllUsersFB: [UserFB!]!
+  getUserFBById(id: Int!): UserFB
+}
+
+type Mutation {
+  createUserFB(data: CreateUserFBInput!): UserFB!
+  updateUserFB(id: Int!, data: UpdateUserFBInput!): UserFB!
+  deleteUserFB(id: Int!): UserFB!
+}
