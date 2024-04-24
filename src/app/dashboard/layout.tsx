@@ -1,7 +1,7 @@
 'use client'
 import "@/app/globals.css";
 import { usePathname, useSearchParams } from 'next/navigation';
-
+import { UserButton } from "@clerk/nextjs";
 import { Dialog, Transition } from '@headlessui/react'
 
 /* This example requires Tailwind CSS v2.0+ */
@@ -64,12 +64,12 @@ export default function RootLayout ( { children,
       <>
         {/*
         This example requires updating your template:
-
+          
         ```
         <html class="h-full bg-gray-100">
         <body class="h-full">
         ```
-      */}
+      */ }
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="fixed inset-0 flex z-40 md:hidden" onClose={setSidebarOpen}>
@@ -149,11 +149,7 @@ export default function RootLayout ( { children,
                   <a href="#" className="flex-shrink-0 group block">
                     <div className="flex items-center">
                       <div>
-                        <img
-                          className="inline-block h-10 w-10 rounded-full"
-                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                          alt=""
-                        />
+                      <UserButton afterSignOutUrl="/" />
                       </div>
                       <div className="ml-3">
                         <p className="text-base font-medium text-white">Tom Cook</p>
@@ -207,11 +203,7 @@ export default function RootLayout ( { children,
               <a href="#" className="flex-shrink-0 w-full group block">
                 <div className="flex items-center">
                   <div>
-                    <img
-                      className="inline-block h-9 w-9 rounded-full"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt=""
-                    />
+                  <UserButton afterSignOutUrl="/" />  
                   </div>
                   <div className="ml-3">
                     <p className="text-sm font-medium text-white">Tom Cook</p>
