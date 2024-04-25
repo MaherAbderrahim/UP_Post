@@ -2,6 +2,7 @@
 import "@/app/globals.css";
 import { usePathname, useSearchParams } from 'next/navigation';
 import { UserButton } from "@clerk/nextjs";
+import { UserButton } from "@clerk/nextjs";
 import { Dialog, Transition } from '@headlessui/react'
 //flyout Menu imports
 import { Popover } from '@headlessui/react'
@@ -80,6 +81,7 @@ export default function RootLayout ( { children,
       <>
         {/*
         This example requires updating your template:
+          
           
         ```
         <html class="h-full bg-gray-100">
@@ -213,6 +215,7 @@ export default function RootLayout ( { children,
                     <div className="flex items-center">
                       <div>
                       <UserButton afterSignOutUrl="/" />
+                      <UserButton afterSignOutUrl="/" />
                       </div>
                       <div className="ml-3">
                         <p className="text-base font-medium text-white">Tom Cook</p>
@@ -266,6 +269,7 @@ export default function RootLayout ( { children,
               <a href="#" className="flex-shrink-0 w-full group block">
                 <div className="flex items-center">
                   <div>
+                  <UserButton afterSignOutUrl="/" />  
                   <UserButton afterSignOutUrl="/" />  
                   </div>
                   <div className="ml-3">
