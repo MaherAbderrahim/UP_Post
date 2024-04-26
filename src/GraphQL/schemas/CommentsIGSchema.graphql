@@ -1,0 +1,23 @@
+scalar DateTime
+
+type Comments_IG {
+  id: Int!
+  username: String
+  message: String
+  nb_likes: Int
+  created_at: DateTime!
+  updated_at: DateTime!
+  postIG: Posts_IG!
+}
+
+type Query {
+  get_All_Comments_IG: [Comments_IG]
+  get_Comment_IG_By_ID(id: Int!): Comments_IG
+}
+
+
+type Mutation {
+  create_Comment_IG(username: String, message: String, nb_likes: Int, postIG_id: Int!): Comments_IG!
+  update_Comment_IG(id: Int!, username: String, message: String, nb_likes: Int): Comments_IG
+  delete_Comment_IG(id: Int!): Boolean
+}

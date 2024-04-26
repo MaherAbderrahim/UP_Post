@@ -1,33 +1,35 @@
-import {PageIGModel,CommentsModel} from "."
+import {PageIGModel,CommentsIGModel} from "."
 export type PostsIGModel = {
-    id: number;
-    pageId: number;
-    pageName: string;
-    followers: number;
-    postText: string;
-    usernames: string;
-    likes: number;
-    totalNBCommentaires: number;
-    lenPost: number;
-    languePost: string;
-    hashtags: string;
-    hashtagCount: number;
-    foundHash: number;
-    dayOfWeek: string;
-    timePost: Date;
-    day: number;
-    month: string;
-    year: number;
-    datePost: Date;
-    sentimentPOSTT: string;
-    sentimentComment: string;
-    positive: number;
-    negative: number;
-    nature: number;
-    predictionLabel: number;
-    predictionScore: number;
-    createdAt: Date;
-    updatedAt: Date;
-    pageIG?: PageIGModel;
-    comments?: CommentsModel[];
+    id: number,
+    Page_name: string,
+    Followers: number,
+    Post_text: string,
+    Usernames: string,
+    Likes: number,
+    Total_NB_commentaires: number,
+    len_post: number,
+    langue_post: string,
+    Hashtags: string,
+    hashtag_count: number,
+    Found_Hash: number,
+    Day_of_Week: string,
+    Time_post: Date,
+    Day: number,
+    Month: string,
+    Year: number,
+    Date_post: Date,
+    Sentiment_POSTT: string,
+    sentiment_comment: any,
+    positive: number,
+    negative: number,
+    nature: number,
+    prediction_label: number,
+    prediction_score: number,
+    created_at : Date;
+    updated_at : Date;
+
+    // Foreign keys
+
+    page_id: number;
+    page_IG?: PageIGModel;
   };

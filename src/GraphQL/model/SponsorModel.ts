@@ -3,7 +3,9 @@ export type SponsorModel = {
     id: number;
     name: string;
     followers: number;
-    createdAt: Date;
-    updatedAt: Date;
-    postsFB?: PostsFBModel[];
+    created_at : Date;
+    updated_at : Date;
+
+    // Foreign keys
+
   };

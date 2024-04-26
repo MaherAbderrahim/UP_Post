@@ -1,34 +1,22 @@
 scalar DateTime
 
-type UserFB {
-  id: Int!
-  project: Project!
+type Users_FB {
+  id: ID!
   name: String!
   id_FB: String!
   user_TOKEN: String!
   created_at: DateTime!
   updated_at: DateTime!
-  pages_FB: [PageFB!]!
-}
-
-input CreateUserFBInput {
-  project_id: Int!
-  name: String!
-  id_FB: String!
-  user_TOKEN: String!
-}
-
-input UpdateUserFBInput {
-  name: String
+  page_FB: [Page_FB!]!
 }
 
 type Query {
-  getAllUsersFB: [UserFB!]!
-  getUserFBById(id: Int!): UserFB
+  get_All_Users_FB: [Users_FB!]!
+  get_Users_FB_By_Id(id: ID!): Users_FB
 }
 
 type Mutation {
-  createUserFB(data: CreateUserFBInput!): UserFB!
-  updateUserFB(id: Int!, data: UpdateUserFBInput!): UserFB!
-  deleteUserFB(id: Int!): UserFB!
+  create_Users_FB(name: String!, id_FB: String!, user_TOKEN: String!): Users_FB!
+  update_Users_FB(id: ID!, name: String, id_FB: String, user_TOKEN: String): Users_FB!
+  delete_Users_FB(id: ID!): Users_FB!
 }

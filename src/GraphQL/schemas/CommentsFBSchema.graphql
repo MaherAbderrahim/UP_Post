@@ -1,0 +1,23 @@
+scalar DateTime
+
+type Comments_FB {
+  id: Int!
+  username: String
+  message: String
+  nb_likes: Int
+  created_at: DateTime!
+  updated_at: DateTime!
+  postFB: Posts_FB!
+}
+
+type Query {
+  get_All_Comments_FB: [Comments_FB]
+  get_Comment_FB_By_ID(id: Int!): Comments_FB
+}
+
+
+type Mutation {
+  create_Comment_FB(username: String, message: String, nb_likes: Int, postFB_id: Int!): Comments_FB!
+  update_Comment_FB(id: Int!, username: String, message: String, nb_likes: Int): Comments_FB
+  delete_Comment_FB(id: Int!): Boolean
+}

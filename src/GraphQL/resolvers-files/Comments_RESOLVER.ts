@@ -1,12 +1,9 @@
-import { CommentsService } from '../datasources';
 import { CreateCommentInput, UpdateCommentInput } from '../generated/types';
 
 
-const commentsService = new CommentsService();
-
 export const commentsResolver = {
   Query: {
-    getAllComments: () => commentsService.getAllCommentss(),
+    getAllComments: async (_,_, { dataSources }),
     getCommentById: (_: any, { id }: { id: number }) => commentsService.getCommentsById(id),
   },
   Mutation: {

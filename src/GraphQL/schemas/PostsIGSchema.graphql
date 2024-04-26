@@ -1,10 +1,7 @@
 scalar DateTime
 
-type PostIG {
+type Posts_IG {
   id: Int!
-  page: PageIG!
-  created_at: DateTime!
-  updated_at: DateTime!
   Page_name: String
   Followers: Int
   Post_text: String
@@ -23,75 +20,102 @@ type PostIG {
   Year: Int
   Date_post: DateTime
   Sentiment_POSTT: String
-  sentiment_comment: String
+  sentiment_comment: Json
   positive: Int
   negative: Int
   nature: Int
   prediction_label: Int
   prediction_score: Float
-  comments: [Comment!]!
-}
-
-input CreatePostIGInput {
-  page_id: Int!
-  Post_text: String
-  Usernames: String
-  Likes: Int
-  Total_NB_commentaires: Int
-  len_post: Int
-  langue_post: String
-  Hashtags: String
-  hashtag_count: Int
-  Found_Hash: Int
-  Day_of_Week: String
-  Time_post: DateTime
-  Day: Int
-  Month: String
-  Year: Int
-  Date_post: DateTime
-  Sentiment_POSTT: String
-  sentiment_comment: String
-  positive: Int
-  negative: Int
-  nature: Int
-  prediction_label: Int
-  prediction_score: Float
-  comments: [Comment!]!
-}
-
-input UpdatePostIGInput {
-  Post_text: String
-  Usernames: String
-  Likes: Int
-  Total_NB_commentaires: Int
-  len_post: Int
-  langue_post: String
-  Hashtags: String
-  hashtag_count: Int
-  Found_Hash: Int
-  Day_of_Week: String
-  Time_post: DateTime
-  Day: Int
-  Month: String
-  Year: Int
-  Date_post: DateTime
-  Sentiment_POSTT: String
-  sentiment_comment: String
-  positive: Int
-  negative: Int
-  nature: Int
-  prediction_label: Int
-  prediction_score: Float
-  comments: [Comment!]!
+  created_at: DateTime!
+  updated_at: DateTime!
+  page_id: Int
+  page_IG: Page_IG
+  comments: [Comments_IG]!
 }
 
 type Query {
-  getAllPostsIG: [PostIG!]!
-  getPostsIGById(id: Int!): PostIG
+  get_All_Posts_IG: [Posts_IG]
+  get_Post_By_ID(id: Int!): Posts_IG
 }
 
+
 type Mutation {
-  createPostIG(data: CreatePostIGInput!): PostIG!
-  updatePostIG(id: Int!, data: UpdatePostIGInput!): PostIG!
-  deletePostIG(id: Int!): PostIG!
+  create_Post_IG(
+    Page_name: String,
+    Followers: Int,
+    Post_text: String,
+    Usernames: String,
+    Likes: Int,
+    Total_NB_commentaires: Int,
+    len_post: Int,
+    langue_post: String,
+    Hashtags: String,
+    hashtag_count: Int,
+    Found_Hash: Int,
+    Day_of_Week: String,
+    Time_post: DateTime,
+    Day: Int,
+    Month: String,
+    Year: Int,
+    Date_post: DateTime,
+    Sentiment_POSTT: String,
+    sentiment_comment: Json,
+    positive: Int,
+    negative: Int,
+    nature: Int,
+    prediction_label: Int,
+    prediction_score: Float,
+    page_id: Int!
+  ): Posts_IG!
+
+  update_Post_IG(
+    id: Int!,
+    Page_name: String,
+    Followers: Int,
+    Post_text: String,
+    Usernames: String,
+    Likes: Int,
+    Total_NB_commentaires: Int,
+    len_post: Int,
+    langue_post: String,
+    Hashtags: String,
+    hashtag_count: Int,
+    Found_Hash: Int,
+    Day_of_Week: String,
+    Time_post: DateTime,
+    Day: Int,
+    Month: String,
+    Year: Int,
+    Date_post: DateTime,
+    Sentiment_POSTT: String,
+    sentiment_comment: Json,
+    positive: Int,
+    negative: Int,
+    nature: Int,
+    prediction_label: Int,
+    prediction_score: Float,
+    page_id: Int
+  ): Posts_IG
+
+  delete_Post_IG(id: Int!): Boolean
+}
+
+
+
+
+type Comments_IG {
+  id: Int!
+  Post_id: Int!
+  Username: String
+  Message: String
+  Likes: Int
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type Page_IG {
+  id: Int!
+  Page_name: String
+  Followers: Int
+  Posts: [Posts_IG]!
 }

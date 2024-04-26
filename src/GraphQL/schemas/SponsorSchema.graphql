@@ -3,29 +3,19 @@ scalar DateTime
 type Sponsor {
   id: Int!
   name: String!
-  followers: Int
+  followers: Int!
   created_at: DateTime!
   updated_at: DateTime!
-  posts_FB: [PostFB!]!
-}
-
-input CreateSponsorInput {
-  name: String!
-  followers: Int
-}
-
-input UpdateSponsorInput {
-  name: String
-  followers: Int
+  posts: [Posts_FB]!
 }
 
 type Query {
-  getAllSponsors: [Sponsor!]!
-  getSponsorById(id: Int!): Sponsor
+  get_All_Sponsors: [Sponsor]
+  get_Sponsor_By_Id(id: Int!): Sponsor
 }
 
 type Mutation {
-  createSponsor(data: CreateSponsorInput!): Sponsor!
-  updateSponsor(id: Int!, data: UpdateSponsorInput!): Sponsor!
-  deleteSponsor(id: Int!): Sponsor!
+  create_Sponsor(name: String!, followers: Int!): Sponsor!
+  update_Sponsor(id: Int!, name: String, followers: Int): Sponsor
+  delete_Sponsor(id: Int!): Boolean
 }
