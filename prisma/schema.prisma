@@ -21,58 +21,57 @@ model Users {
 
 model Project {
   id          Int        @id @default(autoincrement())
-  user_id     Int
   name        String     @unique
   description String
   created_at  DateTime   @default(now())
   updated_at  DateTime   @updatedAt
   Page_IG     Page_IG[]
-  Users_FB    Users_FB[]
+  Page_FB     Page_FB[]
+  user_id     Int
   Users       Users      @relation(fields: [user_id], references: [id])
 }
 
 model Users_FB {
   id         Int       @id @default(autoincrement())
-  project_id Int       @unique
   name       String    @unique
   id_FB      String    @unique
   user_TOKEN String    @unique
   created_at DateTime  @default(now())
   updated_at DateTime  @updatedAt
-  Project    Project   @relation(fields: [project_id], references: [id])
   Page_FB    Page_FB[]
 }
 
 model Page_FB {
   id         Int        @id @default(autoincrement())
-  user_id    Int
   name       String     @unique
   id_FB      String     @unique
   page_TOKEN String     @unique
   created_at DateTime   @default(now())
   updated_at DateTime   @updatedAt
-  Users_FB   Users_FB   @relation(fields: [user_id], references: [id])
-  Page_IG    Page_IG?
-  Posts_FB   Posts_FB[]
+  user_id    Int
+  user_FB   Users_FB   @relation(fields: [user_id], references: [id])
+  page_IG    Page_IG?
+  project_id Int      
+  project    Project    @relation(fields: [project_id], references: [id])
+  posts_FB   Posts_FB[]
 }
 
 model Page_IG {
   id         Int        @id @default(autoincrement())
-  project_id Int        @unique
-  page_fb_id Int?       @unique
   created_at DateTime   @default(now())
   updated_at DateTime   @updatedAt
   name       String     @unique
   id_IG      String     @unique
   user_TOKEN String     @unique
-  Page_FB    Page_FB?   @relation(fields: [page_fb_id], references: [id])
-  Project    Project    @relation(fields: [project_id], references: [id])
-  Posts_IG   Posts_IG[]
+  page_FB_id Int        @unique
+  page_FB    Page_FB    @relation(fields: [page_FB_id], references: [id])
+  project_id Int        
+  project    Project    @relation(fields: [project_id], references: [id])
+  posts_IG   Posts_IG[]
 }
 
 model Posts_FB {
   id                       Int        @id @default(autoincrement())
-  page_id                  Int
   created_at               DateTime   @default(now())
   updated_at               DateTime   @updatedAt
   Name_page                String
@@ -108,14 +107,14 @@ model Posts_FB {
   is_sponsored             Boolean
   prediction_label         Int
   prediction_score         Float
-  Page_FB                  Page_FB    @relation(fields: [page_id], references: [id])
-  Comments                 Comments[]
-  Sponsor                  Sponsor[]
+  page_id                  Int
+  page_FB                  Page_FB    @relation(fields: [page_id], references: [id])
+  comments                 Comments_FB[]
+  sponsor                  Sponsor[]
 }
 
 model Posts_IG {
   id                    Int        @id @default(autoincrement())
-  page_id               Int
   Page_name             String
   Followers             Int
   Post_text             String
@@ -142,8 +141,9 @@ model Posts_IG {
   prediction_score      Float
   created_at            DateTime   @default(now())
   updated_at            DateTime   @updatedAt
-  Page_IG               Page_IG    @relation(fields: [page_id], references: [id])
-  Comments              Comments[]
+  page_id               Int
+  page_IG               Page_IG    @relation(fields: [page_id], references: [id])
+  comments              Comments_IG[]
 }
 
 model Sponsor {
@@ -155,15 +155,25 @@ model Sponsor {
   Posts_FB   Posts_FB[]
 }
 
-model Comments {
+model Comments_FB {
   id       Int       @id @default(autoincrement())
-  FB_id    Int?
-  IG_id    Int?
   username String
   message  String
   nb_likes Int
   created_at DateTime   @default(now())
   updated_at DateTime   @updatedAt
-  Posts_FB Posts_FB? @relation(fields: [FB_id], references: [id])
-  Posts_IG Posts_IG? @relation(fields: [IG_id], references: [id])
+  postFB_id    Int
+  Posts_FB Posts_FB @relation(fields: [postFB_id], references: [id])
 }
+
+model Comments_IG {
+  id       Int       @id @default(autoincrement())
+  username String
+  message  String
+  nb_likes Int
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  postIG_id    Int
+  Posts_IG Posts_IG @relation(fields: [postIG_id], references: [id])
+}
+

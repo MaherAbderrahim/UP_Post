@@ -1,35 +1,24 @@
 scalar DateTime
 
-type PageIG {
-  id: Int!
-  project: Project!
-  page_fb: PageFB
+type Page_IG {
+  id: ID!
   created_at: DateTime!
   updated_at: DateTime!
   name: String!
   id_IG: String!
   user_TOKEN: String!
-  posts_IG: [PostIG!]!
-}
-
-input CreatePageIGInput {
-  project_id: Int!
-  name: String!
-  id_IG: String!
-  user_TOKEN: String!
-}
-
-input UpdatePageIGInput {
-  name: String
+  page_fb: Page_FB
+  project: Project!
+  posts_IG: [Posts_IG!]!
 }
 
 type Query {
-  getAllPagesIG: [PageIG!]!
-  getPageIGById(id: Int!): PageIG
+  get_All_Page_IG: [Page_IG!]!
+  get_Page_IG_By_ID(id: ID!): Page_IG
 }
 
 type Mutation {
-  createPageIG(data: CreatePageIGInput!): PageIG!
-  updatePageIG(id: Int!, data: UpdatePageIGInput!): PageIG!
-  deletePageIG(id: Int!): PageIG!
+  create_Page_IG(name: String!, id_IG: String!, user_TOKEN: String!, project_id: ID!): Page_IG!
+  update_Page_IG(id: ID!, name: String, id_IG: String, user_TOKEN: String, project_id: ID): Page_IG!
+  delete_Page_IG(id: ID!): Page_IG!
 }

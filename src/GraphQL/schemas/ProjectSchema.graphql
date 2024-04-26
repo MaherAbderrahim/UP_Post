@@ -1,34 +1,21 @@
-scalar DateTime
-
 type Project {
-  id: Int!
-  user: User!
+  id: ID!
   name: String!
-  description: String
+  description: String!
   created_at: DateTime!
   updated_at: DateTime!
-  page_IG: PageIG
-  users_FB: [UserFB!]!
-}
-
-input CreateProjectInput {
-  user_id: Int!
-  name: String!
-  description: String
-}
-
-input UpdateProjectInput {
-  name: String
-  description: String
+  user: User!
+  pagesIG: [PageIG]
+  pagesFB: [PageFB]
 }
 
 type Query {
-  getAllProjects: [Project!]!
-  getProjectById(id: Int!): Project
+  get_All_Projects: [Project]
+  get_Project_By_Id(id: ID!): Project
 }
 
 type Mutation {
-  createProject(data: CreateProjectInput!): Project!
-  updateProject(id: Int!, data: UpdateProjectInput!): Project!
-  deleteProject(id: Int!): Project!
+  create_Project(name: String!, description: String, user_id: Int!): Project!
+  update_Project(id: ID!, name: String, description: String, user_id: Int): Project!
+  delete_Project(id: ID!): Project!
 }

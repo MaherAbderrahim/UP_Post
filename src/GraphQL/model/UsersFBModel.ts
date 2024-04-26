@@ -1,12 +1,12 @@
-import {ProjectModel,PageFBModel} from "."
+import {PageFBModel} from "."
 export type UsersFBModel = {
     id: number;
-    projectId: number;
     name: string;
-    idFB: string;
-    userTOKEN: string;
-    createdAt: Date;
-    updatedAt: Date;
-    project?: ProjectModel;
-    pageFBs?: PageFBModel[];
+    id_FB: string;
+    user_TOKEN: string;
+    created_at : Date;
+    updated_at : Date;
+
+    // Foreign keys
+
   };

@@ -1,14 +1,17 @@
 import { ProjectModel, PageFBModel,PostsIGModel } from ".";
 export type PageIGModel = {
     id: number;
-    projectId: number;
-    pageFBId?: number | null;
-    createdAt: Date;
-    updatedAt: Date;
+    id_IG: string;
     name: string;
-    idIG: string;
-    userTOKEN: string;
-    pageFB?: PageFBModel;
+    user_TOKEN: string;
+    created_at : Date;
+    updated_at : Date;
+    
+    // Foreign keys
+
+    page_FB_id: number;
+    page_FB?: PageFBModel;
+
+    project_id: number;
     project?: ProjectModel;
-    postIG: PostsIGModel[];
   };

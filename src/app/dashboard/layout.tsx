@@ -351,7 +351,7 @@ export default function RootLayout ( { children,
                 <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                   <div className="flex-shrink-0 flex items-center px-4">
                     <img
-                      className="h-8 w-auto"
+                      className="h-15 w-auto"
                       src="/wereact_logo.jpeg"
                       alt="WeReact"
                     />
