@@ -73,35 +73,19 @@ export default function Page() {
   return (
     <main className="flex-1 flex overflow-hidden">
       {/* Left column - Form */}
-      <section className="min-w-0 flex-1 h-full flex flex-col overflow-y-auto lg:order-first p-4">
-        <h2 className="text-2xl font-semibold mb-4">Create a new post</h2>
+      <section className="min-w-0 flex-1 h-full flex flex-col overflow-y-auto lg:order-first p-4 mt-40">
+        <h2 className="text-2xl font-semibold mb-4">Créer un nouveau poste</h2>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-          <input
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            placeholder="Title"
-            className="border rounded-lg px-4 py-2"
-          />
           <textarea
             name="description"
             value={formData.description}
             onChange={handleChange}
-            placeholder="Description"
+            placeholder="Thème"
             rows={4}
             className="border rounded-lg px-4 py-2"
           />
-          <input
-            type="text"
-            name="imageUrl"
-            value={formData.imageUrl}
-            onChange={handleChange}
-            placeholder="Image URL"
-            className="border rounded-lg px-4 py-2"
-          />
           <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg">
-            Post
+            Créer le poste
           </button>
         </form>
       </section>
