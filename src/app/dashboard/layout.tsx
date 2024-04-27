@@ -2,7 +2,6 @@
 import "@/app/globals.css";
 import { usePathname, useSearchParams } from 'next/navigation';
 import { UserButton } from "@clerk/nextjs";
-import { UserButton } from "@clerk/nextjs";
 import { Dialog, Transition } from '@headlessui/react'
 //flyout Menu imports
 import { Popover } from '@headlessui/react'
