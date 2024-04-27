@@ -1,6 +1,8 @@
 'use client'
-
+import { CheckCircleIcon } from '@heroicons/react/solid';
 import { useState } from 'react';
+import { ArrowCircleRightIcon } from '@heroicons/react/solid';
+import Link from 'next/link';
 
 type Post = {
   title: string;
@@ -58,7 +60,7 @@ export default function Page() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Handle form submission here
     console.log(formData);
@@ -68,48 +70,57 @@ export default function Page() {
       description: '',
       imageUrl: '',
     });
+    setLoading(true);
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setLoading(false);
+    setSubmitted(true);
   };
+
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   return (
     <main className="flex-1 flex overflow-hidden">
       {/* Left column - Form */}
-      <section className="min-w-0 flex-1 h-full flex flex-col overflow-y-auto lg:order-first p-4">
-        <h2 className="text-2xl font-semibold mb-4">Create a new post</h2>
+      <section className="min-w-0 flex-1 h-full flex flex-col overflow-y-auto lg:order-first p-4 mt-40">
+        <h2 className="text-2xl font-semibold mb-4">Créer un nouveau poste</h2>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-          <input
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            placeholder="Title"
-            className="border rounded-lg px-4 py-2"
-          />
           <textarea
             name="description"
             value={formData.description}
             onChange={handleChange}
-            placeholder="Description"
+            placeholder="Thème"
             rows={4}
             className="border rounded-lg px-4 py-2"
           />
-          <input
-            type="text"
-            name="imageUrl"
-            value={formData.imageUrl}
-            onChange={handleChange}
-            placeholder="Image URL"
-            className="border rounded-lg px-4 py-2"
-          />
-          <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg">
-            Post
-          </button>
+          {!loading && !submitted &&(
+            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+            Créer le poste
+            </button>
+          )}
+          {loading &&  (
+            <ArrowCircleRightIcon className="animate-spin h-5 w-5 text-blue-500" />
+          )}
+          {submitted && (
+            <div className="p-4 shadow-md rounded flex items-start space-x-2">
+            <CheckCircleIcon className="h-5 w-5 text-green-500" />
+            <div>
+              <h3>POST CREATED ....</h3>
+            </div>
+          </div>
+          
+          )}
         </form>
       </section>
 
       {/* Right column - Post */}
-      <aside className="flex-1 flex flex-col justify-center items-center p-4">
-        <PostCard post={post} />
-      </aside>
+      {submitted &&  (
+        <aside className="flex-1 flex flex-col justify-center items-center p-4">
+          <PostCard post={post} />
+        </aside>
+      )}    
+        
     </main>
   )
 }

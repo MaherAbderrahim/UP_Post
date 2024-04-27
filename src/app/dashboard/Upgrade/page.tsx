@@ -1,5 +1,8 @@
 'use client'
+import { useState, useEffect } from 'react';
 import { ArrowNarrowRightIcon } from '@heroicons/react/outline'
+import { ArrowCircleRightIcon } from '@heroicons/react/solid';
+import Link from 'next/link';
 
 type Post = {
   title: string;
@@ -56,21 +59,61 @@ function PostCard({ post }: { post: Post }) {
 }
 
 export default function page() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isPostVisible, setIsPostVisible] = useState(false); // Add this line
+
+  const handleClick = async () => {
+    setIsLoading(true);
+    // Simulate a delay (e.g., fetching data, performing calculations)
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setIsLoading(false);
+    setIsPostVisible(true); // Add this line
+  };
+
   return (
     <main className="flex-1 flex flex-col lg:flex-row overflow-hidden">
-      {/* Primary column */}
-      <section className="min-w-0 flex-1 flex flex-col overflow-y-auto lg:order-last lg:w-1/2 p-4">
-        <div className="flex justify-center">
+  {/* Primary column */}
+  <section className="min-w-0 flex-1 flex flex-col overflow-y-auto lg:order-last lg:w-1/2 p-4">
+    <div className="flex flex-col items-center justify-center h-full">
+      {!isLoading &&!isPostVisible && (
+        <button
+          onClick={handleClick}
+          className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+        >
+          Upgrade 
+        </button>
+      )}
+      {isLoading && (
+        <ArrowCircleRightIcon className="animate-spin h-5 w-5 text-blue-500" />
+      )}
+      {isPostVisible && (
+        <div className="flex flex-col items-center mt-5 p-5 ">
           <PostCard post={post_up} />
-        </div>
-      </section>
+          <Link href="">
+            <button
+              className="w-full mt-4 px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-900"
+            >
+              Post now...
+            </button>
+          </Link> 
+      </div>
+      )}
+    </div>
+  </section>
 
-      {/* Secondary column (hidden on smaller screens) */}
-      <aside className="lg:block lg:flex-shrink-0 lg:order-first lg:w-1/2 p-4">
-        <div className="flex justify-center">
-          <PostCard post={post} />
-        </div>
-      </aside>
-    </main>
+  {/* Secondary column (hidden on smaller screens) */}
+  <aside className="lg:block lg:flex-shrink-0 lg:order-first lg:w-1/2 p-4">
+    <div className="flex flex-col items-center mt-5 p-5 ">
+      <PostCard post={post} />
+      <Link href="/dashboard/Posts">
+        <button
+          className="w-full mt-4 px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-900"
+        >
+          Back to Posts
+        </button>
+      </Link> 
+    </div>
+  </aside>
+</main>
   )
 }
