@@ -33,6 +33,9 @@ import {
   XIcon,
 } from '@heroicons/react/outline'
 import { ChevronDownIcon } from '@heroicons/react/solid'
+import Link from 'next/link'
+import { ContainerScroll } from '@/components/ui/container-scroll-animation'
+import Image from "next/image";
 
 const solutions = [
   {
@@ -201,8 +204,8 @@ export default function Example() {
               <a href="#">
                 <span className="sr-only">Workflow</span>
                 <img
-                  className="h-8 w-auto sm:h-10"
-                  src="https://tailwindui.com/img/logos/workflow-mark-purple-600-to-indigo-600.svg"
+                  className="h-8 w-auto sm:h-20"
+                  src="/wereact_logo.jpeg"
                   alt=""
                 />
               </a>
@@ -397,16 +400,10 @@ export default function Example() {
                 <div className="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
                   <div className="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5">
                     <a
-                      href="#"
+                      href="/sign-up"
                       className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-700 bg-white hover:bg-indigo-50 sm:px-8"
                     >
                       Get started
-                    </a>
-                    <a
-                      href="#"
-                      className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-500 bg-opacity-60 hover:bg-opacity-70 sm:px-8"
-                    >
-                      Live demo
                     </a>
                   </div>
                 </div>
@@ -454,6 +451,29 @@ export default function Example() {
         </div>
 
         {/* Alternating Feature Sections */}
+        <div className="flex flex-col overflow-hidden">
+      <ContainerScroll
+        titleComponent={
+          <>
+            <h1 className="text-4xl font-semibold text-black dark:text-white">
+              Unleash the power of <br />
+              <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
+                Scroll Animations
+              </span>
+            </h1>
+          </>
+        }
+      >
+        <Image
+          src={`/dashboard.png`}
+          alt="hero"
+          height={720}
+          width={1400}
+          className="mx-auto rounded-2xl object-cover h-full object-left-top"
+          draggable={false}
+        />
+      </ContainerScroll>
+    </div>
         <div className="relative pt-16 pb-32 overflow-hidden">
           <div aria-hidden="true" className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-gray-100" />
           <div className="relative">
