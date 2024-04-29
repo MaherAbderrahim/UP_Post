@@ -34,6 +34,7 @@ type Posts_IG {
 }
 
 type Query {
+  get_All_Page_Posts: [Posts_IG]
   get_All_Posts_IG: [Posts_IG]
   get_Post_By_ID(id: Int!): Posts_IG
 }

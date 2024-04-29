@@ -43,6 +43,7 @@ type Posts_FB {
 }
 
 type Query {
+  get_All_Page_Posts: [Posts_FB]
   get_All_Posts_FB: [Posts_FB]!
   get_Post_FB_By_ID(id: ID!): Posts_FB
 }

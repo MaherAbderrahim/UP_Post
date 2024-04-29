@@ -11,6 +11,9 @@ type Comments_FB {
 }
 
 type Query {
+  get_All_User_Comments_On_Post: [Comments_FB]
+  get_All_User_Comments_On_Page: [Comments_FB]
+  get_Comments_By_Post_Id: [Comments_FB]
   get_All_Comments_FB: [Comments_FB]
   get_Comment_FB_By_ID(id: Int!): Comments_FB
 }

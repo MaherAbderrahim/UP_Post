@@ -10,6 +10,7 @@ type Project {
 }
 
 type Query {
+  get_All_User_Project: [Project]
   get_All_Projects: [Project]
   get_Project_By_Id(id: ID!): Project
 }

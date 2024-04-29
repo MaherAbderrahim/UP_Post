@@ -8,11 +8,11 @@ export class ProjectService {
     this.prisma = prisma;
   }
 
-  async getAllProjects(): Promise<ProjectModel[]> {
+  async get_All_Projects(): Promise<ProjectModel[]> {
     return await this.prisma.project.findMany();
   }
 
-  async getProjectById(id: number): Promise<ProjectModel | null> {
+  async get_Project_By_Id(id: number): Promise<ProjectModel | null> {
     return await this.prisma.project.findUnique({
       where: {
         id: id,
@@ -20,7 +20,14 @@ export class ProjectService {
     });
   }
 
-  async createProject(name: string, description: string, user_id: number): Promise<ProjectModel> {
+  async get_All_User_Project(id:number):Promise<ProjectModel[]>{
+    return await this.prisma.project.findMany({
+      where: {
+        user_id:id,
+      },
+    });
+  }
+  async create_Project(name: string, description: string, user_id: number): Promise<ProjectModel> {
     return await this.prisma.project.create({
       data: {
         name: name,
@@ -34,7 +41,7 @@ export class ProjectService {
     });
   }
 
-  async updateProject(id: number, name: string, description: string, user_id: number): Promise<ProjectModel> {
+  async update_Project(id: number, name: string, description: string, user_id: number): Promise<ProjectModel> {
     return await this.prisma.project.update({
       where: {
         id: id,
@@ -51,7 +58,7 @@ export class ProjectService {
     });
   }
 
-  async deleteProject(id: number): Promise<ProjectModel> {
+  async delete_Project(id: number): Promise<ProjectModel> {
     return await this.prisma.project.delete({
       where: {
         id: id,

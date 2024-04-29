@@ -8,11 +8,11 @@ export class PostsIGService {
     this.prisma = prisma;
   }
 
-  async getAllPostsIG(): Promise<PostsIGModel[]> {
+  async get_All_Posts_IG(): Promise<PostsIGModel[]> {
     return await this.prisma.posts_IG.findMany();
   }
 
-  async getPostIGById(id: number): Promise<PostsIGModel | null> {
+  async get_Post_IG_By_Id(id: number): Promise<PostsIGModel | null> {
     return await this.prisma.posts_IG.findUnique({
       where: {
         id: id,
@@ -20,7 +20,15 @@ export class PostsIGService {
     });
   }
 
-  async createPostIG(
+  async get_All_Page_Posts(id:number) : Promise<PostsIGModel[]>{
+    return await this.prisma.posts_IG.findMany({
+      where: {
+        page_id:id,
+      },
+    });
+  }
+
+  async create_Post_IG(
     Page_name: string,
     Followers: number,
     Post_text: string,
@@ -82,7 +90,7 @@ export class PostsIGService {
     });
   }
 
-  async updatePostIG(
+  async update_Post_IG(
     id: number,
     Page_name: string,
     Followers: number,
@@ -148,7 +156,7 @@ export class PostsIGService {
     });
   }
 
-  async deletePostIG(id: number): Promise<PostsIGModel> {
+  async delete_Post_IG(id: number): Promise<PostsIGModel> {
     return await this.prisma.posts_IG.delete({
       where: {
         id: id,

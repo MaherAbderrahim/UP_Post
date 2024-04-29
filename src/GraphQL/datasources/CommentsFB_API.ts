@@ -8,11 +8,41 @@ export class CommentsFBService {
     this.prisma = prisma;
   }
 
-  async getAllCommentsFB(): Promise<CommentsFBModel[]> {
+  async get_Comments_By_Post_Id(id:number): Promise<CommentsFBModel[]> {
+    return await this.prisma.comments_FB.findMany({
+      where: {
+        postFB_id: id,
+      },
+    });
+  } 
+
+  async get_All_User_Comments_On_Page(user_name:string,pageid:number):Promise<CommentsFBModel[]> {
+    return await this.prisma.comments_FB.findMany({
+      where: {
+        Posts_FB: {
+          page_id: pageid,
+        },
+        username: user_name,
+      },
+    });
+  }
+
+  get_All_User_Comments_On_Post(user_name:string,postid:number):Promise<CommentsFBModel[]> {
+    return this.prisma.comments_FB.findMany({
+      where: {
+        postFB_id: postid,
+        username: user_name,
+      },
+    });
+  }
+
+
+
+  async get_All_Comments_FB(): Promise<CommentsFBModel[]> {
     return await this.prisma.comments_FB.findMany();
   }
 
-  async getCommentFBById(id: number): Promise<CommentsFBModel | null> {
+  async get_Comment_FB_By_Id(id: number): Promise<CommentsFBModel | null> {
     return await this.prisma.comments_FB.findUnique({
       where: {
         id: id,
@@ -20,7 +50,7 @@ export class CommentsFBService {
     });
   }
   
-  async createCommentFB(username: string, message: string, nb_likes: number, postFB_id: number) : Promise<CommentsFBModel>  {
+  async create_Comment_FB(username: string, message: string, nb_likes: number, postFB_id: number) : Promise<CommentsFBModel>  {
     return await this.prisma.comments_FB.create({
       data: {
         username: username,
@@ -37,7 +67,7 @@ export class CommentsFBService {
 
 
 
-  async updateCommentFB(id: number, username: string, message: string, nb_likes: number): Promise<CommentsFBModel> {
+  async update_Comment_FB(id: number, username: string, message: string, nb_likes: number): Promise<CommentsFBModel> {
     return await this.prisma.comments_FB.update({
       where: {
         id: id,
@@ -50,7 +80,7 @@ export class CommentsFBService {
     });
   }
 
-  async deleteCommentFB(id: number): Promise<CommentsFBModel> {
+  async delete_Comment_FB(id: number): Promise<CommentsFBModel> {
     return await this.prisma.comments_FB.delete({
       where: {
         id: id,
