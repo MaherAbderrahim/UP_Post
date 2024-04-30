@@ -1,6 +1,7 @@
 import type { PrismaClient } from "@prisma/client";
 import type { CommentsFBModel } from "../model";
 
+
 export class CommentsFBService {
   prisma: PrismaClient;
 
@@ -8,7 +9,7 @@ export class CommentsFBService {
     this.prisma = prisma;
   }
 
-  async get_Comments_By_Post_Id(id:number): Promise<CommentsFBModel[]> {
+  async get_Comments_By_Post_FB_Id(id:number): Promise<CommentsFBModel[]> {
     return await this.prisma.comments_FB.findMany({
       where: {
         postFB_id: id,
@@ -16,7 +17,7 @@ export class CommentsFBService {
     });
   } 
 
-  async get_All_User_Comments_On_Page(user_name:string,pageid:number):Promise<CommentsFBModel[]> {
+  async get_All_User_Comments_On_Page_FB(user_name:string,pageid:number):Promise<CommentsFBModel[]> {
     return await this.prisma.comments_FB.findMany({
       where: {
         Posts_FB: {
@@ -27,7 +28,7 @@ export class CommentsFBService {
     });
   }
 
-  get_All_User_Comments_On_Post(user_name:string,postid:number):Promise<CommentsFBModel[]> {
+  get_All_User_Comments_On_Post_FB(user_name:string,postid:number):Promise<CommentsFBModel[]> {
     return this.prisma.comments_FB.findMany({
       where: {
         postFB_id: postid,

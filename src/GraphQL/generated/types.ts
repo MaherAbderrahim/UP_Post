@@ -15,336 +15,405 @@ export type Scalars = {
   DateTime: { input: any; output: any; }
 };
 
-export type Comment = {
-  __typename?: 'Comment';
-  FB_id?: Maybe<Scalars['Int']['output']>;
-  IG_id?: Maybe<Scalars['Int']['output']>;
+export type Comments_Fb = {
+  __typename?: 'Comments_FB';
+  Posts_FB: Posts_Fb;
   created_at: Scalars['DateTime']['output'];
   id: Scalars['Int']['output'];
-  message: Scalars['String']['output'];
+  message?: Maybe<Scalars['String']['output']>;
   nb_likes?: Maybe<Scalars['Int']['output']>;
-  post_FB?: Maybe<PostFb>;
-  post_IG?: Maybe<PostIg>;
   updated_at: Scalars['DateTime']['output'];
-  username: Scalars['String']['output'];
+  username?: Maybe<Scalars['String']['output']>;
 };
 
-export type CreateCommentInput = {
-  message: Scalars['String']['input'];
-  nb_likes: Scalars['Int']['input'];
-  username: Scalars['String']['input'];
-};
-
-export type CreatePageFbInput = {
-  id_FB: Scalars['String']['input'];
-  name: Scalars['String']['input'];
-  page_TOKEN: Scalars['String']['input'];
-  user_id: Scalars['Int']['input'];
-};
-
-export type CreatePageIgInput = {
-  id_IG: Scalars['String']['input'];
-  name: Scalars['String']['input'];
-  project_id: Scalars['Int']['input'];
-  user_TOKEN: Scalars['String']['input'];
-};
-
-export type CreatePostFbInput = {
-  Annee_post: Scalars['Int']['input'];
-  Can_reply_privately: Scalars['Boolean']['input'];
-  Colere: Scalars['Int']['input'];
-  Descriptions: Scalars['String']['input'];
-  Followers: Scalars['Int']['input'];
-  Found_Hash: Scalars['String']['input'];
-  Hashtags: Scalars['String']['input'];
-  Heure_post: Scalars['DateTime']['input'];
-  Instagram_eligibility: Scalars['String']['input'];
-  Jadores: Scalars['Int']['input'];
-  Jaimes: Scalars['Int']['input'];
-  Jour_de_la_semaine: Scalars['String']['input'];
-  Longueur_caracteres_text: Scalars['Int']['input'];
-  Mois: Scalars['String']['input'];
-  Name_page: Scalars['String']['input'];
-  Nombre_Hashtags: Scalars['Int']['input'];
-  Nombre_de_commentaire: Scalars['Int']['input'];
-  Partages: Scalars['Int']['input'];
-  Popularity: Scalars['Int']['input'];
-  Rires: Scalars['Int']['input'];
-  Season: Scalars['String']['input'];
-  Sentiment_post: Scalars['String']['input'];
-  Solidaires: Scalars['Int']['input'];
-  Timeline_visibility: Scalars['String']['input'];
-  Tristes: Scalars['Int']['input'];
-  Url_post: Scalars['String']['input'];
-  Wouah: Scalars['Int']['input'];
-  comments: Array<Comment>;
-  is_sponsored: Scalars['Boolean']['input'];
-  langue_post: Scalars['String']['input'];
-  page_id: Scalars['Int']['input'];
-  prediction_label: Scalars['Int']['input'];
-  prediction_score: Scalars['Float']['input'];
-  sentiment_comments_NEG: Scalars['Int']['input'];
-  sentiment_comments_POS: Scalars['Int']['input'];
-};
-
-export type CreatePostIgInput = {
-  Date_post: Scalars['DateTime']['input'];
-  Day: Scalars['Int']['input'];
-  Day_of_Week: Scalars['String']['input'];
-  Followers: Scalars['Int']['input'];
-  Found_Hash: Scalars['Int']['input'];
-  Hashtags: Scalars['String']['input'];
-  Likes: Scalars['Int']['input'];
-  Month: Scalars['String']['input'];
-  Post_text: Scalars['String']['input'];
-  Sentiment_POSTT: Scalars['String']['input'];
-  Time_post: Scalars['DateTime']['input'];
-  Total_NB_commentaires: Scalars['Int']['input'];
-  Usernames: Scalars['String']['input'];
-  Year: Scalars['Int']['input'];
-  comments: Array<Comment>;
-  hashtag_count: Scalars['Int']['input'];
-  langue_post: Scalars['String']['input'];
-  len_post: Scalars['Int']['input'];
-  nature: Scalars['Int']['input'];
-  negative: Scalars['Int']['input'];
-  Page_name: Scalars['String']['input'];
-  page_id: Scalars['Int']['input'];
-  positive: Scalars['Int']['input'];
-  prediction_label: Scalars['Int']['input'];
-  prediction_score: Scalars['Float']['input'];
-  sentiment_comment: Scalars['String']['input'];
-};
-
-export type CreateProjectInput = {
-  description: Scalars['String']['input'];
-  name: Scalars['String']['input'];
-  user_id: Scalars['Int']['input'];
-};
-
-export type CreateSponsorInput = {
-  followers: Scalars['Int']['input'];
-  name: Scalars['String']['input'];
-};
-
-export type CreateUserFbInput = {
-  id_FB: Scalars['String']['input'];
-  name: Scalars['String']['input'];
-  project_id: Scalars['Int']['input'];
-  user_TOKEN: Scalars['String']['input'];
-};
-
-export type CreateUserInput = {
-  email: Scalars['String']['input'];
+export type Comments_Ig = {
+  __typename?: 'Comments_IG';
+  Posts_IG: Posts_Ig;
+  created_at: Scalars['DateTime']['output'];
+  id: Scalars['Int']['output'];
+  message?: Maybe<Scalars['String']['output']>;
+  nb_likes?: Maybe<Scalars['Int']['output']>;
+  updated_at: Scalars['DateTime']['output'];
+  username?: Maybe<Scalars['String']['output']>;
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createComment: Comment;
-  createPageFB: PageFb;
-  createPageIG: PageIg;
-  createPostFB: PostFb;
-  createPostIG: PostIg;
-  createProject: Project;
-  createSponsor: Sponsor;
-  createUser: User;
-  createUserFB: UserFb;
-  deleteComment: Comment;
-  deletePageFB: PageFb;
-  deletePageIG: PageIg;
-  deletePostFB: PostFb;
-  deletePostIG: PostIg;
-  deleteProject: Project;
-  deleteSponsor: Sponsor;
-  deleteUser: User;
-  deleteUserFB: UserFb;
-  updateComment: Comment;
-  updatePageFB: PageFb;
-  updatePageIG: PageIg;
-  updatePostFB: PostFb;
-  updatePostIG: PostIg;
-  updateProject: Project;
-  updateSponsor: Sponsor;
-  updateUser: User;
-  updateUserFB: UserFb;
+  create_Comment_FB: Comments_Fb;
+  create_Comment_IG: Comments_Ig;
+  create_Page_FB: Page_Fb;
+  create_Page_IG: Page_Ig;
+  create_Post_FB: Posts_Fb;
+  create_Post_IG: Posts_Ig;
+  create_Project: Project;
+  create_Sponsor: Sponsor;
+  create_User: Users;
+  create_Users_FB: Users_Fb;
+  delete_Comment_FB?: Maybe<Comments_Fb>;
+  delete_Comment_IG?: Maybe<Comments_Ig>;
+  delete_Page_FB: Page_Fb;
+  delete_Page_IG?: Maybe<Page_Ig>;
+  delete_Post_IG?: Maybe<Posts_Ig>;
+  delete_Posts_FB: Posts_Fb;
+  delete_Project: Project;
+  delete_Sponsor?: Maybe<Sponsor>;
+  delete_User: Users;
+  delete_Users_FB: Users_Fb;
+  update_Comment_FB?: Maybe<Comments_Fb>;
+  update_Comment_IG?: Maybe<Comments_Ig>;
+  update_Page_FB: Page_Fb;
+  update_Page_IG: Page_Ig;
+  update_Post_FB: Posts_Fb;
+  update_Post_IG?: Maybe<Posts_Ig>;
+  update_Project: Project;
+  update_Sponsor?: Maybe<Sponsor>;
+  update_User: Users;
+  update_Users_FB: Users_Fb;
 };
 
 
-export type MutationCreateCommentArgs = {
-  data: CreateCommentInput;
+export type MutationCreate_Comment_FbArgs = {
+  message?: InputMaybe<Scalars['String']['input']>;
+  nb_likes?: InputMaybe<Scalars['Int']['input']>;
+  postFB_id: Scalars['Int']['input'];
+  username?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type MutationCreatePageFbArgs = {
-  data: CreatePageFbInput;
+export type MutationCreate_Comment_IgArgs = {
+  message?: InputMaybe<Scalars['String']['input']>;
+  nb_likes?: InputMaybe<Scalars['Int']['input']>;
+  postIG_id: Scalars['Int']['input'];
+  username?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type MutationCreatePageIgArgs = {
-  data: CreatePageIgInput;
+export type MutationCreate_Page_FbArgs = {
+  id_FB: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  page_TOKEN: Scalars['String']['input'];
+  project_id: Scalars['ID']['input'];
+  user_id: Scalars['ID']['input'];
 };
 
 
-export type MutationCreatePostFbArgs = {
-  data: CreatePostFbInput;
+export type MutationCreate_Page_IgArgs = {
+  id_IG: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  project_id: Scalars['ID']['input'];
+  user_TOKEN: Scalars['String']['input'];
 };
 
 
-export type MutationCreatePostIgArgs = {
-  data: CreatePostIgInput;
+export type MutationCreate_Post_FbArgs = {
+  Annee_post?: InputMaybe<Scalars['Int']['input']>;
+  Can_reply_privately?: InputMaybe<Scalars['Boolean']['input']>;
+  Colere?: InputMaybe<Scalars['Int']['input']>;
+  Descriptions?: InputMaybe<Scalars['String']['input']>;
+  Followers?: InputMaybe<Scalars['Int']['input']>;
+  Found_Hash?: InputMaybe<Scalars['String']['input']>;
+  Hashtags?: InputMaybe<Scalars['String']['input']>;
+  Heure_post?: InputMaybe<Scalars['DateTime']['input']>;
+  Instagram_eligibility?: InputMaybe<Scalars['String']['input']>;
+  Jadores?: InputMaybe<Scalars['Int']['input']>;
+  Jaimes?: InputMaybe<Scalars['Int']['input']>;
+  Jour_de_la_semaine?: InputMaybe<Scalars['String']['input']>;
+  Longueur_caracteres_text?: InputMaybe<Scalars['Int']['input']>;
+  Mois?: InputMaybe<Scalars['String']['input']>;
+  Name_page?: InputMaybe<Scalars['String']['input']>;
+  Nombre_Hashtags?: InputMaybe<Scalars['Int']['input']>;
+  Nombre_de_commentaire?: InputMaybe<Scalars['Int']['input']>;
+  Partages?: InputMaybe<Scalars['Int']['input']>;
+  Popularity?: InputMaybe<Scalars['Int']['input']>;
+  Rires?: InputMaybe<Scalars['Int']['input']>;
+  Season?: InputMaybe<Scalars['String']['input']>;
+  Sentiment_post?: InputMaybe<Scalars['String']['input']>;
+  Solidaires?: InputMaybe<Scalars['Int']['input']>;
+  Timeline_visibility?: InputMaybe<Scalars['String']['input']>;
+  Tristes?: InputMaybe<Scalars['Int']['input']>;
+  Url_post?: InputMaybe<Scalars['String']['input']>;
+  Wouah?: InputMaybe<Scalars['Int']['input']>;
+  is_sponsored?: InputMaybe<Scalars['Boolean']['input']>;
+  langue_post?: InputMaybe<Scalars['String']['input']>;
+  page_id: Scalars['ID']['input'];
+  prediction_label?: InputMaybe<Scalars['Int']['input']>;
+  prediction_score?: InputMaybe<Scalars['Float']['input']>;
+  sentiment_comments_NEG?: InputMaybe<Scalars['Int']['input']>;
+  sentiment_comments_POS?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
-export type MutationCreateProjectArgs = {
-  data: CreateProjectInput;
+export type MutationCreate_Post_IgArgs = {
+  Date_post?: InputMaybe<Scalars['DateTime']['input']>;
+  Day?: InputMaybe<Scalars['Int']['input']>;
+  Day_of_Week?: InputMaybe<Scalars['String']['input']>;
+  Followers?: InputMaybe<Scalars['Int']['input']>;
+  Found_Hash?: InputMaybe<Scalars['Int']['input']>;
+  Hashtags?: InputMaybe<Scalars['String']['input']>;
+  Likes?: InputMaybe<Scalars['Int']['input']>;
+  Month?: InputMaybe<Scalars['String']['input']>;
+  Page_name?: InputMaybe<Scalars['String']['input']>;
+  Post_text?: InputMaybe<Scalars['String']['input']>;
+  Sentiment_POSTT?: InputMaybe<Scalars['String']['input']>;
+  Time_post?: InputMaybe<Scalars['DateTime']['input']>;
+  Total_NB_commentaires?: InputMaybe<Scalars['Int']['input']>;
+  Usernames?: InputMaybe<Scalars['String']['input']>;
+  Year?: InputMaybe<Scalars['Int']['input']>;
+  hashtag_count?: InputMaybe<Scalars['Int']['input']>;
+  langue_post?: InputMaybe<Scalars['String']['input']>;
+  len_post?: InputMaybe<Scalars['Int']['input']>;
+  nature?: InputMaybe<Scalars['Int']['input']>;
+  negative?: InputMaybe<Scalars['Int']['input']>;
+  page_id: Scalars['Int']['input'];
+  positive?: InputMaybe<Scalars['Int']['input']>;
+  prediction_label?: InputMaybe<Scalars['Int']['input']>;
+  prediction_score?: InputMaybe<Scalars['Float']['input']>;
+  sentiment_comments_NEG?: InputMaybe<Scalars['Int']['input']>;
+  sentiment_comments_POS?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
-export type MutationCreateSponsorArgs = {
-  data: CreateSponsorInput;
+export type MutationCreate_ProjectArgs = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  user_id: Scalars['Int']['input'];
 };
 
 
-export type MutationCreateUserArgs = {
-  data: CreateUserInput;
+export type MutationCreate_SponsorArgs = {
+  followers: Scalars['Int']['input'];
+  name: Scalars['String']['input'];
 };
 
 
-export type MutationCreateUserFbArgs = {
-  data: CreateUserFbInput;
+export type MutationCreate_UserArgs = {
+  email: Scalars['String']['input'];
 };
 
 
-export type MutationDeleteCommentArgs = {
+export type MutationCreate_Users_FbArgs = {
+  id_FB: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  user_TOKEN: Scalars['String']['input'];
+};
+
+
+export type MutationDelete_Comment_FbArgs = {
   id: Scalars['Int']['input'];
 };
 
 
-export type MutationDeletePageFbArgs = {
+export type MutationDelete_Comment_IgArgs = {
   id: Scalars['Int']['input'];
 };
 
 
-export type MutationDeletePageIgArgs = {
+export type MutationDelete_Page_FbArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Page_IgArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_Post_IgArgs = {
   id: Scalars['Int']['input'];
 };
 
 
-export type MutationDeletePostFbArgs = {
+export type MutationDelete_Posts_FbArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_ProjectArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDelete_SponsorArgs = {
   id: Scalars['Int']['input'];
 };
 
 
-export type MutationDeletePostIgArgs = {
+export type MutationDelete_UserArgs = {
   id: Scalars['Int']['input'];
 };
 
 
-export type MutationDeleteProjectArgs = {
+export type MutationDelete_Users_FbArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdate_Comment_FbArgs = {
+  id: Scalars['Int']['input'];
+  message?: InputMaybe<Scalars['String']['input']>;
+  nb_likes?: InputMaybe<Scalars['Int']['input']>;
+  username?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type MutationUpdate_Comment_IgArgs = {
+  id: Scalars['Int']['input'];
+  message?: InputMaybe<Scalars['String']['input']>;
+  nb_likes?: InputMaybe<Scalars['Int']['input']>;
+  username?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type MutationUpdate_Page_FbArgs = {
+  id: Scalars['ID']['input'];
+  id_FB?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  page_TOKEN?: InputMaybe<Scalars['String']['input']>;
+  project_id?: InputMaybe<Scalars['ID']['input']>;
+  user_id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
+export type MutationUpdate_Page_IgArgs = {
+  id: Scalars['ID']['input'];
+  id_IG?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  project_id?: InputMaybe<Scalars['ID']['input']>;
+  user_TOKEN?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type MutationUpdate_Post_FbArgs = {
+  Annee_post?: InputMaybe<Scalars['Int']['input']>;
+  Can_reply_privately?: InputMaybe<Scalars['Boolean']['input']>;
+  Colere?: InputMaybe<Scalars['Int']['input']>;
+  Descriptions?: InputMaybe<Scalars['String']['input']>;
+  Followers?: InputMaybe<Scalars['Int']['input']>;
+  Found_Hash?: InputMaybe<Scalars['String']['input']>;
+  Hashtags?: InputMaybe<Scalars['String']['input']>;
+  Heure_post?: InputMaybe<Scalars['DateTime']['input']>;
+  Instagram_eligibility?: InputMaybe<Scalars['String']['input']>;
+  Jadores?: InputMaybe<Scalars['Int']['input']>;
+  Jaimes?: InputMaybe<Scalars['Int']['input']>;
+  Jour_de_la_semaine?: InputMaybe<Scalars['String']['input']>;
+  Longueur_caracteres_text?: InputMaybe<Scalars['Int']['input']>;
+  Mois?: InputMaybe<Scalars['String']['input']>;
+  Name_page?: InputMaybe<Scalars['String']['input']>;
+  Nombre_Hashtags?: InputMaybe<Scalars['Int']['input']>;
+  Nombre_de_commentaire?: InputMaybe<Scalars['Int']['input']>;
+  Partages?: InputMaybe<Scalars['Int']['input']>;
+  Popularity?: InputMaybe<Scalars['Int']['input']>;
+  Rires?: InputMaybe<Scalars['Int']['input']>;
+  Season?: InputMaybe<Scalars['String']['input']>;
+  Sentiment_post?: InputMaybe<Scalars['String']['input']>;
+  Solidaires?: InputMaybe<Scalars['Int']['input']>;
+  Timeline_visibility?: InputMaybe<Scalars['String']['input']>;
+  Tristes?: InputMaybe<Scalars['Int']['input']>;
+  Url_post?: InputMaybe<Scalars['String']['input']>;
+  Wouah?: InputMaybe<Scalars['Int']['input']>;
+  id: Scalars['ID']['input'];
+  is_sponsored?: InputMaybe<Scalars['Boolean']['input']>;
+  langue_post?: InputMaybe<Scalars['String']['input']>;
+  page_id?: InputMaybe<Scalars['ID']['input']>;
+  prediction_label?: InputMaybe<Scalars['Int']['input']>;
+  prediction_score?: InputMaybe<Scalars['Float']['input']>;
+  sentiment_comments_NEG?: InputMaybe<Scalars['Int']['input']>;
+  sentiment_comments_POS?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type MutationUpdate_Post_IgArgs = {
+  Date_post?: InputMaybe<Scalars['DateTime']['input']>;
+  Day?: InputMaybe<Scalars['Int']['input']>;
+  Day_of_Week?: InputMaybe<Scalars['String']['input']>;
+  Followers?: InputMaybe<Scalars['Int']['input']>;
+  Found_Hash?: InputMaybe<Scalars['Int']['input']>;
+  Hashtags?: InputMaybe<Scalars['String']['input']>;
+  Likes?: InputMaybe<Scalars['Int']['input']>;
+  Month?: InputMaybe<Scalars['String']['input']>;
+  Page_name?: InputMaybe<Scalars['String']['input']>;
+  Post_text?: InputMaybe<Scalars['String']['input']>;
+  Sentiment_POSTT?: InputMaybe<Scalars['String']['input']>;
+  Time_post?: InputMaybe<Scalars['DateTime']['input']>;
+  Total_NB_commentaires?: InputMaybe<Scalars['Int']['input']>;
+  Usernames?: InputMaybe<Scalars['String']['input']>;
+  Year?: InputMaybe<Scalars['Int']['input']>;
+  hashtag_count?: InputMaybe<Scalars['Int']['input']>;
+  id: Scalars['Int']['input'];
+  langue_post?: InputMaybe<Scalars['String']['input']>;
+  len_post?: InputMaybe<Scalars['Int']['input']>;
+  nature?: InputMaybe<Scalars['Int']['input']>;
+  negative?: InputMaybe<Scalars['Int']['input']>;
+  page_id?: InputMaybe<Scalars['Int']['input']>;
+  positive?: InputMaybe<Scalars['Int']['input']>;
+  prediction_label?: InputMaybe<Scalars['Int']['input']>;
+  prediction_score?: InputMaybe<Scalars['Float']['input']>;
+  sentiment_comments_NEG?: InputMaybe<Scalars['Int']['input']>;
+  sentiment_comments_POS?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type MutationUpdate_ProjectArgs = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+  name?: InputMaybe<Scalars['String']['input']>;
+  user_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type MutationUpdate_SponsorArgs = {
+  followers?: InputMaybe<Scalars['Int']['input']>;
+  id: Scalars['Int']['input'];
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type MutationUpdate_UserArgs = {
+  email: Scalars['String']['input'];
   id: Scalars['Int']['input'];
 };
 
 
-export type MutationDeleteSponsorArgs = {
-  id: Scalars['Int']['input'];
+export type MutationUpdate_Users_FbArgs = {
+  id: Scalars['ID']['input'];
+  id_FB?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  user_TOKEN?: InputMaybe<Scalars['String']['input']>;
 };
 
-
-export type MutationDeleteUserArgs = {
-  id: Scalars['Int']['input'];
-};
-
-
-export type MutationDeleteUserFbArgs = {
-  id: Scalars['Int']['input'];
-};
-
-
-export type MutationUpdateCommentArgs = {
-  data: UpdateCommentInput;
-  id: Scalars['Int']['input'];
-};
-
-
-export type MutationUpdatePageFbArgs = {
-  data: UpdatePageFbInput;
-  id: Scalars['Int']['input'];
-};
-
-
-export type MutationUpdatePageIgArgs = {
-  data: UpdatePageIgInput;
-  id: Scalars['Int']['input'];
-};
-
-
-export type MutationUpdatePostFbArgs = {
-  data: UpdatePostFbInput;
-  id: Scalars['Int']['input'];
-};
-
-
-export type MutationUpdatePostIgArgs = {
-  data: UpdatePostIgInput;
-  id: Scalars['Int']['input'];
-};
-
-
-export type MutationUpdateProjectArgs = {
-  data: UpdateProjectInput;
-  id: Scalars['Int']['input'];
-};
-
-
-export type MutationUpdateSponsorArgs = {
-  data: UpdateSponsorInput;
-  id: Scalars['Int']['input'];
-};
-
-
-export type MutationUpdateUserArgs = {
-  data: UpdateUserInput;
-  id: Scalars['Int']['input'];
-};
-
-
-export type MutationUpdateUserFbArgs = {
-  data: UpdateUserFbInput;
-  id: Scalars['Int']['input'];
-};
-
-export type PageFb = {
-  __typename?: 'PageFB';
+export type Page_Fb = {
+  __typename?: 'Page_FB';
+  Page_IG?: Maybe<Page_Ig>;
+  Posts_FB: Array<Posts_Fb>;
+  Project: Project;
+  User_FB: Users_Fb;
   created_at: Scalars['DateTime']['output'];
-  id: Scalars['Int']['output'];
+  id: Scalars['ID']['output'];
   id_FB: Scalars['String']['output'];
   name: Scalars['String']['output'];
-  page_IG?: Maybe<PageIg>;
   page_TOKEN: Scalars['String']['output'];
-  posts_FB: Array<PostFb>;
   updated_at: Scalars['DateTime']['output'];
-  user: UserFb;
-  users_FB?: Maybe<UserFb>;
 };
 
-export type PageIg = {
-  __typename?: 'PageIG';
+export type Page_Ig = {
+  __typename?: 'Page_IG';
+  Page_FB?: Maybe<Page_Fb>;
+  Posts_IG: Array<Posts_Ig>;
+  Project: Project;
   created_at: Scalars['DateTime']['output'];
-  id: Scalars['Int']['output'];
+  id: Scalars['ID']['output'];
   id_IG: Scalars['String']['output'];
   name: Scalars['String']['output'];
-  page_fb?: Maybe<PageFb>;
-  posts_IG: Array<PostIg>;
-  project: Project;
   updated_at: Scalars['DateTime']['output'];
   user_TOKEN: Scalars['String']['output'];
 };
 
-export type PostFb = {
-  __typename?: 'PostFB';
+export type Posts_Fb = {
+  __typename?: 'Posts_FB';
   Annee_post?: Maybe<Scalars['Int']['output']>;
   Can_reply_privately?: Maybe<Scalars['Boolean']['output']>;
   Colere?: Maybe<Scalars['Int']['output']>;
+  Comments_FB: Array<Comments_Fb>;
   Descriptions?: Maybe<Scalars['String']['output']>;
   Followers?: Maybe<Scalars['Int']['output']>;
   Found_Hash?: Maybe<Scalars['String']['output']>;
@@ -359,22 +428,22 @@ export type PostFb = {
   Name_page?: Maybe<Scalars['String']['output']>;
   Nombre_Hashtags?: Maybe<Scalars['Int']['output']>;
   Nombre_de_commentaire?: Maybe<Scalars['Int']['output']>;
+  Page_FB: Page_Fb;
   Partages?: Maybe<Scalars['Int']['output']>;
   Popularity?: Maybe<Scalars['Int']['output']>;
   Rires?: Maybe<Scalars['Int']['output']>;
   Season?: Maybe<Scalars['String']['output']>;
   Sentiment_post?: Maybe<Scalars['String']['output']>;
   Solidaires?: Maybe<Scalars['Int']['output']>;
+  Sponsor: Array<Sponsor>;
   Timeline_visibility?: Maybe<Scalars['String']['output']>;
   Tristes?: Maybe<Scalars['Int']['output']>;
   Url_post?: Maybe<Scalars['String']['output']>;
   Wouah?: Maybe<Scalars['Int']['output']>;
-  comments: Array<Comment>;
   created_at: Scalars['DateTime']['output'];
-  id: Scalars['Int']['output'];
+  id: Scalars['ID']['output'];
   is_sponsored?: Maybe<Scalars['Boolean']['output']>;
   langue_post?: Maybe<Scalars['String']['output']>;
-  page: PageFb;
   prediction_label?: Maybe<Scalars['Int']['output']>;
   prediction_score?: Maybe<Scalars['Float']['output']>;
   sentiment_comments_NEG?: Maybe<Scalars['Int']['output']>;
@@ -382,8 +451,9 @@ export type PostFb = {
   updated_at: Scalars['DateTime']['output'];
 };
 
-export type PostIg = {
-  __typename?: 'PostIG';
+export type Posts_Ig = {
+  __typename?: 'Posts_IG';
+  Comments_IG: Array<Maybe<Comments_Ig>>;
   Date_post?: Maybe<Scalars['DateTime']['output']>;
   Day?: Maybe<Scalars['Int']['output']>;
   Day_of_Week?: Maybe<Scalars['String']['output']>;
@@ -392,6 +462,7 @@ export type PostIg = {
   Hashtags?: Maybe<Scalars['String']['output']>;
   Likes?: Maybe<Scalars['Int']['output']>;
   Month?: Maybe<Scalars['String']['output']>;
+  Page_IG?: Maybe<Page_Ig>;
   Page_name?: Maybe<Scalars['String']['output']>;
   Post_text?: Maybe<Scalars['String']['output']>;
   Sentiment_POSTT?: Maybe<Scalars['String']['output']>;
@@ -399,7 +470,6 @@ export type PostIg = {
   Total_NB_commentaires?: Maybe<Scalars['Int']['output']>;
   Usernames?: Maybe<Scalars['String']['output']>;
   Year?: Maybe<Scalars['Int']['output']>;
-  comments: Array<Comment>;
   created_at: Scalars['DateTime']['output'];
   hashtag_count?: Maybe<Scalars['Int']['output']>;
   id: Scalars['Int']['output'];
@@ -407,215 +477,139 @@ export type PostIg = {
   len_post?: Maybe<Scalars['Int']['output']>;
   nature?: Maybe<Scalars['Int']['output']>;
   negative?: Maybe<Scalars['Int']['output']>;
-  page: PageIg;
+  page_id?: Maybe<Scalars['Int']['output']>;
   positive?: Maybe<Scalars['Int']['output']>;
   prediction_label?: Maybe<Scalars['Int']['output']>;
   prediction_score?: Maybe<Scalars['Float']['output']>;
-  sentiment_comment?: Maybe<Scalars['String']['output']>;
+  sentiment_comments_NEG?: Maybe<Scalars['Int']['output']>;
+  sentiment_comments_POS?: Maybe<Scalars['Int']['output']>;
   updated_at: Scalars['DateTime']['output'];
 };
 
 export type Project = {
   __typename?: 'Project';
+  Pages_FB?: Maybe<Array<Maybe<Page_Fb>>>;
+  Pages_IG?: Maybe<Array<Maybe<Page_Ig>>>;
+  Users: Users;
   created_at: Scalars['DateTime']['output'];
-  description?: Maybe<Scalars['String']['output']>;
-  id: Scalars['Int']['output'];
+  description: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
-  page_IG?: Maybe<PageIg>;
   updated_at: Scalars['DateTime']['output'];
-  user: User;
-  users_FB: Array<UserFb>;
 };
 
 export type Query = {
   __typename?: 'Query';
-  comment?: Maybe<Comment>;
-  comments: Array<Comment>;
-  page_FB?: Maybe<PageFb>;
-  page_IG?: Maybe<PageIg>;
-  pages_FB: Array<PageFb>;
-  pages_IG: Array<PageIg>;
-  post_FB?: Maybe<PostFb>;
-  post_IG?: Maybe<PostIg>;
-  posts_FB: Array<PostFb>;
-  posts_IG: Array<PostIg>;
-  project?: Maybe<Project>;
-  projects: Array<Project>;
-  sponsor?: Maybe<Sponsor>;
-  sponsors: Array<Sponsor>;
-  user?: Maybe<User>;
-  user_FB?: Maybe<UserFb>;
-  users: Array<User>;
-  users_FB: Array<UserFb>;
+  get_All_Comments_FB?: Maybe<Array<Maybe<Comments_Fb>>>;
+  get_All_Comments_IG?: Maybe<Array<Maybe<Comments_Ig>>>;
+  get_All_Page_FB: Array<Page_Fb>;
+  get_All_Page_FB_Posts?: Maybe<Array<Maybe<Posts_Fb>>>;
+  get_All_Page_IG: Array<Page_Ig>;
+  get_All_Page_IG_Posts?: Maybe<Array<Maybe<Posts_Ig>>>;
+  get_All_Posts_FB: Array<Maybe<Posts_Fb>>;
+  get_All_Posts_IG?: Maybe<Array<Maybe<Posts_Ig>>>;
+  get_All_Project_Pages_FB?: Maybe<Array<Maybe<Page_Fb>>>;
+  get_All_Project_Pages_IG?: Maybe<Array<Maybe<Page_Ig>>>;
+  get_All_Projects?: Maybe<Array<Maybe<Project>>>;
+  get_All_Sponsors?: Maybe<Array<Maybe<Sponsor>>>;
+  get_All_User_Comments_On_Page_FB?: Maybe<Array<Maybe<Comments_Fb>>>;
+  get_All_User_Comments_On_Page_IG?: Maybe<Array<Maybe<Comments_Ig>>>;
+  get_All_User_Comments_On_Post_FB?: Maybe<Array<Maybe<Comments_Fb>>>;
+  get_All_User_Comments_On_Post_IG?: Maybe<Array<Maybe<Comments_Ig>>>;
+  get_All_User_Pages_FB?: Maybe<Array<Maybe<Page_Fb>>>;
+  get_All_User_Project?: Maybe<Array<Maybe<Project>>>;
+  get_All_Users: Array<Users>;
+  get_All_Users_FB: Array<Users_Fb>;
+  get_Comment_FB_By_ID?: Maybe<Comments_Fb>;
+  get_Comment_IG_By_ID?: Maybe<Comments_Ig>;
+  get_Comments_By_Post_FB_Id?: Maybe<Array<Maybe<Comments_Fb>>>;
+  get_Comments_By_Post_IG_Id?: Maybe<Array<Maybe<Comments_Ig>>>;
+  get_Page_FB_By_ID?: Maybe<Page_Fb>;
+  get_Page_IG_By_ID?: Maybe<Page_Ig>;
+  get_Post_FB_By_ID?: Maybe<Posts_Fb>;
+  get_Post_IG_By_ID?: Maybe<Posts_Ig>;
+  get_Project_By_Id?: Maybe<Project>;
+  get_Sponsor_By_Id?: Maybe<Sponsor>;
+  get_User_ById?: Maybe<Users>;
+  get_Users_FB_By_Id?: Maybe<Users_Fb>;
 };
 
 
-export type QueryCommentArgs = {
+export type QueryGet_Comment_Fb_By_IdArgs = {
   id: Scalars['Int']['input'];
 };
 
 
-export type QueryPage_FbArgs = {
+export type QueryGet_Comment_Ig_By_IdArgs = {
   id: Scalars['Int']['input'];
 };
 
 
-export type QueryPage_IgArgs = {
+export type QueryGet_Page_Fb_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryGet_Page_Ig_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryGet_Post_Fb_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryGet_Post_Ig_By_IdArgs = {
   id: Scalars['Int']['input'];
 };
 
 
-export type QueryPost_FbArgs = {
+export type QueryGet_Project_By_IdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryGet_Sponsor_By_IdArgs = {
   id: Scalars['Int']['input'];
 };
 
 
-export type QueryPost_IgArgs = {
+export type QueryGet_User_ByIdArgs = {
   id: Scalars['Int']['input'];
 };
 
 
-export type QueryProjectArgs = {
-  id: Scalars['Int']['input'];
-};
-
-
-export type QuerySponsorArgs = {
-  id: Scalars['Int']['input'];
-};
-
-
-export type QueryUserArgs = {
-  id: Scalars['Int']['input'];
-};
-
-
-export type QueryUser_FbArgs = {
-  id: Scalars['Int']['input'];
+export type QueryGet_Users_Fb_By_IdArgs = {
+  id: Scalars['ID']['input'];
 };
 
 export type Sponsor = {
   __typename?: 'Sponsor';
+  Posts_FB: Array<Maybe<Posts_Fb>>;
   created_at: Scalars['DateTime']['output'];
-  followers?: Maybe<Scalars['Int']['output']>;
+  followers: Scalars['Int']['output'];
   id: Scalars['Int']['output'];
   name: Scalars['String']['output'];
-  posts_FB: Array<PostFb>;
   updated_at: Scalars['DateTime']['output'];
 };
 
-export type UpdateCommentInput = {
-  message: Scalars['String']['input'];
-  nb_likes: Scalars['Int']['input'];
-  username: Scalars['String']['input'];
-};
-
-export type UpdatePageFbInput = {
-  name: Scalars['String']['input'];
-};
-
-export type UpdatePageIgInput = {
-  name: Scalars['String']['input'];
-};
-
-export type UpdatePostFbInput = {
-  Annee_post: Scalars['Int']['input'];
-  Can_reply_privately: Scalars['Boolean']['input'];
-  Colere: Scalars['Int']['input'];
-  Descriptions: Scalars['String']['input'];
-  Found_Hash: Scalars['String']['input'];
-  Hashtags: Scalars['String']['input'];
-  Instagram_eligibility: Scalars['String']['input'];
-  Jadores: Scalars['Int']['input'];
-  Jaimes: Scalars['Int']['input'];
-  Jour_de_la_semaine: Scalars['String']['input'];
-  Longueur_caracteres_text: Scalars['Int']['input'];
-  Mois: Scalars['String']['input'];
-  Name_page: Scalars['String']['input'];
-  Nombre_Hashtags: Scalars['Int']['input'];
-  Nombre_de_commentaire: Scalars['Int']['input'];
-  Partages: Scalars['Int']['input'];
-  Popularity: Scalars['Int']['input'];
-  Rires: Scalars['Int']['input'];
-  Season: Scalars['String']['input'];
-  Sentiment_post: Scalars['String']['input'];
-  Solidaires: Scalars['Int']['input'];
-  Timeline_visibility: Scalars['String']['input'];
-  Tristes: Scalars['Int']['input'];
-  Url_post: Scalars['String']['input'];
-  Wouah: Scalars['Int']['input'];
-  comments: Array<Comment>;
-  is_sponsored: Scalars['Boolean']['input'];
-  langue_post: Scalars['String']['input'];
-  prediction_label: Scalars['Int']['input'];
-  prediction_score: Scalars['Float']['input'];
-  sentiment_comments_NEG: Scalars['Int']['input'];
-  sentiment_comments_POS: Scalars['Int']['input'];
-};
-
-export type UpdatePostIgInput = {
-  Date_post: Scalars['DateTime']['input'];
-  Day: Scalars['Int']['input'];
-  Day_of_Week: Scalars['String']['input'];
-  Followers: Scalars['Int']['input'];
-  Found_Hash: Scalars['Int']['input'];
-  Hashtags: Scalars['String']['input'];
-  Likes: Scalars['Int']['input'];
-  Month: Scalars['String']['input'];
-  Post_text: Scalars['String']['input'];
-  Sentiment_POSTT: Scalars['String']['input'];
-  Time_post: Scalars['DateTime']['input'];
-  Total_NB_commentaires: Scalars['Int']['input'];
-  Usernames: Scalars['String']['input'];
-  Year: Scalars['Int']['input'];
-  comments: Array<Comment>;
-  hashtag_count: Scalars['Int']['input'];
-  langue_post: Scalars['String']['input'];
-  len_post: Scalars['Int']['input'];
-  nature: Scalars['Int']['input'];
-  negative: Scalars['Int']['input'];
-  Page_name: Scalars['String']['input'];
-  positive: Scalars['Int']['input'];
-  prediction_label: Scalars['Int']['input'];
-  prediction_score: Scalars['Float']['input'];
-  sentiment_comment: Scalars['String']['input'];
-};
-
-export type UpdateProjectInput = {
-  description: Scalars['String']['input'];
-  name: Scalars['String']['input'];
-};
-
-export type UpdateSponsorInput = {
-  followers: Scalars['Int']['input'];
-  name: Scalars['String']['input'];
-};
-
-export type UpdateUserFbInput = {
-  name: Scalars['String']['input'];
-};
-
-export type UpdateUserInput = {
-  email: Scalars['String']['input'];
-};
-
-export type User = {
-  __typename?: 'User';
+export type Users = {
+  __typename?: 'Users';
+  Projects: Array<Maybe<Project>>;
   created_at: Scalars['DateTime']['output'];
   email: Scalars['String']['output'];
-  id: Scalars['Int']['output'];
-  projects: Array<Project>;
+  id: Scalars['ID']['output'];
   updated_at: Scalars['DateTime']['output'];
 };
 
-export type UserFb = {
-  __typename?: 'UserFB';
+export type Users_Fb = {
+  __typename?: 'Users_FB';
+  Page_FB: Array<Page_Fb>;
   created_at: Scalars['DateTime']['output'];
-  id: Scalars['Int']['output'];
+  id: Scalars['ID']['output'];
   id_FB: Scalars['String']['output'];
   name: Scalars['String']['output'];
-  pages_FB: Array<PageFb>;
-  project: Project;
   updated_at: Scalars['DateTime']['output'];
   user_TOKEN: Scalars['String']['output'];
 };

@@ -7,7 +7,7 @@ type Users_FB {
   user_TOKEN: String!
   created_at: DateTime!
   updated_at: DateTime!
-  page_FB: [Page_FB!]!
+  Page_FB: [Page_FB!]!
 }
 
 type Query {

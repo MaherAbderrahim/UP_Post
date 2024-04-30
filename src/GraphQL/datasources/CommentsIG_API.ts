@@ -12,7 +12,7 @@ export class CommentsIGService {
     return await this.prisma.comments_IG.findMany();
   }
 
-  async get_Comments_By_Post_Id(id:number): Promise<CommentsIGModel[]> {
+  async get_Comments_By_Post_IG_Id(id:number): Promise<CommentsIGModel[]> {
     return await this.prisma.comments_IG.findMany({
       where: {
         postIG_id: id,
@@ -20,7 +20,7 @@ export class CommentsIGService {
     });
   } 
 
-  async get_All_User_Comments_On_Page(user_name:string,pageid:number):Promise<CommentsIGModel[]> {
+  async get_All_User_Comments_On_Page_IG(user_name:string,pageid:number):Promise<CommentsIGModel[]> {
     return await this.prisma.comments_IG.findMany({
       where: {
         Posts_IG: {
@@ -31,7 +31,7 @@ export class CommentsIGService {
     });
   }
 
-  async get_All_User_Comments_On_Post(user_name:string,postid:number):Promise<CommentsIGModel[]> {
+  async get_All_User_Comments_On_Post_IG(user_name:string,postid:number):Promise<CommentsIGModel[]> {
     return this.prisma.comments_IG.findMany({
       where: {
         postIG_id: postid,

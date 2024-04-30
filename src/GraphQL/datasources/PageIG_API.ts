@@ -34,12 +34,12 @@ export class PageIGService {
         name: name,
         id_IG: id_IG,
         user_TOKEN: user_TOKEN,
-        page_FB: {
+        Page_FB: {
           connect: {
             id: project_id,
           },
         },
-        project: {
+        Project: {
           connect: {
             id: project_id,
           },
@@ -57,12 +57,12 @@ export class PageIGService {
         name: name,
         id_IG: id_IG,
         user_TOKEN: user_TOKEN,
-        page_FB: {
+        Page_FB: {
           connect: {
             id: project_id,
           },
         },
-        project: {
+        Project: {
           connect: {
             id: project_id,
           },

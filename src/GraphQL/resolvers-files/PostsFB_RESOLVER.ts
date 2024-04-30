@@ -1,16 +1,177 @@
-import { PostFBService } from '../datasources';
-import { CreatePostFbInput, UpdatePostFbInput } from '../generated/types';
+import { PostsFBService } from '@/GraphQL/datasources';
+import { PostsFBModel } from '../model';
+import prisma from '@/lib/prisma';
+const postsFBService = new PostsFBService(prisma);
 
-const postsFBService = new PostFBService();
-
-export const postsFBResolver = {
+const postsFBResolvers = {
   Query: {
-    getAllPostsFB: () => postsFBService.getAllPostsFB(),
-    getPostsFBById: (_: any, { id }: { id: number }) => postsFBService.getPostFBById(id),
+    get_All_Posts_FB: async () => {
+      return await postsFBService.get_All_Posts_FB();
+    },
+    get_All_Page_FB_Posts: async (parent: any, { id }: { id: number }) => {
+      return await postsFBService.get_All_Page_FB_Posts(id);
+    },
+    get_Post_FB_By_Id: async (parent: any, { id }: { id: number }) => {
+      return await postsFBService.get_Post_FB_By_Id(id);
+    },
+    // Ajoutez d'autres résolveurs de requête selon vos besoins
   },
   Mutation: {
-    createPostsFB: (_: any, { data }: { data: CreatePostFbInput }) => postsFBService.createPostFB(data),
-    updatePostsFB: (_: any, { id, data }: { id: number, data: UpdatePostFbInput }) => postsFBService.updatePostFB(id, data),
-    deletePostsFB: (_: any, { id }: { id: number }) => postsFBService.deletePostFB(id),
+    create_Post_FB: async (
+        Name_page: string,
+        Followers: number,
+        Heure_post: Date,
+        Descriptions: string,
+        Partages: number,
+        Hashtags: string,
+        Nombre_de_commentaire: number,
+        Jadores: number,
+        Jaimes: number,
+        Solidaires: number,
+        Rires: number,
+        Colere: number,
+        Tristes: number,
+        Wouah: number,
+        Url_post: string,
+        Popularity: number,
+        Jour_de_la_semaine: string,
+        Annee_post: number,
+        Mois: string,
+        langue_post: string,
+        Season: string,
+        Nombre_Hashtags: number,
+        Found_Hash: string,
+        Sentiment_post: string,
+        Longueur_caracteres_text: number,
+        sentiment_comments_POS: number,
+        sentiment_comments_NEG: number,
+        Timeline_visibility: string,
+        Instagram_eligibility: string,
+        Can_reply_privately: boolean,
+        is_sponsored: boolean,
+        prediction_label: number,
+        prediction_score: number,
+        page_id: number,
+    ) => {
+      return await postsFBService.create_Post_FB(
+        Name_page,
+        Followers,
+        Heure_post,
+        Descriptions,
+        Partages,Hashtags,
+        Nombre_de_commentaire,
+        Jadores,
+        Jaimes,
+        Solidaires,
+        Rires,
+        Colere,
+        Tristes,
+        Wouah,
+        Url_post,
+        Popularity,
+        Jour_de_la_semaine,
+        Annee_post,
+        Mois,
+        langue_post,
+        Season,
+        Nombre_Hashtags,
+        Found_Hash,
+        Sentiment_post,
+        Longueur_caracteres_text,
+        sentiment_comments_POS,
+        sentiment_comments_NEG,
+        Timeline_visibility,
+        Instagram_eligibility,
+        Can_reply_privately,
+        is_sponsored,
+        prediction_label,
+        prediction_score,
+        page_id
+      );
+    },
+    update_Post_FB: async (
+      id:number,
+      Name_page: string,
+      Followers: number,
+      Heure_post: Date,
+      Descriptions: string,
+      Partages: number,
+      Hashtags: string,
+      Nombre_de_commentaire: number,
+      Jadores: number,
+      Jaimes: number,
+      Solidaires: number,
+      Rires: number,
+      Colere: number,
+      Tristes: number,
+      Wouah: number,
+      Url_post: string,
+      Popularity: number,
+      Jour_de_la_semaine: string,
+      Annee_post: number,
+      Mois: string,
+      langue_post: string,
+      Season: string,
+      Nombre_Hashtags: number,
+      Found_Hash: string,
+      Sentiment_post: string,
+      Longueur_caracteres_text: number,
+      sentiment_comments_POS: number,
+      sentiment_comments_NEG: number,
+      Timeline_visibility: string,
+      Instagram_eligibility: string,
+      Can_reply_privately: boolean,
+      is_sponsored: boolean,
+      prediction_label: number,
+      prediction_score: number,
+      page_id: number,
+    ) => {
+      return await postsFBService.update_Post_FB(
+        id,
+        Name_page,
+        Followers,
+        Heure_post,
+        Descriptions,
+        Partages,Hashtags,
+        Nombre_de_commentaire,
+        Jadores,
+        Jaimes,
+        Solidaires,
+        Rires,
+        Colere,
+        Tristes,
+        Wouah,
+        Url_post,
+        Popularity,
+        Jour_de_la_semaine,
+        Annee_post,
+        Mois,
+        langue_post,
+        Season,
+        Nombre_Hashtags,
+        Found_Hash,
+        Sentiment_post,
+        Longueur_caracteres_text,
+        sentiment_comments_POS,
+        sentiment_comments_NEG,
+        Timeline_visibility,
+        Instagram_eligibility,
+        Can_reply_privately,
+        is_sponsored,
+        prediction_label,
+        prediction_score,
+        page_id
+      );
+    },
+    delete_Post_FB: async (parent: any, { id }: { id: number }) => {
+      return await postsFBService.delete_Post_FB(id);
+    },
+    // Ajoutez d'autres résolveurs de mutation selon vos besoins
+  },
+  PostsFB: {
+    // Vous pouvez ajouter des résolveurs spécifiques pour les champs de PostsFB si nécessaire
+    // Par exemple, si vous voulez résoudre le champ Page_FB, vous pouvez le faire ici
   },
 };
+
+export default postsFBResolvers;

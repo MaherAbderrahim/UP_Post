@@ -7,9 +7,9 @@ type Page_IG {
   name: String!
   id_IG: String!
   user_TOKEN: String!
-  page_fb: Page_FB
-  project: Project!
-  posts_IG: [Posts_IG!]!
+  Page_FB: Page_FB
+  Project: Project!
+  Posts_IG: [Posts_IG!]!
 }
 
 type Query {
@@ -21,5 +21,5 @@ type Query {
 type Mutation {
   create_Page_IG(name: String!, id_IG: String!, user_TOKEN: String!, project_id: ID!): Page_IG!
   update_Page_IG(id: ID!, name: String, id_IG: String, user_TOKEN: String, project_id: ID): Page_IG!
-  delete_Page_IG(id: ID!): Page_IG!
+  delete_Page_IG(id: ID!): Page_IG
 }

@@ -42,12 +42,12 @@ export class PageFBService {
         name: name,
         id_FB: id_FB,
         page_TOKEN: page_TOKEN,
-        user_FB: {
+        User_FB: {
           connect: {
             id: user_id,
           },
         },
-        project: {
+        Project: {
           connect: {
             id: project_id,
           },
@@ -65,12 +65,12 @@ export class PageFBService {
         name: name,
         id_FB: id_FB,
         page_TOKEN: page_TOKEN,
-        user_FB: {
+        User_FB: {
           connect: {
             id: user_id,
           },
         },
-        project: {
+        Project: {
           connect: {
             id: project_id,
           },

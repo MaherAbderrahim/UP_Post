@@ -20,7 +20,7 @@ export class PostsIGService {
     });
   }
 
-  async get_All_Page_Posts(id:number) : Promise<PostsIGModel[]>{
+  async get_All_Page_IG_Posts(id:number) : Promise<PostsIGModel[]>{
     return await this.prisma.posts_IG.findMany({
       where: {
         page_id:id,
@@ -47,7 +47,8 @@ export class PostsIGService {
     Year: number,
     Date_post: Date,
     Sentiment_POSTT: string,
-    sentiment_comment: any,
+    sentiment_comments_POS: number,
+    sentiment_comments_NEG: number,
     positive: number,
     negative: number,
     nature: number,
@@ -75,13 +76,14 @@ export class PostsIGService {
         Year: Year,
         Date_post: Date_post,
         Sentiment_POSTT: Sentiment_POSTT,
-        sentiment_comment: sentiment_comment,
+        sentiment_comments_POS: sentiment_comments_POS,
+        sentiment_comments_NEG: sentiment_comments_NEG,
         positive: positive,
         negative: negative,
         nature: nature,
         prediction_label: prediction_label,
         prediction_score: prediction_score,
-        page_IG: {
+        Page_IG: {
           connect: {
             id: page_id,
           },
@@ -110,7 +112,8 @@ export class PostsIGService {
     Year: number,
     Date_post: Date,
     Sentiment_POSTT: string,
-    sentiment_comment: any,
+    sentiment_comments_POS: number,
+    sentiment_comments_NEG: number,
     positive: number,
     negative: number,
     nature: number,
@@ -141,13 +144,14 @@ export class PostsIGService {
         Year: Year,
         Date_post: Date_post,
         Sentiment_POSTT: Sentiment_POSTT,
-        sentiment_comment: sentiment_comment,
+        sentiment_comments_POS: sentiment_comments_POS,
+        sentiment_comments_NEG: sentiment_comments_NEG,
         positive: positive,
         negative: negative,
         nature: nature,
         prediction_label: prediction_label,
         prediction_score: prediction_score,
-        page_IG: {
+        Page_IG: {
           connect: {
             id: page_id,
           },

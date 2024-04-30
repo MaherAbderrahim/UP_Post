@@ -1,16 +1,46 @@
-import { PageFBService } from '../datasources';
-import { CreatePageFbInput, UpdatePageFbInput } from '../generated/types';
+import { PageFBService } from '@/GraphQL/datasources';
+import { PageFBModel } from '../model';
+import prisma from '@/lib/prisma';
+const pageFBService = new PageFBService(prisma);
 
-const pageFBService = new PageFBService();
-
-export const pageFBResolver = {
+const pageFBResolvers = {
   Query: {
-    getAllPagesFB: () => pageFBService.getAllPagesFB(),
-    getPageFBById: (_: any, { id }: { id: number }) => pageFBService.getPageFBById(id),
+    get_All_Page_FB: async () => {
+      return await pageFBService.get_All_Page_FB();
+    },
+    get_Page_FB_By_Id: async (parent: any, { id }: { id: number }) => {
+      return await pageFBService.get_Page_FB_By_Id(id);
+    },
+    get_All_User_Pages_FB: async (parent: any, { id }: { id: number }) => {
+      return await pageFBService.get_All_User_Pages_FB(id);
+    },
+    get_All_Project_Pages_FB: async (parent: any, { id }: { id: number }) => {
+      return await pageFBService.get_All_Project_Pages_FB(id);
+    },
+    // Ajoutez d'autres résolveurs de requête selon vos besoins
   },
   Mutation: {
-    createPageFB: (_: any, { data }: { data: CreatePageFbInput }) => pageFBService.createPageFB(data),
-    updatePageFB: (_: any, { id, data }: { id: number, data: UpdatePageFbInput }) => pageFBService.updatePageFB(id, data),
-    deletePageFB: (_: any, { id }: { id: number }) => pageFBService.deletePageFB(id),
+    create_Page_FB: async (
+      parent: any,
+      { name, id_FB, page_TOKEN, user_id, project_id }: { name: string; id_FB: string; page_TOKEN: string; user_id: number; project_id: number }
+    ) => {
+      return await pageFBService.create_Page_FB(name, id_FB, page_TOKEN, user_id, project_id);
+    },
+    update_Page_FB: async (
+      parent: any,
+      { id, name, id_FB, page_TOKEN, user_id, project_id }: { id: number; name: string; id_FB: string; page_TOKEN: string; user_id: number; project_id: number }
+    ) => {
+      return await pageFBService.update_Page_FB(id, name, id_FB, page_TOKEN, user_id, project_id);
+    },
+    delete_Page_FB: async (parent: any, { id }: { id: number }) => {
+      return await pageFBService.delete_Page_FB(id);
+    },
+    // Ajoutez d'autres résolveurs de mutation selon vos besoins
+  },
+  Page_FB: {
+    // Vous pouvez ajouter des résolveurs spécifiques pour les champs de Page_FB si nécessaire
+    // Par exemple, si vous voulez résoudre le champ User_FB ou Project, vous pouvez le faire ici
   },
 };
+
+export default pageFBResolvers;

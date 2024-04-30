@@ -12,7 +12,7 @@ export class PostsFBService {
     return await this.prisma.posts_FB.findMany();
   }
 
-  async get_All_Page_Posts(id:number) : Promise<PostsFBModel[]>{
+  async get_All_Page_FB_Posts(id:number) : Promise<PostsFBModel[]>{
     return await this.prisma.posts_FB.findMany({
       where: {
         page_id:id,
@@ -99,7 +99,7 @@ export class PostsFBService {
         is_sponsored: is_sponsored,
         prediction_label: prediction_label,
         prediction_score: prediction_score,
-        page_FB: {
+        Page_FB: {
           connect: {
             id: page_id,
           },
@@ -183,7 +183,7 @@ export class PostsFBService {
         is_sponsored: is_sponsored,
         prediction_label: prediction_label,
         prediction_score: prediction_score,
-        page_FB: {
+        Page_FB: {
           connect: {
             id: page_id,
           },
