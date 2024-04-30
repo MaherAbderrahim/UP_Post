@@ -1,13 +1,12 @@
-export {projectResolver} from "./Project_RESOLVER";
-export {userResolver} from "./Users_RESOLVER";
-export {userFBResolver} from "./UsersFB_RESOLVER";
-export {pageFBResolver} from "./PageFB_RESOLVER";
-export {pageIGResolver} from "./PageIG_RESOLVER";
-export {commentsResolver} from "./Comments__IG_RESOLVER";
-export {postsFBResolver} from "./PostsFB_RESOLVER";
-export {postsIGResolver} from "./PostsIG_RESOLVER";
-export {sponsorResolver} from "./Sponsor_RESOLVER";
+//exporte tous les resolvers
 
-
-
-
+export {default as commentsFBResolvers} from "./Comments_FB_RESOLVER";
+export {default as commentsIGResolvers} from "./Comments_IG_RESOLVER";
+export {default as pageFBResolvers} from "./PageFB_RESOLVER";
+export {default as pageIGResolvers} from "./PageIG_RESOLVER";
+export {default as postsFBResolvers} from "./PostsFB_RESOLVER";
+export {default as postsIGResolvers} from "./PostsIG_RESOLVER";
+export {default as projectResolvers} from "./Project_RESOLVER";
+export {default as sponsorResolvers} from "./Sponsor_RESOLVER";
+export {default as userResolvers} from "./Users_RESOLVER";
+export {default as usersFBResolvers} from "./UsersFB_RESOLVER";

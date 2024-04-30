@@ -1,25 +1,28 @@
+//importe tous les resolver puis les exporte
 import {
-    userResolver,
-    postsFBResolver,
-    commentsResolver,
-    projectResolver,
-    sponsorResolver,
-    pageIGResolver,
-    pageFBResolver,
-    postsIGResolver,
-    userFBResolver
+    commentsFBResolvers,
+    commentsIGResolvers,
+    pageFBResolvers,
+    pageIGResolvers,
+    postsFBResolvers,
+    postsIGResolvers,
+    projectResolvers,
+    sponsorResolvers,
+    userResolvers,
+    usersFBResolvers
 } from "../GraphQL/resolvers-files"
 
 export const resolvers = [
-    userResolver,
-    postsFBResolver,
-    commentsResolver,
-    projectResolver,
-    sponsorResolver,
-    pageIGResolver,
-    pageFBResolver,
-    postsIGResolver,
-    userFBResolver
+    commentsFBResolvers,
+    commentsIGResolvers,
+    pageFBResolvers,
+    pageIGResolvers,
+    postsFBResolvers,
+    postsIGResolvers,
+    projectResolvers,
+    sponsorResolvers,
+    userResolvers,
+    usersFBResolvers
 ]
 
 export default resolvers;
