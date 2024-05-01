@@ -1,19 +1,22 @@
 'use client'
 import "@/app/globals.css";
 import { usePathname, useSearchParams } from 'next/navigation';
-import { UserButton } from "@clerk/nextjs";
 import { Dialog, Transition } from '@headlessui/react'
 //flyout Menu imports
 import { Popover } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
 
+//import components
+import userMeta from "@/components/user-meta";
+
+//Clerk imports
+import { UserButton,useUser  } from "@clerk/nextjs";
 //select menu imports 
 import { Listbox } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/solid'
 
 /* This example requires Tailwind CSS v2.0+ */
 import React,{ Fragment, useState,useEffect, Children } from 'react'
-
 
 import {
   CalendarIcon,
@@ -25,6 +28,9 @@ import {
   UsersIcon,
   XIcon,
 } from '@heroicons/react/outline'
+import Link from "next/link";
+import UserMeta from "@/components/user-meta";
+
 
   const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: ChartBarIcon },
@@ -131,6 +137,12 @@ export default function RootLayout ( { children,
     useEffect(() => {
       localStorage.setItem('navItem', current);
     }, [current]);
+
+    //current user clerk const
+    const { isSignedIn, user, isLoaded } = useUser();
+
+
+    //trying to fix the hydration error 
     return (
       <>
         {/*
@@ -143,7 +155,167 @@ export default function RootLayout ( { children,
         ```
       */ }
 
-      <div className="mb-20"></div>  
+        <div>
+            <Popover className="relative flex flex-col items-center text-center mt-10 ml-20  "> 
+            {({ open }) => (
+              <>
+                <Popover.Button
+                  className={classNames(
+                    open ? 'text-gray-900' : 'text-gray-500',
+                    'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                  )}
+                >
+                  <span>Projects</span>
+                  <ChevronDownIcon
+                    className={classNames(open ? 'text-gray-600' : 'text-gray-400', 'ml-2 h-5 w-5 group-hover:text-gray-500')}
+                    aria-hidden="true"
+                  />
+                </Popover.Button>
+
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-200"
+                  enterFrom="opacity-0 translate-y-1"
+                  enterTo="opacity-100 translate-y-0"
+                  leave="transition ease-in duration-150"
+                  leaveFrom="opacity-100 translate-y-0"
+                  leaveTo="opacity-0 translate-y-1"
+                >
+                  <Popover.Panel className="absolute z-10 left-1/2 transform -translate-x-1/2 mt-9 px-2 w-screen max-w-xs sm:px-0">
+                    <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+                      <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+                        <Listbox value={selected} onChange={setSelected}>
+                                {({ open }) => (
+                                  <>
+                                    <div className="relative">
+                                      <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
+                                        <span className="flex items-center">
+                                          <span className="ml-3 block truncate">Projet 1 : {selected.name}</span>
+                                        </span>
+                                        <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
+                                          <ChevronDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                        </span>
+                                      </Listbox.Button>
+
+                                      <Transition
+                                        show={open}
+                                        as={Fragment}
+                                        leave="transition ease-in duration-100"
+                                        leaveFrom="opacity-100"
+                                        leaveTo="opacity-0"
+                                      >
+                                        <Listbox.Options className="relative z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                          {people.map((person) => (
+                                            <Listbox.Option
+                                              key={person.id}
+                                              className={({ active }) =>
+                                                classNames(
+                                                  active ? 'bg-indigo-600 text-white' : 'text-gray-900',
+                                                  'relative cursor-default select-none py-2 pl-3 pr-9'
+                                                )
+                                              }
+                                              value={person}
+                                            >
+                                              {({ selected, active }) => (
+                                                <>
+                                                  <div className="flex items-center">
+                                                    <span
+                                                      className={classNames(selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate')}
+                                                    >
+                                                      {person.name}
+                                                    </span>
+                                                  </div>
+
+                                                  {selected ? (
+                                                    <span
+                                                      className={classNames(
+                                                        active ? 'text-white' : 'text-indigo-600',
+                                                        'absolute inset-y-0 right-0 flex items-center pr-4'
+                                                      )}
+                                                    >
+                                                      <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                    </span>
+                                                  ) : null}
+                                                </>
+                                              )}
+                                        </Listbox.Option>
+                                ))}
+                                        </Listbox.Options>
+                                      </Transition>
+                                    </div>
+                                  </>
+                                )}
+                        </Listbox>
+                        <Listbox value={selected} onChange={setSelected}>
+                                {({ open }) => (
+                                  <>
+                                    <div className="relative">
+                                      <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
+                                        <span className="flex items-center">
+                                          <span className="ml-3 block truncate">Projet 2</span>
+                                        </span>
+                                        <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
+                                          <ChevronDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                        </span>
+                                      </Listbox.Button>
+
+                                      <Transition
+                                        show={open}
+                                        as={Fragment}
+                                        leave="transition ease-in duration-100"
+                                        leaveFrom="opacity-100"
+                                        leaveTo="opacity-0"
+                                      >
+                                        <Listbox.Options className="relative z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                          {people1.map((person) => (
+                                            <Listbox.Option
+                                              key={person.id}
+                                              className={({ active }) =>
+                                                classNames(
+                                                  active ? 'bg-indigo-600 text-white' : 'text-gray-900',
+                                                  'relative cursor-default select-none py-2 pl-3 pr-9'
+                                                )
+                                              }
+                                              value={person}
+                                            >
+                                              {({ selected, active }) => (
+                                                <>
+                                                  <div className="flex items-center">
+                                                    <span
+                                                      className={classNames(selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate')}
+                                                    >
+                                                      {person.name}
+                                                    </span>
+                                                  </div>
+
+                                                  {selected ? (
+                                                    <span
+                                                      className={classNames(
+                                                        active ? 'text-white' : 'text-indigo-600',
+                                                        'absolute inset-y-0 right-0 flex items-center pr-4'
+                                                      )}
+                                                    >
+                                                      <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                    </span>
+                                                  ) : null}
+                                                </>
+                                              )}
+                                        </Listbox.Option>
+                                ))}
+                                        </Listbox.Options>
+                                      </Transition>
+                                    </div>
+                                  </>
+                                )}
+                        </Listbox> 
+                      </div>
+                    </div>
+                  </Popover.Panel>
+                </Transition>
+              </>
+            )}
+          </Popover>
+        </div>
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="fixed inset-0 flex z-40 md:hidden" onClose={setSidebarOpen}>
@@ -191,7 +363,7 @@ export default function RootLayout ( { children,
                 <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                   <div className="flex-shrink-0 flex items-center px-4">
                     <img
-                      className="h-8 w-auto"
+                      className="h-15 w-auto"
                       src="/wereact_logo.jpeg"
                       alt="WeReact"
                     />
@@ -220,17 +392,7 @@ export default function RootLayout ( { children,
                   </nav>
                 </div>
                 <div className="flex-shrink-0 flex bg-gray-700 p-4">
-                  <a href="#" className="flex-shrink-0 group block">
-                    <div className="flex items-center">
-                      <div>
-                      <UserButton afterSignOutUrl="/" />
-                      </div>
-                      <div className="ml-3">
-                        <p className="text-base font-medium text-white">Tom Cook</p>
-                        <a href="/user-profile" className="text-sm font-medium text-gray-400 group-hover:text-gray-300">View profile</a>
-                      </div>
-                    </div>
-                  </a>
+                <UserMeta />
                 </div>
               </div>
             </Transition.Child>
@@ -275,18 +437,8 @@ export default function RootLayout ( { children,
             
             </div>
             <div className="flex-shrink-0 flex bg-gray-700 p-4">
-              <a href="#" className="flex-shrink-0 w-full group block">
-                <div className="flex items-center">
-                  <div>
-                  <UserButton afterSignOutUrl="/" />  
-                  </div>
-                  <div className="ml-3">
-                    <p className="text-sm font-medium text-white">Tom Cook</p>
-                    <a href="/user-profile" className="text-xs font-medium text-gray-300 group-hover:text-gray-200">View profile</a>
-                  </div>
+                <UserMeta />
                 </div>
-              </a>
-            </div>
           </div>
         </div>
         <div className="md:pl-64 flex flex-col flex-1">

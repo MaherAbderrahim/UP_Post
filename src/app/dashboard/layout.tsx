@@ -1,19 +1,22 @@
 'use client'
 import "@/app/globals.css";
 import { usePathname, useSearchParams } from 'next/navigation';
-import { UserButton } from "@clerk/nextjs";
 import { Dialog, Transition } from '@headlessui/react'
 //flyout Menu imports
 import { Popover } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
 
+//import components
+import userMeta from "@/components/user-meta";
+
+//Clerk imports
+import { UserButton,useUser  } from "@clerk/nextjs";
 //select menu imports 
 import { Listbox } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/solid'
 
 /* This example requires Tailwind CSS v2.0+ */
 import React,{ Fragment, useState,useEffect, Children } from 'react'
-
 
 import {
   CalendarIcon,
@@ -25,6 +28,9 @@ import {
   UsersIcon,
   XIcon,
 } from '@heroicons/react/outline'
+import Link from "next/link";
+import UserMeta from "@/components/user-meta";
+
 
   const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: ChartBarIcon },
@@ -131,6 +137,12 @@ export default function RootLayout ( { children,
     useEffect(() => {
       localStorage.setItem('navItem', current);
     }, [current]);
+
+    //current user clerk const
+    const { isSignedIn, user, isLoaded } = useUser();
+
+
+    //trying to fix the hydration error 
     return (
       <>
         {/*
@@ -380,17 +392,7 @@ export default function RootLayout ( { children,
                   </nav>
                 </div>
                 <div className="flex-shrink-0 flex bg-gray-700 p-4">
-                  <a href="#" className="flex-shrink-0 group block">
-                    <div className="flex items-center">
-                      <div>
-                      <UserButton afterSignOutUrl="/" />
-                      </div>
-                      <div className="ml-3">
-                        <p className="text-base font-medium text-white">Tom Cook</p>
-                        <a href="/user-profile" className="text-sm font-medium text-gray-400 group-hover:text-gray-300">View profile</a>
-                      </div>
-                    </div>
-                  </a>
+                <UserMeta />
                 </div>
               </div>
             </Transition.Child>
@@ -434,19 +436,9 @@ export default function RootLayout ( { children,
             </nav>
             
             </div>
-            <div className="flex-shrink-0 flex bg-gray-700 p-4">
-              <a href="#" className="flex-shrink-0 w-full group block">
-                <div className="flex items-center">
-                  <div>
-                  <UserButton afterSignOutUrl="/" />  
-                  </div>
-                  <div className="ml-3">
-                    <p className="text-sm font-medium text-white">Tom Cook</p>
-                    <a href="/user-profile" className="text-xs font-medium text-gray-300 group-hover:text-gray-200">View profile</a>
-                  </div>
-                </div>
-              </a>
-            </div>
+              <div className="flex-shrink-0 flex bg-gray-700 p-4">
+                <UserMeta />
+              </div>
           </div>
         </div>
         <div className="md:pl-64 flex flex-col flex-1">
