@@ -1,8 +1,8 @@
 overwrite: true
-schema: "./GraphQL/schemas/*.graphql"
+schema: "./src/GraphQL/schemas/*.graphql"
 
 generates:
-  ./GraphQL/generated/types.ts:
+  ./src/GraphQL/generated/types.ts:
     plugins:
       - "typescript"
       - "typescript-operations"
@@ -10,12 +10,14 @@ generates:
       useIndexSignature: true
       contextType: "./context#DataSourceContext"
     mappers:
-      Comments: ./models#Comments
-      PageFB: ./models#PageFB
-      PostFB: ./models#PostFB
-      UserSFB: ./models#UserSFB
-      PageIG: ./models#PageIG
-      PostIG: ./models#PostIG
-      Project: ./models#Project
-      User: ./models#User
-      Sponsor: ./models#Sponsor
+      Comments_FB: ./models#CommentsFBModel
+      Comments_IG: ./models#CommentsIGModel
+      Page_FB: ./models#PageFBModel
+      Page_IG: ./models#PageIGModel
+      Posts_FB: ./models#PostsFBModel
+      Posts_IG: ./models#PostsIGModel
+      Project: ./models#ProjectModel
+      Sponsor: ./models#SponsorModel
+      Users_FB: ./models#UsersFBModel
+      Users: ./models#UsersModel
+

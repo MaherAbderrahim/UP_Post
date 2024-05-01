@@ -19,7 +19,8 @@ export type PostsIGModel = {
     Year: number,
     Date_post: Date,
     Sentiment_POSTT: string,
-    sentiment_comment: any,
+    sentiment_comments_POS: number;
+    sentiment_comments_NEG: number;
     positive: number,
     negative: number,
     nature: number,

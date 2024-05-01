@@ -7,13 +7,15 @@ type Page_FB {
   page_TOKEN: String!
   created_at: DateTime!
   updated_at: DateTime!
-  user: Users_FB!
-  page_IG: Page_IG
-  project: Project!
-  posts_FB: [Posts_FB!]!
+  User_FB: Users_FB!
+  Page_IG: Page_IG
+  Project: Project!
+  Posts_FB: [Posts_FB!]!
 }
 
 type Query {
+  get_All_User_Pages_FB : [Page_FB]
+  get_All_Project_Pages_FB : [Page_FB]
   get_All_Page_FB: [Page_FB!]!
   get_Page_FB_By_ID(id: ID!): Page_FB
 }

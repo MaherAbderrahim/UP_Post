@@ -8,11 +8,19 @@ export class PostsFBService {
     this.prisma = prisma;
   }
 
-  async getAllPostsFB(): Promise<PostsFBModel[]> {
+  async get_All_Posts_FB(): Promise<PostsFBModel[]> {
     return await this.prisma.posts_FB.findMany();
   }
 
-  async getPostFBById(id: number): Promise<PostsFBModel | null> {
+  async get_All_Page_FB_Posts(id:number) : Promise<PostsFBModel[]>{
+    return await this.prisma.posts_FB.findMany({
+      where: {
+        page_id:id,
+      },
+    });
+  }
+
+  async get_Post_FB_By_Id(id: number): Promise<PostsFBModel | null> {
     return await this.prisma.posts_FB.findUnique({
       where: {
         id: id,
@@ -20,7 +28,7 @@ export class PostsFBService {
     });
   }
 
-  async createPostFB(
+  async create_Post_FB(
     Name_page: string,
     Followers: number,
     Heure_post: Date,
@@ -91,7 +99,7 @@ export class PostsFBService {
         is_sponsored: is_sponsored,
         prediction_label: prediction_label,
         prediction_score: prediction_score,
-        page_FB: {
+        Page_FB: {
           connect: {
             id: page_id,
           },
@@ -100,7 +108,7 @@ export class PostsFBService {
     });
   }
 
-  async updatePostFB(
+  async update_Post_FB(
     id: number,
     Name_page: string,
     Followers: number,
@@ -175,7 +183,7 @@ export class PostsFBService {
         is_sponsored: is_sponsored,
         prediction_label: prediction_label,
         prediction_score: prediction_score,
-        page_FB: {
+        Page_FB: {
           connect: {
             id: page_id,
           },
@@ -184,7 +192,7 @@ export class PostsFBService {
     });
   }
 
-  async deletePostFB(id: number): Promise<PostsFBModel> {
+  async delete_Post_FB(id: number): Promise<PostsFBModel> {
     return await this.prisma.posts_FB.delete({
       where: {
         id: id,

@@ -8,11 +8,13 @@ export class SponsorService {
     this.prisma = prisma;
   }
 
-  async getAllSponsors(): Promise<SponsorModel[]> {
+  async get_All_Sponsors(): Promise<SponsorModel[]> {
     return await this.prisma.sponsor.findMany();
   }
 
-  async getSponsorById(id: number): Promise<SponsorModel | null> {
+
+
+  async get_Sponsor_By_Id(id: number): Promise<SponsorModel | null> {
     return await this.prisma.sponsor.findUnique({
       where: {
         id: id,
@@ -20,7 +22,7 @@ export class SponsorService {
     });
   }
 
-  async createSponsor(name: string, followers: number): Promise<SponsorModel> {
+  async create_Sponsor(name: string, followers: number): Promise<SponsorModel> {
     return await this.prisma.sponsor.create({
       data: {
         name: name,
@@ -29,7 +31,7 @@ export class SponsorService {
     });
   }
 
-  async updateSponsor(id: number, name: string, followers: number): Promise<SponsorModel> {
+  async update_Sponsor(id: number, name: string, followers: number): Promise<SponsorModel> {
     return await this.prisma.sponsor.update({
       where: {
         id: id,
@@ -41,7 +43,7 @@ export class SponsorService {
     });
   }
 
-  async deleteSponsor(id: number): Promise<SponsorModel> {
+  async delete_Sponsor(id: number): Promise<SponsorModel> {
     return await this.prisma.sponsor.delete({
       where: {
         id: id,

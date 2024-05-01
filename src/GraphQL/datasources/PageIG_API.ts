@@ -8,11 +8,19 @@ export class PageIGService {
     this.prisma = prisma;
   }
 
-  async getAllPageIG(): Promise<PageIGModel[]> {
+  async get_All_Project_Pages_IG(id:number) :Promise<PageIGModel[]> {
+    return await this.prisma.page_IG.findMany({
+      where:{
+        project_id:id
+      }
+    })
+  }
+
+  async get_All_Page_IG(): Promise<PageIGModel[]> {
     return await this.prisma.page_IG.findMany();
   }
 
-  async getPageIGById(id: number): Promise<PageIGModel | null> {
+  async get_Page_IG_By_Id(id: number): Promise<PageIGModel | null> {
     return await this.prisma.page_IG.findUnique({
       where: {
         id: id,
@@ -20,18 +28,18 @@ export class PageIGService {
     });
   }
 
-  async createPageIG(name: string, id_IG: string, user_TOKEN: string, project_id: number): Promise<PageIGModel> {
+  async create_Page_IG(name: string, id_IG: string, user_TOKEN: string, project_id: number): Promise<PageIGModel> {
     return await this.prisma.page_IG.create({
       data: {
         name: name,
         id_IG: id_IG,
         user_TOKEN: user_TOKEN,
-        page_FB: {
+        Page_FB: {
           connect: {
             id: project_id,
           },
         },
-        project: {
+        Project: {
           connect: {
             id: project_id,
           },
@@ -40,7 +48,7 @@ export class PageIGService {
     });
   }
 
-  async updatePageIG(id: number, name: string, id_IG: string, user_TOKEN: string, project_id: number): Promise<PageIGModel> {
+  async update_Page_IG(id: number, name: string, id_IG: string, user_TOKEN: string, project_id: number): Promise<PageIGModel> {
     return await this.prisma.page_IG.update({
       where: {
         id: id,
@@ -49,12 +57,12 @@ export class PageIGService {
         name: name,
         id_IG: id_IG,
         user_TOKEN: user_TOKEN,
-        page_FB: {
+        Page_FB: {
           connect: {
             id: project_id,
           },
         },
-        project: {
+        Project: {
           connect: {
             id: project_id,
           },
@@ -63,7 +71,7 @@ export class PageIGService {
     });
   }
 
-  async deletePageIG(id: number): Promise<PageIGModel> {
+  async delete_Page_IG(id: number): Promise<PageIGModel> {
     return await this.prisma.page_IG.delete({
       where: {
         id: id,

@@ -1,18 +1,20 @@
-type User {
+scalar DateTime
+
+type Users {
   id: ID!
   email: String!
   created_at: DateTime!
   updated_at: DateTime!
-  projects: [Project]!
+  Projects: [Project]!
 }
 
 type Query {
-  get_All_Users: [User!]!
-  get_User_ById(id: Int!): User
+  get_All_Users: [Users!]!
+  get_User_ById(id: Int!): Users
 }
 
 type Mutation {
-  create_User(email: String!): User!
-  update_User(id: Int!, email: String!): User!
-  delete_User(id: Int!): User!
+  create_User(email: String!): Users!
+  update_User(id: Int!, email: String!): Users!
+  delete_User(id: Int!): Users!
 }

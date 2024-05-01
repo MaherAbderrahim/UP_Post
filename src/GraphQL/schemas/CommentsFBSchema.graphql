@@ -7,17 +7,20 @@ type Comments_FB {
   nb_likes: Int
   created_at: DateTime!
   updated_at: DateTime!
-  postFB: Posts_FB!
+  Posts_FB: Posts_FB!
 }
 
 type Query {
+  get_Comment_FB_By_Id(id: Int!): Comments_FB
   get_All_Comments_FB: [Comments_FB]
-  get_Comment_FB_By_ID(id: Int!): Comments_FB
+  get_Comments_By_Post_FB_Id: [Comments_FB]
+  get_All_User_Comments_On_Post_FB: [Comments_FB]
+  get_All_User_Comments_On_Page_FB: [Comments_FB]
 }
 
 
 type Mutation {
   create_Comment_FB(username: String, message: String, nb_likes: Int, postFB_id: Int!): Comments_FB!
   update_Comment_FB(id: Int!, username: String, message: String, nb_likes: Int): Comments_FB
-  delete_Comment_FB(id: Int!): Boolean
+  delete_Comment_FB(id: Int!): Comments_FB
 }

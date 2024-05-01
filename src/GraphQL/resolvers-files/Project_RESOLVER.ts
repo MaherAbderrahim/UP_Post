@@ -1,16 +1,49 @@
-import { ProjectService } from '../datasources';
-import { CreateProjectInput, UpdateProjectInput } from '../generated/types';
+import { ProjectService } from '@/GraphQL/datasources';
+import { ProjectModel } from '../model';
+import prisma from '@/lib/prisma';
+const projectService = new ProjectService(prisma);
 
-const projectService = new ProjectService();
-
-export const projectResolver = {
+const projectResolvers = {
   Query: {
-    getAllProjects: () => projectService.getAllProjects(),
-    getProjectById: (_: any, { id }: { id: number }) => projectService.getProjectById(id),
+    get_All_Projects: async () => {
+      return await projectService.get_All_Projects();
+    },
+    get_Project_By_Id: async (parent: any, { id }: { id: number }) => {
+      return await projectService.get_Project_By_Id(id);
+    },
+    // Ajoutez d'autres résolveurs de requête selon vos besoins
   },
   Mutation: {
-    createProject: (_: any, { data }: { data: CreateProjectInput }) => projectService.createProject(data),
-    updateProject: (_: any, { id, data }: { id: number, data: UpdateProjectInput }) => projectService.updateProject(id, data),
-    deleteProject: (_: any, { id }: { id: number }) => projectService.deleteProject(id),
+    create_Project: async (
+      parent: any,
+      args: {
+        name: string;
+        description: string;
+        user_id: number;
+      }
+    ) => {
+      return await projectService.create_Project(args.name, args.description, args.user_id);
+    },
+    update_Project: async (
+      parent: any,
+      args: {
+        id: number;
+        name: string;
+        description: string;
+        user_id: number;
+      }
+    ) => {
+      return await projectService.update_Project(args.id, args.name, args.description, args.user_id);
+    },
+    delete_Project: async (parent: any, { id }: { id: number }) => {
+      return await projectService.delete_Project(id);
+    },
+    // Ajoutez d'autres résolveurs de mutation selon vos besoins
+  },
+  Project: {
+    // Vous pouvez ajouter des résolveurs spécifiques pour les champs de Project si nécessaire
+    // Par exemple, si vous voulez résoudre le champ Users, vous pouvez le faire ici
   },
 };
+
+export default projectResolvers;

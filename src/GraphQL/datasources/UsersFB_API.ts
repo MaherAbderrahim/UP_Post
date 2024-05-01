@@ -8,11 +8,11 @@ export class UsersFBService {
     this.prisma = prisma;
   }
 
-  async getAllUsersFB(): Promise<UsersFBModel[]> {
+  async get_All_Users_FB(): Promise<UsersFBModel[]> {
     return await this.prisma.users_FB.findMany();
   }
 
-  async getUsersFBById(id: number): Promise<UsersFBModel | null> {
+  async get_Users_FB_By_Id(id: number): Promise<UsersFBModel | null> {
     return await this.prisma.users_FB.findUnique({
       where: {
         id: id,
@@ -20,7 +20,7 @@ export class UsersFBService {
     });
   }
 
-  async createUsersFB(name: string, id_FB: string, user_TOKEN: string): Promise<UsersFBModel> {
+  async create_Users_FB(name: string, id_FB: string, user_TOKEN: string): Promise<UsersFBModel> {
     return await this.prisma.users_FB.create({
       data: {
         name: name,
@@ -30,7 +30,7 @@ export class UsersFBService {
     });
   }
 
-  async updateUsersFB(id: number, name: string, id_FB: string, user_TOKEN: string): Promise<UsersFBModel> {
+  async update_Users_FB(id: number, name: string, id_FB: string, user_TOKEN: string): Promise<UsersFBModel> {
     return await this.prisma.users_FB.update({
       where: {
         id: id,
@@ -43,7 +43,7 @@ export class UsersFBService {
     });
   }
 
-  async deleteUsersFB(id: number): Promise<UsersFBModel> {
+  async delete_Users_FB(id: number): Promise<UsersFBModel> {
     return await this.prisma.users_FB.delete({
       where: {
         id: id,

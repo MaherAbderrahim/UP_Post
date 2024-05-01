@@ -49,11 +49,11 @@ model Page_FB {
   created_at DateTime   @default(now())
   updated_at DateTime   @updatedAt
   user_id    Int
-  user_FB   Users_FB   @relation(fields: [user_id], references: [id])
-  page_IG    Page_IG?
+  User_FB   Users_FB   @relation(fields: [user_id], references: [id])
+  Page_IG    Page_IG?
   project_id Int      
-  project    Project    @relation(fields: [project_id], references: [id])
-  posts_FB   Posts_FB[]
+  Project    Project    @relation(fields: [project_id], references: [id])
+  Posts_FB   Posts_FB[]
 }
 
 model Page_IG {
@@ -64,10 +64,10 @@ model Page_IG {
   id_IG      String     @unique
   user_TOKEN String     @unique
   page_FB_id Int        @unique
-  page_FB    Page_FB    @relation(fields: [page_FB_id], references: [id])
+  Page_FB    Page_FB    @relation(fields: [page_FB_id], references: [id])
   project_id Int        
-  project    Project    @relation(fields: [project_id], references: [id])
-  posts_IG   Posts_IG[]
+  Project    Project    @relation(fields: [project_id], references: [id])
+  Posts_IG   Posts_IG[]
 }
 
 model Posts_FB {
@@ -108,9 +108,9 @@ model Posts_FB {
   prediction_label         Int
   prediction_score         Float
   page_id                  Int
-  page_FB                  Page_FB    @relation(fields: [page_id], references: [id])
-  comments                 Comments_FB[]
-  sponsor                  Sponsor[]
+  Page_FB                  Page_FB    @relation(fields: [page_id], references: [id])
+  Comments_FB              Comments_FB[]
+  Sponsor                  Sponsor[]
 }
 
 model Posts_IG {
@@ -133,7 +133,8 @@ model Posts_IG {
   Year                  Int
   Date_post             DateTime
   Sentiment_POSTT       String
-  sentiment_comment     Json
+  sentiment_comments_POS   Int
+  sentiment_comments_NEG   Int
   positive              Int
   negative              Int
   nature                Int
@@ -142,8 +143,8 @@ model Posts_IG {
   created_at            DateTime   @default(now())
   updated_at            DateTime   @updatedAt
   page_id               Int
-  page_IG               Page_IG    @relation(fields: [page_id], references: [id])
-  comments              Comments_IG[]
+  Page_IG               Page_IG    @relation(fields: [page_id], references: [id])
+  Comments_IG           Comments_IG[]
 }
 
 model Sponsor {

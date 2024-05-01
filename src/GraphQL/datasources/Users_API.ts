@@ -8,11 +8,11 @@ export class UserService {
     this.prisma = prisma;
   }
 
-  async getAllUsers(): Promise<UsersModel[]> {
+  async get_All_Users(): Promise<UsersModel[]> {
     return await this.prisma.users.findMany();
   }
 
-  async getUserById(id: number): Promise<UsersModel | null> {
+  async get_User_By_Id(id: number): Promise<UsersModel | null> {
     return await this.prisma.users.findUnique({
       where: {
         id: id,
@@ -20,7 +20,7 @@ export class UserService {
     });
   }
 
-  async createUser(email: string): Promise<UsersModel> {
+  async create_User(email: string): Promise<UsersModel> {
     return await this.prisma.users.create({
       data: {
         email: email,
@@ -28,7 +28,7 @@ export class UserService {
     });
   }
 
-  async updateUser(id: number, email: string): Promise<UsersModel> {
+  async update_User(id: number, email: string): Promise<UsersModel> {
     return await this.prisma.users.update({
       where: {
         id: id,
@@ -39,7 +39,7 @@ export class UserService {
     });
   }
 
-  async deleteUser(id: number): Promise<UsersModel> {
+  async delete_User(id: number): Promise<UsersModel> {
     return await this.prisma.users.delete({
       where: {
         id: id,

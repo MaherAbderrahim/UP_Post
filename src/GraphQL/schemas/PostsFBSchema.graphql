@@ -37,12 +37,13 @@ type Posts_FB {
   is_sponsored: Boolean
   prediction_label: Int
   prediction_score: Float
-  page: Page_FB!
-  comments: [Comments_FB!]!
-  sponsor: [Sponsor!]!
+  Page_FB: Page_FB!
+  Comments_FB: [Comments_FB!]!
+  Sponsor: [Sponsor!]!
 }
 
 type Query {
+  get_All_Page_FB_Posts: [Posts_FB]
   get_All_Posts_FB: [Posts_FB]!
   get_Post_FB_By_ID(id: ID!): Posts_FB
 }

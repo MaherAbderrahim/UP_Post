@@ -1,15 +1,18 @@
+scalar DateTime
+
 type Project {
   id: ID!
   name: String!
   description: String!
   created_at: DateTime!
   updated_at: DateTime!
-  user: User!
-  pagesIG: [PageIG]
-  pagesFB: [PageFB]
+  Users: Users!
+  Pages_IG: [Page_IG]
+  Pages_FB: [Page_FB]
 }
 
 type Query {
+  get_All_User_Project: [Project]
   get_All_Projects: [Project]
   get_Project_By_Id(id: ID!): Project
 }

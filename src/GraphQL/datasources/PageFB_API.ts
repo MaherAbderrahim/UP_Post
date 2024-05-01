@@ -8,11 +8,11 @@ export class PageFBService {
     this.prisma = prisma;
   }
 
-  async getAllPageFB(): Promise<PageFBModel[]> {
+  async get_All_Page_FB(): Promise<PageFBModel[]> {
     return await this.prisma.page_FB.findMany();
   }
 
-  async getPageFBById(id: number): Promise<PageFBModel | null> {
+  async get_Page_FB_By_Id(id: number): Promise<PageFBModel | null> {
     return await this.prisma.page_FB.findUnique({
       where: {
         id: id,
@@ -20,18 +20,34 @@ export class PageFBService {
     });
   }
 
-  async createPageFB(name: string, id_FB: string, page_TOKEN: string, user_id: number, project_id: number): Promise<PageFBModel> {
+  async get_All_User_Pages_FB(id:number): Promise<PageFBModel[]> {
+    return await this.prisma.page_FB.findMany({
+      where:{
+        user_id:id,
+      }
+    })
+  }
+
+  async get_All_Project_Pages_FB(id:number) :Promise<PageFBModel[]> {
+    return await this.prisma.page_FB.findMany({
+      where:{
+        project_id:id
+      }
+    })
+  }
+
+  async create_Page_FB(name: string, id_FB: string, page_TOKEN: string, user_id: number, project_id: number): Promise<PageFBModel> {
     return await this.prisma.page_FB.create({
       data: {
         name: name,
         id_FB: id_FB,
         page_TOKEN: page_TOKEN,
-        user_FB: {
+        User_FB: {
           connect: {
             id: user_id,
           },
         },
-        project: {
+        Project: {
           connect: {
             id: project_id,
           },
@@ -40,7 +56,7 @@ export class PageFBService {
     });
   }
 
-  async updatePageFB(id: number, name: string, id_FB: string, page_TOKEN: string, user_id: number, project_id: number): Promise<PageFBModel> {
+  async update_Page_FB(id: number, name: string, id_FB: string, page_TOKEN: string, user_id: number, project_id: number): Promise<PageFBModel> {
     return await this.prisma.page_FB.update({
       where: {
         id: id,
@@ -49,12 +65,12 @@ export class PageFBService {
         name: name,
         id_FB: id_FB,
         page_TOKEN: page_TOKEN,
-        user_FB: {
+        User_FB: {
           connect: {
             id: user_id,
           },
         },
-        project: {
+        Project: {
           connect: {
             id: project_id,
           },
@@ -63,7 +79,7 @@ export class PageFBService {
     });
   }
 
-  async deletePageFB(id: number): Promise<PageFBModel> {
+  async delete_Page_FB(id: number): Promise<PageFBModel> {
     return await this.prisma.page_FB.delete({
       where: {
         id: id,
