@@ -151,5 +151,11 @@ export default function App() {
     // Ajoutez d'autres publications ici si nécessaire
   ];
 
-  return <InstagramPosts posts={posts} />;
+  return (
+  <main>
+    <div className='pb-5 pt-3'>
+      <h1 className="text-2xl font-semibold text-gray-900">Postes</h1>
+    </div>
+    <InstagramPosts posts={posts} />
+  </main>  );
 }

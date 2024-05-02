@@ -71,8 +71,13 @@ export default function page() {
   };
 
   return (
-    <main className="flex-1 flex flex-col lg:flex-row overflow-hidden">
+    <main>
+      <div className='pb-3 pt-10'>
+          <h1 className="text-2xl font-semibold text-gray-900">Upgrade a post</h1>
+      </div>
+      
   {/* Primary column */}
+  <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
   <section className="min-w-0 flex-1 flex flex-col overflow-y-auto lg:order-last lg:w-1/2 p-4">
     <div className="flex flex-col items-center justify-center h-full">
       {!isLoading &&!isPostVisible && (
@@ -114,6 +119,7 @@ export default function page() {
       </Link> 
     </div>
   </aside>
+  </div>
 </main>
   )
 }
