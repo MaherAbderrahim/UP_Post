@@ -68,7 +68,7 @@ export default function Example() {
     <main>
         <div className='pb-3 pt-3'>
           <h1 className="text-2xl font-semibold text-gray-900">Projects</h1>
-          <button onClick={<add_project_model />}></button>
+          
         </div>
         <div className="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
         <div className="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-nowrap">
