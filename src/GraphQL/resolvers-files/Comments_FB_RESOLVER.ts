@@ -48,10 +48,7 @@ const commentsFBResolvers = {
     },
     // Ajoutez d'autres résolveurs de mutation selon vos besoins
   },
-  Comments_FB: {
-    // Vous pouvez ajouter des résolveurs spécifiques pour les champs de Comments_FB si nécessaire
-    // Par exemple, si vous voulez résoudre le champ Posts_FB, vous pouvez le faire ici
-  },
+
 };
 
 export default commentsFBResolvers;

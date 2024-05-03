@@ -10,7 +10,7 @@ type Users {
 
 type Query {
   get_All_Users: [Users!]!
-  get_User_ById(id: Int!): Users
+  get_User_By_Id(id: Int!): Users
 }
 
 type Mutation {

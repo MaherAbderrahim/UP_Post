@@ -168,10 +168,6 @@ const postsFBResolvers = {
     },
     // Ajoutez d'autres résolveurs de mutation selon vos besoins
   },
-  PostsFB: {
-    // Vous pouvez ajouter des résolveurs spécifiques pour les champs de PostsFB si nécessaire
-    // Par exemple, si vous voulez résoudre le champ Page_FB, vous pouvez le faire ici
-  },
 };
 
 export default postsFBResolvers;

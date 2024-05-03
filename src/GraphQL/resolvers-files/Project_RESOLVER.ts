@@ -40,10 +40,7 @@ const projectResolvers = {
     },
     // Ajoutez d'autres résolveurs de mutation selon vos besoins
   },
-  Project: {
-    // Vous pouvez ajouter des résolveurs spécifiques pour les champs de Project si nécessaire
-    // Par exemple, si vous voulez résoudre le champ Users, vous pouvez le faire ici
-  },
+
 };
 
 export default projectResolvers;

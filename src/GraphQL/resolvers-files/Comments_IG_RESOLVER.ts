@@ -31,10 +31,7 @@ const commentsIGResolvers = {
     },
     // Ajoutez d'autres résolveurs de mutation selon vos besoins
   },
-  Comments_IG: {
-    // Vous pouvez ajouter des résolveurs spécifiques pour les champs de Comments_IG si nécessaire
-    // Par exemple, si vous voulez résoudre le champ Posts_IG, vous pouvez le faire ici
-  },
+
 };
 
 export default commentsIGResolvers;

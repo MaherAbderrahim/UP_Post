@@ -37,10 +37,7 @@ const pageFBResolvers = {
     },
     // Ajoutez d'autres résolveurs de mutation selon vos besoins
   },
-  Page_FB: {
-    // Vous pouvez ajouter des résolveurs spécifiques pour les champs de Page_FB si nécessaire
-    // Par exemple, si vous voulez résoudre le champ User_FB ou Project, vous pouvez le faire ici
-  },
+
 };
 
 export default pageFBResolvers;

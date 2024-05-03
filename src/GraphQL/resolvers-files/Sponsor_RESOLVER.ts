@@ -38,9 +38,7 @@ const sponsorResolvers = {
     },
     // Ajoutez d'autres résolveurs de mutation selon vos besoins
   },
-  Sponsor: {
-    // Vous pouvez ajouter des résolveurs spécifiques pour les champs de Sponsor si nécessaire
-  },
+
 };
 
 export default sponsorResolvers;

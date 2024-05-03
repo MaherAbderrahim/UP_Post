@@ -138,10 +138,6 @@ const postsIGResolvers = {
     },
     // Ajoutez d'autres résolveurs de mutation selon vos besoins
   },
-  PostsIG: {
-    // Vous pouvez ajouter des résolveurs spécifiques pour les champs de PostsIG si nécessaire
-    // Par exemple, si vous voulez résoudre le champ Page_IG, vous pouvez le faire ici
-  },
 };
 
 export default postsIGResolvers;

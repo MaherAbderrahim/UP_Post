@@ -40,9 +40,7 @@ const usersFBResolvers = {
     },
     // Ajoutez d'autres résolveurs de mutation selon vos besoins
   },
-  UsersFB: {
-    // Vous pouvez ajouter des résolveurs spécifiques pour les champs de UsersFB si nécessaire
-  },
+
 };
 
 export default usersFBResolvers;

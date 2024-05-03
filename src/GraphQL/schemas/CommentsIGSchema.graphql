@@ -15,7 +15,7 @@ type Query {
   get_All_User_Comments_On_Page_IG: [Comments_IG]
   get_Comments_By_Post_IG_Id: [Comments_IG]
   get_All_Comments_IG: [Comments_IG]
-  get_Comment_IG_By_ID(id: Int!): Comments_IG
+  get_Comment_IG_By_Id(id: Int!): Comments_IG
 }
 
 

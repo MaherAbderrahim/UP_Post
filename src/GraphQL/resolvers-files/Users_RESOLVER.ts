@@ -36,9 +36,6 @@ const userResolvers = {
     },
     // Ajoutez d'autres résolveurs de mutation selon vos besoins
   },
-  User: {
-    // Vous pouvez ajouter des résolveurs spécifiques pour les champs de User si nécessaire
-  },
 };
 
 export default userResolvers;

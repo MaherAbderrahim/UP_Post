@@ -7,5 +7,5 @@ export type SponsorModel = {
     updated_at : Date;
 
     // Foreign keys
-
+    
   };
