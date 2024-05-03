@@ -1,41 +1,65 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { CheckCircleIcon, ChevronRightIcon, MailIcon } from '@heroicons/react/solid'
+import { FaFacebook, FaInstagram } from 'react-icons/fa';
+import add_project_model from '@/components/add_project_model'
 const applications = [
   {
     applicant: {
-      name: 'Ricardo Cooper',
-      email: 'ricardo.cooper@example.com',
+      name: 'Beeclick',
       imageUrl:
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        '/beeclick.jpeg',
+      icon: <FaFacebook className="text-blue-600 mt-3" />,
     },
-    date: '2020-01-07',
-    dateFull: 'January 7, 2020',
-    stage: 'Completed phone screening',
-    href: '#',
+    href: 'https://www.facebook.com/BEECLIK.Delivery/?ti=as',
   },
   {
     applicant: {
-      name: 'Kristen Ramos',
-      email: 'kristen.ramos@example.com',
+      name: 'Beeclick',
       imageUrl:
-        'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        '/beeclick.jpeg',
+      icon: <FaInstagram className="text-pink-500 mt-3" />,
     },
-    date: '2020-01-07',
-    dateFull: 'January 7, 2020',
-    stage: 'Completed phone screening',
-    href: '#',
+    href: 'https://www.instagram.com/beeclik.delivery/',
+  },
+]
+const cobeez = [
+  {
+    applicant: {
+      name: 'coobeez',
+      imageUrl:
+        '/cobeez.jpg',
+      icon: <FaFacebook className="text-blue-600 mt-3" />,
+    },
+    href: 'https://www.facebook.com/cobeez.coworking.space',
   },
   {
     applicant: {
-      name: 'Ted Fox',
-      email: 'ted.fox@example.com',
+      name: 'cobeez',
       imageUrl:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+      '/cobeez.jpg',
+      icon: <FaInstagram className="text-pink-500 mt-3" />,
     },
-    date: '2020-01-07',
-    dateFull: 'January 7, 2020',
-    stage: 'Completed phone screening',
-    href: '#',
+    href: 'https://www.instagram.com/cobeez_coworkingspace/',
+  },
+]
+const wereact = [
+  {
+    applicant: {
+      name: 'wereact',
+      imageUrl:
+        '/wereact_logo.jpeg',
+      icon: <FaFacebook className="text-blue-600 mt-3" />,
+    },
+    href: 'https://www.facebook.com/people/Wereact-SA/100057304665890/',
+  },
+  {
+    applicant: {
+      name: 'wereact',
+      imageUrl:
+      '/wereact_logo.jpeg',
+      icon: <FaInstagram className="text-pink-500 mt-3" />,
+    },
+    href: 'https://www.instagram.com/wereact_creativeagency',
   },
 ]
 
@@ -44,6 +68,7 @@ export default function Example() {
     <main>
         <div className='pb-3 pt-3'>
           <h1 className="text-2xl font-semibold text-gray-900">Projects</h1>
+          <button onClick={<add_project_model />}></button>
         </div>
         <div className="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
         <div className="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-nowrap">
@@ -52,7 +77,7 @@ export default function Example() {
               <div className="flex-shrink-0">
                 <img
                   className="h-12 w-12 rounded-full"
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  src="/Beeclick.jpeg"
                   alt=""
                 />
               </div>
@@ -79,8 +104,8 @@ export default function Example() {
         <div className="bg-white shadow overflow-hidden sm:rounded-md">
           <ul role="list" className="divide-y divide-gray-200">
             {applications.map((application) => (
-              <li key={application.applicant.email}>
-                <a href={application.href} className="block hover:bg-gray-50">
+              <li key="#">
+                <a href="#" className="block hover:bg-gray-50">
                   <div className="flex items-center px-4 py-4 sm:px-6">
                     <div className="min-w-0 flex-1 flex items-center">
                       <div className="flex-shrink-0">
@@ -90,20 +115,11 @@ export default function Example() {
                         <div>
                           <p className="text-sm font-medium text-indigo-600 truncate">{application.applicant.name}</p>
                           <p className="mt-2 flex items-center text-sm text-gray-500">
-                            <MailIcon className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
-                            <span className="truncate">{application.applicant.email}</span>
+                            This is a professional account
                           </p>
                         </div>
                         <div className="hidden md:block">
-                          <div>
-                            <p className="text-sm text-gray-900">
-                              Applied on <time dateTime={application.date}>{application.dateFull}</time>
-                            </p>
-                            <p className="mt-2 flex items-center text-sm text-gray-500">
-                              <CheckCircleIcon className="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" aria-hidden="true" />
-                              {application.stage}
-                            </p>
-                          </div>
+                            {application.applicant.icon}
                         </div>
                       </div>
                     </div>
@@ -125,12 +141,12 @@ export default function Example() {
                 <div className="flex-shrink-0">
                   <img
                     className="h-12 w-12 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    src="/cobeez.jpg"
                     alt=""
                   />
                 </div>
                 <div className="ml-4">
-                  <h3 className="text-lg leading-6 font-medium text-gray-900">Beeclick</h3>
+                  <h3 className="text-lg leading-6 font-medium text-gray-900">Coobeez</h3>
                   <p className="text-sm text-gray-500">
                     Workcation is a property rental website. Etiam ullamcorper massa viverra consequat, 
                     consectetur id nulla tempus. Fringilla egestas justo massa purus sagittis malesuada.
@@ -151,9 +167,9 @@ export default function Example() {
         <div>
           <div className="bg-white shadow overflow-hidden sm:rounded-md">
             <ul role="list" className="divide-y divide-gray-200">
-              {applications.map((application) => (
-                <li key={application.applicant.email}>
-                  <a href={application.href} className="block hover:bg-gray-50">
+              {cobeez.map((application) => (
+                <li key="#">
+                  <a href="#" className="block hover:bg-gray-50">
                     <div className="flex items-center px-4 py-4 sm:px-6">
                       <div className="min-w-0 flex-1 flex items-center">
                         <div className="flex-shrink-0">
@@ -163,20 +179,12 @@ export default function Example() {
                           <div>
                             <p className="text-sm font-medium text-indigo-600 truncate">{application.applicant.name}</p>
                             <p className="mt-2 flex items-center text-sm text-gray-500">
-                              <MailIcon className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
-                              <span className="truncate">{application.applicant.email}</span>
+
+                              This is a professional account
                             </p>
                           </div>
                           <div className="hidden md:block">
-                            <div>
-                              <p className="text-sm text-gray-900">
-                                Applied on <time dateTime={application.date}>{application.dateFull}</time>
-                              </p>
-                              <p className="mt-2 flex items-center text-sm text-gray-500">
-                                <CheckCircleIcon className="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" aria-hidden="true" />
-                                {application.stage}
-                              </p>
-                            </div>
+                            {application.applicant.icon}
                           </div>
                         </div>
                       </div>
@@ -199,12 +207,12 @@ export default function Example() {
                 <div className="flex-shrink-0">
                   <img
                     className="h-12 w-12 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    src="/wereact_logo.jpeg"
                     alt=""
                   />
                 </div>
                 <div className="ml-4">
-                  <h3 className="text-lg leading-6 font-medium text-gray-900">Beeclick</h3>
+                  <h3 className="text-lg leading-6 font-medium text-gray-900">WEREACT</h3>
                   <p className="text-sm text-gray-500">
                     Workcation is a property rental website. Etiam ullamcorper massa viverra consequat, 
                     consectetur id nulla tempus. Fringilla egestas justo massa purus sagittis malesuada.
@@ -225,9 +233,9 @@ export default function Example() {
         <div>
           <div className="bg-white shadow overflow-hidden sm:rounded-md">
             <ul role="list" className="divide-y divide-gray-200">
-              {applications.map((application) => (
-                <li key={application.applicant.email}>
-                  <a href={application.href} className="block hover:bg-gray-50">
+              {wereact.map((application) => (
+                <li key="#">
+                  <a href="#" className="block hover:bg-gray-50">
                     <div className="flex items-center px-4 py-4 sm:px-6">
                       <div className="min-w-0 flex-1 flex items-center">
                         <div className="flex-shrink-0">
@@ -237,20 +245,12 @@ export default function Example() {
                           <div>
                             <p className="text-sm font-medium text-indigo-600 truncate">{application.applicant.name}</p>
                             <p className="mt-2 flex items-center text-sm text-gray-500">
-                              <MailIcon className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
-                              <span className="truncate">{application.applicant.email}</span>
+
+                              This is a professional account
                             </p>
                           </div>
                           <div className="hidden md:block">
-                            <div>
-                              <p className="text-sm text-gray-900">
-                                Applied on <time dateTime={application.date}>{application.dateFull}</time>
-                              </p>
-                              <p className="mt-2 flex items-center text-sm text-gray-500">
-                                <CheckCircleIcon className="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" aria-hidden="true" />
-                                {application.stage}
-                              </p>
-                            </div>
+                            {application.applicant.icon}
                           </div>
                         </div>
                       </div>
