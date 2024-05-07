@@ -11,7 +11,6 @@ const userResolvers = {
     get_User_By_Id: async (parent: any, { id }: { id: number }) => {
       return await userService.get_User_By_Id(id);
     },
-    // Ajoutez d'autres résolveurs de requête selon vos besoins
   },
   Mutation: {
     create_User: async (

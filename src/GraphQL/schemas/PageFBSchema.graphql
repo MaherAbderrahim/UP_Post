@@ -1,7 +1,7 @@
 scalar DateTime
 
 type Page_FB {
-  id: ID!
+  id: Int!
   name: String!
   id_FB: String!
   page_TOKEN: String!
@@ -17,11 +17,11 @@ type Query {
   get_All_User_Pages_FB : [Page_FB]
   get_All_Project_Pages_FB : [Page_FB]
   get_All_Page_FB: [Page_FB!]!
-  get_Page_FB_By_Id(id: ID!): Page_FB
+  get_Page_FB_By_Id(id: Int!): Page_FB
 }
 
 type Mutation {
-  create_Page_FB(name: String!, id_FB: String!, page_TOKEN: String!, user_id: ID!, project_id: ID!): Page_FB!
-  update_Page_FB(id: ID!, name: String, id_FB: String, page_TOKEN: String, user_id: ID, project_id: ID): Page_FB!
-  delete_Page_FB(id: ID!): Page_FB!
+  create_Page_FB(name: String!, id_FB: String!, page_TOKEN: String!, user_id: Int!, project_id: Int!): Page_FB!
+  update_Page_FB(id: Int!, name: String, id_FB: String, page_TOKEN: String, user_id: Int, project_id: Int): Page_FB!
+  delete_Page_FB(id: Int!): Page_FB!
 }

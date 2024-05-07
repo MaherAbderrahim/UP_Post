@@ -1,7 +1,7 @@
 scalar DateTime
 
 type Users_FB {
-  id: ID!
+  id: Int!
   name: String!
   id_FB: String!
   user_TOKEN: String!
@@ -12,11 +12,11 @@ type Users_FB {
 
 type Query {
   get_All_Users_FB: [Users_FB!]!
-  get_Users_FB_By_Id(id: ID!): Users_FB
+  get_Users_FB_By_Id(id: Int!): Users_FB
 }
 
 type Mutation {
   create_Users_FB(name: String!, id_FB: String!, user_TOKEN: String!): Users_FB!
-  update_Users_FB(id: ID!, name: String, id_FB: String, user_TOKEN: String): Users_FB!
-  delete_Users_FB(id: ID!): Users_FB!
+  update_Users_FB(id: Int!, name: String, id_FB: String, user_TOKEN: String): Users_FB!
+  delete_Users_FB(id: Int!): Users_FB!
 }

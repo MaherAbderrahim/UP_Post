@@ -14,7 +14,6 @@ const pageIGResolvers = {
     get_All_Project_Pages_IG: async (parent: any, { id }: { id: number }) => {
       return await pageIGService.get_All_Project_Pages_IG(id);
     },
-    // Ajoutez d'autres résolveurs de requête selon vos besoins
   },
   Mutation: {
     create_Page_IG: async (

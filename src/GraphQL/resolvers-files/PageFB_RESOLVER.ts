@@ -17,7 +17,6 @@ const pageFBResolvers = {
     get_All_Project_Pages_FB: async (parent: any, { id }: { id: number }) => {
       return await pageFBService.get_All_Project_Pages_FB(id);
     },
-    // Ajoutez d'autres résolveurs de requête selon vos besoins
   },
   Mutation: {
     create_Page_FB: async (

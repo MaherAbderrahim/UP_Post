@@ -28,7 +28,6 @@ const commentsFBResolvers = {
     ) => {
       return await commentsFBService.get_All_User_Comments_On_Page_FB(user_name, pageid);
     },
-    // Ajoutez d'autres résolveurs de requête selon vos besoins
   },
   Mutation: {
     create_Comment_FB: async (
