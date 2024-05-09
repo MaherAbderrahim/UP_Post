@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import { registerApolloClient } from "@apollo/experimental-nextjs-app-support/rsc";
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
   const graphqlUrl = "http://localhost:4000";
