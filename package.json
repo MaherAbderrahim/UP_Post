@@ -11,7 +11,8 @@
     "generate-client": "graphql-codegen --config graphql-client/codegen.yml"
   },
   "dependencies": {
-    "@apollo/client": "^3.9.11",
+    "@apollo/client": "3.10.0-rc.1",
+    "@apollo/experimental-nextjs-app-support": "^0.10.0",
     "@apollo/server": "^4.10.2",
     "@apollo/space-kit": "^9.11.0",
     "@as-integrations/next": "^3.0.0",
