@@ -11,9 +11,9 @@ type Comments_IG {
 }
 
 type Query {
-  get_All_User_Comments_On_Post_IG: [Comments_IG]
-  get_All_User_Comments_On_Page_IG: [Comments_IG]
-  get_Comments_By_Post_IG_Id: [Comments_IG]
+  get_All_User_Comments_On_Post_IG(user_id:Int!,post_id:Int!): [Comments_IG]
+  get_All_User_Comments_On_Page_IG(page_id:Int!,user_id:Int!): [Comments_IG]
+  get_Comments_By_Post_IG_Id(post_id:Int!): [Comments_IG]
   get_All_Comments_IG: [Comments_IG]
   get_Comment_IG_By_Id(id: Int!): Comments_IG
 }
