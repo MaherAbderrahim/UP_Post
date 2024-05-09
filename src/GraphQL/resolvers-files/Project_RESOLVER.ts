@@ -11,7 +11,9 @@ const projectResolvers = {
     get_Project_By_Id: async (parent: any, { id }: { id: number }) => {
       return await projectService.get_Project_By_Id(id);
     },
-    // Ajoutez d'autres résolveurs de requête selon vos besoins
+    get_All_User_Project:async(parent: any, { user_id }: { user_id: number }) => {
+      return await projectService.get_All_User_Project(user_id);
+    },  
   },
   Mutation: {
     create_Project: async (

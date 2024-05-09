@@ -1,7 +1,7 @@
 scalar DateTime
 
 type Project {
-  id: ID!
+  id: Int!
   name: String!
   description: String!
   created_at: DateTime!
@@ -12,13 +12,13 @@ type Project {
 }
 
 type Query {
-  get_All_User_Project: [Project]
+  get_All_User_Project(id:Int!): [Project]
   get_All_Projects: [Project]
-  get_Project_By_Id(id: ID!): Project
+  get_Project_By_Id(id: Int!): Project
 }
 
 type Mutation {
   create_Project(name: String!, description: String, user_id: Int!): Project!
-  update_Project(id: ID!, name: String, description: String, user_id: Int): Project!
-  delete_Project(id: ID!): Project!
+  update_Project(id: Int!, name: String, description: String, user_id: Int): Project!
+  delete_Project(id: Int!): Project!
 }

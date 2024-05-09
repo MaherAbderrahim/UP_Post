@@ -1,7 +1,7 @@
 scalar DateTime
 
 type Posts_FB {
-  id: ID!
+  id: Int!
   created_at: DateTime!
   updated_at: DateTime!
   Name_page: String
@@ -45,7 +45,7 @@ type Posts_FB {
 type Query {
   get_All_Page_FB_Posts: [Posts_FB]
   get_All_Posts_FB: [Posts_FB]!
-  get_Post_FB_By_Id(id: ID!): Posts_FB
+  get_Post_FB_By_Id(id: Int!): Posts_FB
 }
 
 type Mutation {
@@ -83,10 +83,10 @@ type Mutation {
     is_sponsored: Boolean
     prediction_label: Int
     prediction_score: Float
-    page_id: ID!
+    page_id: Int!
   ): Posts_FB!
   update_Post_FB(
-    id: ID!
+    id: Int!
     Name_page: String
     Followers: Int
     Heure_post: DateTime
@@ -120,7 +120,7 @@ type Mutation {
     is_sponsored: Boolean
     prediction_label: Int
     prediction_score: Float
-    page_id: ID
+    page_id: Int
   ): Posts_FB!
-  delete_Post_FB(id: ID!): Posts_FB!
+  delete_Post_FB(id: Int!): Posts_FB!
 }

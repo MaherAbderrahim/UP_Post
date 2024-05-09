@@ -14,7 +14,6 @@ const postsIGResolvers = {
     get_Post_IG_By_Id: async (parent: any, { id }: { id: number }) => {
       return await postsIGService.get_Post_IG_By_Id(id);
     },
-    // Ajoutez d'autres résolveurs de requête selon vos besoins
   },
   Mutation: {
     create_Post_IG: async (

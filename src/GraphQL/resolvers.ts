@@ -1,4 +1,3 @@
-//importe tous les resolver puis les exporte
 import {
     commentsFBResolvers,
     commentsIGResolvers,

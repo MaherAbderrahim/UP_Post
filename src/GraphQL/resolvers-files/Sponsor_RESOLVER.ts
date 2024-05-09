@@ -11,7 +11,6 @@ const sponsorResolvers = {
     get_Sponsor_By_Id: async (parent: any, { id }: { id: number }) => {
       return await sponsorService.get_Sponsor_By_Id(id);
     },
-    // Ajoutez d'autres résolveurs de requête selon vos besoins
   },
   Mutation: {
     create_Sponsor: async (

@@ -1,7 +1,7 @@
 scalar DateTime
 
 type Page_IG {
-  id: ID!
+  id: Int!
   created_at: DateTime!
   updated_at: DateTime!
   name: String!
@@ -15,11 +15,11 @@ type Page_IG {
 type Query {
   get_All_Project_Pages_IG : [Page_IG]
   get_All_Page_IG: [Page_IG!]!
-  get_Page_IG_By_Id(id: ID!): Page_IG
+  get_Page_IG_By_Id(id: Int!): Page_IG
 }
 
 type Mutation {
-  create_Page_IG(name: String!, id_IG: String!, user_TOKEN: String!, project_id: ID!): Page_IG!
-  update_Page_IG(id: ID!, name: String, id_IG: String, user_TOKEN: String, project_id: ID): Page_IG!
-  delete_Page_IG(id: ID!): Page_IG
+  create_Page_IG(name: String!, id_IG: String!, user_TOKEN: String!, project_id: Int!): Page_IG!
+  update_Page_IG(id: Int!, name: String, id_IG: String, user_TOKEN: String, project_id: Int): Page_IG!
+  delete_Page_IG(id: Int!): Page_IG
 }

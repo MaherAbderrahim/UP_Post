@@ -28,7 +28,7 @@ export class CommentsFBService {
     });
   }
 
-  get_All_User_Comments_On_Post_FB(user_name:string,postid:number):Promise<CommentsFBModel[]> {
+  async get_All_User_Comments_On_Post_FB(user_name:string,postid:number):Promise<CommentsFBModel[]> {
     return this.prisma.comments_FB.findMany({
       where: {
         postFB_id: postid,

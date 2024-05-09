@@ -266,7 +266,7 @@ export default function Example() {
                 <span className="sr-only">Workflow</span>
                 <img
                   className="h-8 w-auto sm:h-20"
-                  src="/wereact_logo.jpeg"
+                  src="/UPost.jpeg"
                   alt=""
                 />
               </a>
