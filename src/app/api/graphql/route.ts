@@ -1,5 +1,4 @@
 import { ApolloServer } from "@apollo/server";
-import Cors from "micro-cors";
 import typeDefs from "@/GraphQL/schema";
 import resolvers from "@/GraphQL/resolvers";
 import {createContext} from "@/GraphQL/context"
@@ -20,5 +19,6 @@ async function startServer() {
 
   console.log(`🚀  Server ready at: ${url}`);
 }
+
 
 startServer();

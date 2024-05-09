@@ -17,125 +17,75 @@ const postsIGResolvers = {
   },
   Mutation: {
     create_Post_IG: async (
-      Page_name: string,
-        Followers: number,
-        Post_text: string,
-        Usernames: string,
-        Likes: number,
-        Total_NB_commentaires: number,
-        len_post: number,
-        langue_post: string,
-        Hashtags: string,
-        hashtag_count: number,
-        Found_Hash: number,
-        Day_of_Week: string,
-        Time_post: Date,
-        Day: number,
-        Month: string,
-        Year: number,
-        Date_post: Date,
-        Sentiment_POSTT: string,
-        sentiment_comments_POS: number,
-        sentiment_comments_NEG: number,
-        positive: number,
-        negative: number,
-        nature: number,
-        prediction_label: number,
-        prediction_score: number,
-        page_id: number,
+      parent: any,
+      args: {
+        Page_name: string;
+        Followers: number;
+        Post_text: string;
+        Usernames: string;
+        Likes: number;
+        Total_NB_commentaires: number;
+        len_post: number;
+        langue_post: string;
+        Hashtags: string;
+        hashtag_count: number;
+        Found_Hash: number;
+        Day_of_Week: string;
+        Time_post: Date;
+        Day: number;
+        Month: string;
+        Year: number;
+        Date_post: Date;
+        Sentiment_POSTT: string;
+        sentiment_comments_POS: number;
+        sentiment_comments_NEG: number;
+        positive: number;
+        negative: number;
+        nature: number;
+        prediction_label: number;
+        prediction_score: number;
+        page_id: number;
+      }
     ) => {
-      return await postsIGService.create_Post_IG(
-        Page_name,
-        Followers,
-        Post_text,
-        Usernames,
-        Likes,
-        Total_NB_commentaires,
-        len_post,
-        langue_post,
-        Hashtags,
-        hashtag_count,
-        Found_Hash,
-        Day_of_Week,
-        Time_post,
-        Day,
-        Month,
-        Year,
-        Date_post,
-        Sentiment_POSTT,
-        sentiment_comments_POS,
-        sentiment_comments_NEG,
-        positive,
-        negative,
-        nature,
-        prediction_label,
-        prediction_score,
-        page_id
-      );
+      return await postsIGService.create_Post_IG(args.Page_name, args.Followers, args.Post_text, args.Usernames, args.Likes, args.Total_NB_commentaires, args.len_post, args.langue_post, args.Hashtags, args.hashtag_count, args.Found_Hash, args.Day_of_Week, args.Time_post, args.Day, args.Month, args.Year, args.Date_post, args.Sentiment_POSTT, args.sentiment_comments_POS, args.sentiment_comments_NEG, args.positive, args.negative, args.nature, args.prediction_label, args.prediction_score, args.page_id);
     },
     update_Post_IG: async (
-        id: number,
-        Page_name: string,
-        Followers: number,
-        Post_text: string,
-        Usernames: string,
-        Likes: number,
-        Total_NB_commentaires: number,
-        len_post: number,
-        langue_post: string,
-        Hashtags: string,
-        hashtag_count: number,
-        Found_Hash: number,
-        Day_of_Week: string,
-        Time_post: Date,
-        Day: number,
-        Month: string,
-        Year: number,
-        Date_post: Date,
-        Sentiment_POSTT: string,
-        sentiment_comments_POS: number,
-        sentiment_comments_NEG: number,
-        positive: number,
-        negative: number,
-        nature: number,
-        prediction_label: number,
-        prediction_score: number,
-        page_id: number,
+      parent: any,
+      args: {
+        id: number;
+        Page_name: string;
+        Followers: number;
+        Post_text: string;
+        Usernames: string;
+        Likes: number;
+        Total_NB_commentaires: number;
+        len_post: number;
+        langue_post: string;
+        Hashtags: string;
+        hashtag_count: number;
+        Found_Hash: number;
+        Day_of_Week: string;
+        Time_post: Date;
+        Day: number;
+        Month: string;
+        Year: number;
+        Date_post: Date;
+        Sentiment_POSTT: string;
+        sentiment_comments_POS: number;
+        sentiment_comments_NEG: number;
+        positive: number;
+        negative: number;
+        nature: number;
+        prediction_label: number;
+        prediction_score: number;
+        page_id: number;
+      }
     ) => {
-      return await postsIGService.update_Post_IG(
-        id,
-        Page_name,
-        Followers,
-        Post_text,
-        Usernames,
-        Likes,
-        Total_NB_commentaires,
-        len_post,
-        langue_post,
-        Hashtags,
-        hashtag_count,
-        Found_Hash,
-        Day_of_Week,
-        Time_post,
-        Day,
-        Month,
-        Year,
-        Date_post,
-        Sentiment_POSTT,
-        sentiment_comments_POS,
-        sentiment_comments_NEG,
-        positive,
-        negative,
-        nature,
-        prediction_label,
-        prediction_score,
-        page_id
-      );
+      return await postsIGService.update_Post_IG(args.id, args.Page_name, args.Followers, args.Post_text, args.Usernames, args.Likes, args.Total_NB_commentaires, args.len_post, args.langue_post, args.Hashtags, args.hashtag_count, args.Found_Hash, args.Day_of_Week, args.Time_post, args.Day, args.Month, args.Year, args.Date_post, args.Sentiment_POSTT, args.sentiment_comments_POS, args.sentiment_comments_NEG, args.positive, args.negative, args.nature, args.prediction_label, args.prediction_score, args.page_id);
     },
     delete_Post_IG: async (parent: any, { id }: { id: number }) => {
       return await postsIGService.delete_Post_IG(id);
     },
-    // Ajoutez d'autres résolveurs de mutation selon vos besoins
   },
 };
 

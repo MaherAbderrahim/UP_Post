@@ -1,5 +1,4 @@
 import { ProjectService } from '@/GraphQL/datasources';
-import { ProjectModel } from '../model';
 import prisma from '@/lib/prisma';
 const projectService = new ProjectService(prisma);
 

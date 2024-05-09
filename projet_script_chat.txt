@@ -1,0 +1,10 @@
+met toi dans la peau d'un encadrant academique 
+je travaille dans une societe qui se prenome wereact 
+le chapitre la concernant est deja pres .ne te preocupe pas d'elle .Mon projet consiste en un site internet qiu se vend essentiellement pour les soseite qiu veulent ameliore leur compte sur les resaux sociaux ("precisement FB et IG ").
+tout d'abors ce qu'on a fait c'est un api avec python qui demande l'acces aux page facebook ou instagrame de l'utilisateur ensuite on recupere toute les donne .Ensuite on récupère toutes les données à partir de ces pages on les passe à plusieurs autres API qui chacun s'occupe de faire une seule tâche.
+ Chaque tâche est considéré comme un service .
+La première est de savoir si si chaque poste est considéré comme bien marche ou pas (on se plongera plus sur les détails plus tard).
+ Le deuxième et de corriger le poste par exemple si vous donnez un poste qui est qui est considéré comme un poste qui n'a pas marché en passant sur cet API elle va le corriger pour donner une version améliorée de ce poste.
+ Le 3e c'est de créer un poste à partir de zéro en gros on donne un thème à cet API et il créera un poste sur ce thème là.
+C'est ce que notre site fait ensuite je vais te donner les tâches qu'on a fait nous-même quand je dis nous-même ça te dit moi Maher abderrahim et mon binome Haroun Melek Hamemi.
+Moi et mon binome on s'est chargé de la partie d'extraction des données de l'automatisation des extractions des token. les token serve à avoir l'accès sur aux différentes pages comme je te l'ai expliqué dernièrement. En gros on a créé le premier API . Ensuite on a créer le modèle qui calcule si le poste a bien marché ou non. Enfin on a créae le site bien sûr .je vais te parlais des technologie plus tard

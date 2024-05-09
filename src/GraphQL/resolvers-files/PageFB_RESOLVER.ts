@@ -34,9 +34,7 @@ const pageFBResolvers = {
     delete_Page_FB: async (parent: any, { id }: { id: number }) => {
       return await pageFBService.delete_Page_FB(id);
     },
-    // Ajoutez d'autres résolveurs de mutation selon vos besoins
   },
-
 };
 
 export default pageFBResolvers;
