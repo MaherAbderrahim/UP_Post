@@ -5,6 +5,7 @@ type Page_FB {
   name: String!
   id_FB: String!
   page_TOKEN: String!
+  img_URL:String!
   created_at: DateTime!
   updated_at: DateTime!
   User_FB: Users_FB!
@@ -21,7 +22,9 @@ type Query {
 }
 
 type Mutation {
-  create_Page_FB(name: String!, id_FB: String!, page_TOKEN: String!, user_id: Int!, project_id: Int!): Page_FB!
-  update_Page_FB(id: Int!, name: String, id_FB: String, page_TOKEN: String, user_id: Int, project_id: Int): Page_FB!
+  create_Page_FB(name: String!, id_FB: String!, page_TOKEN: String!, user_id: Int!, project_id: Int!,img_URL:String!): Page_FB!
+  update_Page_FB(id: Int!, name: String, id_FB: String, page_TOKEN: String, user_id: Int, project_id: Int,img_URL:String!): Page_FB!
   delete_Page_FB(id: Int!): Page_FB!
 }
+
+

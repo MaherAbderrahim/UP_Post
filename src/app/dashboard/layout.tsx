@@ -279,8 +279,8 @@ export default function RootLayout ( { children,
                   <div className="flex-shrink-0 flex items-center px-4">
                     <img
                       className="h-15 w-auto"
-                      src="/wereact_logo.jpeg"
-                      alt="WeReact"
+                      src="/UPost.jpeg"
+                      alt="UPost"
                     />
                   </div>
                   <nav className="mt-5 px-2 space-y-1">
@@ -323,8 +323,8 @@ export default function RootLayout ( { children,
               <div className="flex items-center flex-shrink-0 px-4">
                 <img
                   className="h-13 w-auto"
-                  src="/wereact_logo.jpeg"
-                  alt="WeReact"
+                  src="/UPost.jpeg"
+                  alt="UPost"
                 />
               </div>
               <nav className="mt-5 px-2 space-y-1">

@@ -4,6 +4,7 @@ export type PageIGModel = {
     id_IG: string;
     name: string;
     user_TOKEN: string;
+    img_URL: string;
     created_at : Date;
     updated_at : Date;
     

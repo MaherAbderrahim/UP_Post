@@ -28,12 +28,13 @@ export class PageIGService {
     });
   }
 
-  async create_Page_IG(name: string, id_IG: string, user_TOKEN: string, project_id: number, page_FB_id: number): Promise<PageIGModel> {
+  async create_Page_IG(name: string, id_IG: string, user_TOKEN: string, project_id: number, page_FB_id: number,img_URL:string): Promise<PageIGModel> {
     return await this.prisma.page_IG.create({
       data: {
         name: name,
         id_IG: id_IG,
         user_TOKEN: user_TOKEN,
+        img_URL:img_URL,
         Page_FB: {
           connect: {
             id: page_FB_id,
@@ -48,7 +49,7 @@ export class PageIGService {
     });
   }
 
-  async update_Page_IG(id: number, name: string, id_IG: string, user_TOKEN: string, project_id: number, page_FB_id: number): Promise<PageIGModel> {
+  async update_Page_IG(id: number, name: string, id_IG: string, user_TOKEN: string, project_id: number, page_FB_id: number,img_URL:string): Promise<PageIGModel> {
     return await this.prisma.page_IG.update({
       where: {
         id: id,
@@ -57,6 +58,7 @@ export class PageIGService {
         name: name,
         id_IG: id_IG,
         user_TOKEN: user_TOKEN,
+        img_URL:img_URL,
         Page_FB: {
           connect: {
             id: page_FB_id,

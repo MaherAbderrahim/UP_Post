@@ -36,12 +36,13 @@ export class PageFBService {
     })
   }
 
-  async create_Page_FB(name: string, id_FB: string, page_TOKEN: string, user_id: number, project_id: number): Promise<PageFBModel> {
+  async create_Page_FB(name: string, id_FB: string, page_TOKEN: string, user_id: number, project_id: number,img_URL:string): Promise<PageFBModel> {
     return await this.prisma.page_FB.create({
       data: {
         name: name,
         id_FB: id_FB,
         page_TOKEN: page_TOKEN,
+        img_URL:img_URL,
         User_FB: {
           connect: {
             id: user_id,
@@ -56,7 +57,7 @@ export class PageFBService {
     });
   }
 
-  async update_Page_FB(id: number, name: string, id_FB: string, page_TOKEN: string, user_id: number, project_id: number): Promise<PageFBModel> {
+  async update_Page_FB(id: number, name: string, id_FB: string, page_TOKEN: string, user_id: number, project_id: number,img_URL:string): Promise<PageFBModel> {
     return await this.prisma.page_FB.update({
       where: {
         id: id,

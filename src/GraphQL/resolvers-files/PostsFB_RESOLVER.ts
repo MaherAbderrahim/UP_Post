@@ -19,6 +19,7 @@ const postsFBResolvers = {
     create_Post_FB: async (
         parent: any,
         args : {
+          img_URL:string,
           Name_page: string,
           Followers: number,
           Heure_post: Date,
@@ -57,6 +58,7 @@ const postsFBResolvers = {
         
     ) => {
       return await postsFBService.create_Post_FB(
+        args.img_URL,
         args.Name_page,
         args.Followers,
         args.Heure_post,
@@ -95,6 +97,7 @@ const postsFBResolvers = {
     },
     update_Post_FB: async (
       id:number,
+      img_URL:string,
       Name_page: string,
       Followers: number,
       Heure_post: Date,
@@ -132,6 +135,7 @@ const postsFBResolvers = {
     ) => {
       return await postsFBService.update_Post_FB(
         id,
+        img_URL,
         Name_page,
         Followers,
         Heure_post,

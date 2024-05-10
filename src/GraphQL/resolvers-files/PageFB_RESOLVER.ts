@@ -21,15 +21,15 @@ const pageFBResolvers = {
   Mutation: {
     create_Page_FB: async (
       parent: any,
-      { name, id_FB, page_TOKEN, user_id, project_id }: { name: string; id_FB: string; page_TOKEN: string; user_id: number; project_id: number }
+      { name, id_FB, page_TOKEN, user_id, project_id,img_URL }: { name: string; id_FB: string; page_TOKEN: string; user_id: number; project_id: number,img_URL:string }
     ) => {
-      return await pageFBService.create_Page_FB(name, id_FB, page_TOKEN, user_id, project_id);
+      return await pageFBService.create_Page_FB(name, id_FB, page_TOKEN, user_id, project_id,img_URL);
     },
     update_Page_FB: async (
       parent: any,
-      { id, name, id_FB, page_TOKEN, user_id, project_id }: { id: number; name: string; id_FB: string; page_TOKEN: string; user_id: number; project_id: number }
+      { id, name, id_FB, page_TOKEN, user_id, project_id,img_URL }: { id: number; name: string; id_FB: string; page_TOKEN: string; user_id: number; project_id: number,img_URL:string }
     ) => {
-      return await pageFBService.update_Page_FB(id, name, id_FB, page_TOKEN, user_id, project_id);
+      return await pageFBService.update_Page_FB(id, name, id_FB, page_TOKEN, user_id, project_id,img_URL);
     },
     delete_Page_FB: async (parent: any, { id }: { id: number }) => {
       return await pageFBService.delete_Page_FB(id);

@@ -1,0 +1,881 @@
+mutation Mutation {
+  create_User(email: "harounmelekh@gmail.com") {
+    id
+    email
+  }
+}
+
+
+mutation Mutation {
+  create_User(email: "maherabderrahim@gmail.com") {
+    id
+    email
+  }
+}
+
+
+
+mutation Mutation {
+  create_User(email: "SebastienGrey@gmail.com") {
+    id
+    email
+  }
+}
+
+
+mutation Mutation {
+  create_User(email: "DemonSalvatore@gmail.com") {
+    id
+    email
+  }
+}
+
+
+
+mutation Mutation {
+  create_User(email: "AlarckSoltesman@gmail.com") {
+    id
+    email
+  }
+}
+
+--------------------------------------------------------------
+
+
+mutation {
+  create_Project(name: "Projet Sportif", user_id: 3, description: "Projet  pour le suivi des performances sportives et la planification d'entraînements.") {
+    id
+    name
+    description
+  }
+}
+
+mutation {
+  create_Project(name: "Projet Éducatif", user_id: 3, description: "Projet en ligne pour l'apprentissage des langues étrangères avec des cours interactifs et des échanges avec des locuteurs natifs.") {
+    id
+    name
+    description
+  }
+}
+
+mutation {
+  create_Project(name: "Projet Cinéma", user_id: 4, description: "Projet dédié au streaming de films indépendants et de documentaires engagés.") {
+    id
+    name
+    description
+  }
+}
+
+mutation {
+  create_Project(name: "Projet Vente en Ligne", user_id: 4, description: "Projet e-commerce spécialisée dans la vente de produits bio et éco-responsables, favorisant le commerce équitable.") {
+    id
+    name
+    description
+  }
+}
+
+mutation {
+  create_Project(name: "Projet Fitness", user_id: 5, description: "Projet de coaching personnalisé pour la remise en forme, avec des programmes d'entraînement et des conseils nutritionnels.") {
+    id
+    name
+    description
+  }
+}
+
+mutation {
+  create_Project(name: "Projet Social Media", user_id: 5, description: "Projet axé sur le partage d'expériences de voyage et la découverte de destinations hors des sentiers battus.") {
+    id
+    name
+    description
+  }
+}
+
+--------------------------------------------------
+mutation {
+
+  create_Users_FB(name: "Sam Micheal", id_FB: "122095769750214350", user_TOKEN:"EAAD143672KABOz6cM4nWJyVB4U24qsGyIKllkVLaAKnVTZC1CToCaje97ao1CSPeg58v37vEV169aMZCo2eohzIM8WDbL9GW9Mu37V1CffxR9FuEU1TV2yu5H8mf89VpL2MmbA91jvsp76haTMqCQGUZBXLhjUbudbFRrtrhmpHmOkZBAZA13y4pnCvNebAla")  {
+    id
+    name
+  }
+}
+
+mutation {
+  create_Users_FB(name: "Alice Smith", id_FB: "123456789012345", user_TOKEN:"EAAD143672KABOz6cM4nWJyVB4U24qsGyIKllkVC1CToCaje97ao1CSPeg58v37vEV169aMZCo2eohzIM8WDbL9GW9Mu37V1CffxR9FuEU1TV2yu5H8mf89VpL2MmbA91jvsp76haTMqCQGUZBXLhjUbudbFRrtrhmpHmOkZBAZA13y4pnCvNebAla")  {
+    id
+    name
+  }
+}
+
+mutation {
+  create_Users_FB(name: "John Doe", id_FB: "987654321098765", user_TOKEN:"EAAD143672KAByVB4U24qsGyIKllkVLaAKnVTZC1CToCaje97ao1CSPeg58v37vEV169aMZCo2eohzIM8WDbL9GW9Mu37V1CffxR9FuEU1TV2yu5H8mf89VpL2MmbA91jvsp76haTMqCQGUZBXLhjUbudbFRrtrhmpHmOkZBAZA13y4pnCvNebAla")  {
+    id
+    name
+  }
+}
+
+mutation {
+  create_Users_FB(name: "Emily Johnson", id_FB: "543210987654321", user_TOKEN:"EAAD143672KABOz6cM4nWJyVB4U24qsGyInVTZC1CToCaje97ao1CSPeg58v37vEV169aMZCo2eohzIM8WDbL9GW9Mu37V1CffxR9FuEU1TV2yu5H8mf89VpL2MmbA91jvsp76haTMqCQGUZBXLhjUbudbFRrtrhmpHmOkZBAZA13y4pnCvNebAla")  {
+    id
+    name
+  }
+}
+
+-------------------------------------------------------
+mutation {
+  create_Page_FB(name: "GymBuddy", id_FB: "332225146630388",img_URL:"https://scontent.ftun10-1.fna.fbcdn.net/v/t39.30808-6/440967245_122141454386214350_628071911291916059_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=T5e7AsTq7FAQ7kNvgHVIH_V&_nc_ht=scontent.ftun10-1.fna&oh=00_AYDptywckholM0m98tB7ns6L0rANUwXjh2Rk8XgzpCtPSg&oe=6642FC1A" ,page_TOKEN: "EAAD143672KABO1bYXDgGR3wPibK5SualnMFuCGwUHncavyq6yvzMXaoaThH5ZAefCvkZBQfGn03hp2OhTzgFxmuaEQbZB7y9cZCCZC4xFiZCiO7SIqBDYlRPsy7ZCnrIyBS2ZBDWKvfzenjfvnc83j9uNZBk58ZCbtGZBbkEb9Qo0drlplGhpeKMTITAbnXIkIQ4zJGyqChZBwcw", user_id: 1, project_id: 1) {
+    id
+  }
+}
+
+mutation {
+  create_Page_FB(name: "Michael Page", id_FB: "218349638033596",img_URL:"https://scontent.ftun10-2.fna.fbcdn.net/v/t39.30808-6/426634057_122096936198214350_4115592912173610746_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_ohc=abqxgEunTUUQ7kNvgGrQZ1e&_nc_ht=scontent.ftun10-2.fna&oh=00_AYD4oZQrownM-rVzUicbcggsi4igufpdg8PlfvqKHqHX8Q&oe=6642F6D6" ,page_TOKEN: "EAAD143672KABO6Yjl0vOFm6ZBCLuQhZBWXyv6Cf9nYeYpjrhIxNZCEYym9TaYtbIhMUNZCdeDzPmVGKcMPSv7dZAtdSFHmm84Jz6zSfi4uq4UaZBMxb9pnzTZCn1jpoyjlWzH6TZAyVQSIo2qvZBQVRzjiDv5v4yV3AvocPgjNjfi4tzFEUOT0qskXES6TIhP4Hqv1zHxyvoZD", user_id: 1, project_id: 1) {
+    id
+  }
+}
+
+mutation {
+  create_Page_FB(name: "Language Learning Hub", id_FB: "23456789012",img_URL:"https://www.shutterstock.com/image-vector/language-learning-logo-design-template-260nw-1994361164.jpg" ,page_TOKEN: "token456", user_id: 1, project_id: 2) {
+    id
+  }
+}
+
+mutation {
+  create_Page_FB(name: "Cinéphiles Club", id_FB: "34567890123",img_URL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYbPN9I0Sb8auHGCg2bJtRNjk5ZkDSm6sOr3ApfJI46Q&s" ,page_TOKEN: "token789", user_id: 1, project_id: 3) {
+    id
+  }
+}
+
+mutation {
+  create_Page_FB(name: "Eco-Friendly Marketplace", id_FB: "45678901234",img_URL:"https://img.freepik.com/premium-vector/eco-friendly-shop-logo-vegan-food-shop-natural-products-market-organic-products_272744-668.jpg" ,page_TOKEN: "tokenABC", user_id: 1, project_id: 4) {
+    id
+  }
+}
+
+mutation {
+  create_Page_FB(name: "Healthy Living Community", id_FB: "56789012345",img_URL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0RQp_uxIVvNIxSIxIMYrodq-u-9RbBEcVwLBInhzEEg&s" ,page_TOKEN: "tokenDEF", user_id: 1, project_id: 5) {
+    id
+  }
+}
+
+mutation {
+  create_Page_FB(name: "Wanderlust Explorers", id_FB: "67890123456",img_URL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXyLtvjUPbhEQF8g99AYLYd-QvsBOn4INnSMUh8ha-Wg&s" ,page_TOKEN: "tokenGHI", user_id: 1, project_id: 6) {
+    id
+  }
+}
+
+-----------------------------------------------------------------------
+mutation {
+  create_Page_IG(name: "CinephileParadise", id_IG: "cinemania123", img_URL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYbPN9I0Sb8auHGCg2bJtRNjk5ZkDSm6sOr3ApfJI46Q&s" ,user_TOKEN: "igToken123", project_id: 3, page_FB_id: 4) {
+    id
+    name
+  }
+}
+
+mutation {
+  create_Page_IG(name: "EcoFashionistas", id_IG: "ecotrendz456", img_URL:"https://img.freepik.com/premium-vector/eco-friendly-shop-logo-vegan-food-shop-natural-products-market-organic-products_272744-668.jpg" ,user_TOKEN: "igToken456", project_id: 4, page_FB_id: 5) {
+    id
+    name
+  }
+}
+----------------------------------------------------------------------
+
+mutation {
+  create_Post_FB(
+    img_URL:"https://media.timeout.com/images/105897035/image.jpg"
+    Name_page: "CinephileParadise",
+    Followers: 186,
+    Heure_post: "2024-05-09T12:00:00Z",
+    Descriptions: "Quelle belle journée pour une séance de cinéma en plein air ! 🎥🍿 #CinemaUnderTheStars",
+    Partages: 50,
+    Hashtags: "#cinema #movie #outdoorcinema",
+    Nombre_de_commentaire: 35,
+    Jadores: 50,
+    Jaimes: 100,
+    Solidaires: 10,
+    Rires: 30,
+    Colere: 5,
+    Tristes: 3,
+    Wouah: 20,
+    Url_post: "https://www.facebook.com/CinephileParadise/posts/123456789",
+    Popularity: 75,
+    Jour_de_la_semaine: "Lundi",
+    Annee_post: 2024,
+    Mois: "Mai",
+    langue_post: "Français",
+    Season: "Printemps",
+    Nombre_Hashtags: 3,
+    Found_Hash: "cinema, movie, outdoorcinema",
+    Sentiment_post: "Positif",
+    Longueur_caracteres_text: 150,
+    sentiment_comments_POS: 30,
+    sentiment_comments_NEG: 5,
+    Timeline_visibility: "Public",
+    Instagram_eligibility: "Non éligible",
+    Can_reply_privately: true,
+    is_sponsored: false,
+    prediction_label: 1,
+    prediction_score: 1,
+    page_id: 3
+  ) {
+    id
+    Name_page
+    Descriptions
+    Url_post
+  }
+}
+
+
+mutation {
+  create_Post_FB(
+    img_URL:"https://st2.depositphotos.com/1105977/9877/i/450/depositphotos_98775856-stock-photo-retro-film-production-accessories-still.jpg"
+    Name_page: "CinephileParadise",
+    Followers: 186,
+    Heure_post: "2024-05-08T15:30:00Z",
+    Descriptions: "Quel est votre film préféré de tous les temps ? 🎬 #FavoriteMovie",
+    Partages: 30,
+    Hashtags: "#favorite #film #discussion",
+    Nombre_de_commentaire: 25,
+    Jadores: 40,
+    Jaimes: 80,
+    Solidaires: 5,
+    Rires: 20,
+    Colere: 2,
+    Tristes: 1,
+    Wouah: 15,
+    Url_post: "https://www.facebook.com/CinephileParadise/posts/987654321",
+    Popularity: 60,
+    Jour_de_la_semaine: "Dimanche",
+    Annee_post: 2024,
+    Mois: "Mai",
+    langue_post: "Français",
+    Season: "Printemps",
+    Nombre_Hashtags: 3,
+    Found_Hash: "favorite, film, discussion",
+    Sentiment_post: "Positif",
+    Longueur_caracteres_text: 120,
+    sentiment_comments_POS: 5,
+    sentiment_comments_NEG: 20,
+    Timeline_visibility: "Public",
+    Instagram_eligibility: "Non éligible",
+    Can_reply_privately: true,
+    is_sponsored: false,
+    prediction_label: 0,
+    prediction_score: 0,
+    page_id: 3
+  ) {
+    id
+    Name_page
+    Descriptions
+    Url_post
+  }
+}
+
+mutation {
+  create_Post_FB(
+    img_URL:"https://fr.web.img6.acsta.net/medias/nmedia/18/82/69/17/19806656.jpg"
+    Name_page: "CinephileParadise",
+    Followers: 186,
+    Heure_post: "2024-05-07T18:45:00Z",
+    Descriptions: "Avez-vous vu la dernière bande-annonce du film tant attendu ? 🍿🎬 #NewTrailer",
+    Partages: 40,
+    Hashtags: "#trailer #movie #excited",
+    Nombre_de_commentaire: 25,
+    Jadores: 60,
+    Jaimes: 120,
+    Solidaires: 8,
+    Rires: 25,
+    Colere: 3,
+    Tristes: 2,
+    Wouah: 18,
+    Url_post: "https://www.facebook.com/CinephileParadise/posts/135792468",
+    Popularity: 70,
+    Jour_de_la_semaine: "Samedi",
+    Annee_post: 2024,
+    Mois: "Mai",
+    langue_post: "Français",
+    Season: "Printemps",
+    Nombre_Hashtags: 3,
+    Found_Hash: "trailer, movie, excited",
+    Sentiment_post: "Positif",
+    Longueur_caracteres_text: 130,
+    sentiment_comments_POS: 22,
+    sentiment_comments_NEG: 3,
+    Timeline_visibility: "Public",
+    Instagram_eligibility: "Non éligible",
+    Can_reply_privately: true,
+    is_sponsored: false,
+    prediction_label: 1,
+    prediction_score: 1,
+    page_id: 3
+  ) {
+    id
+    Name_page
+    Descriptions
+    Url_post
+  }
+}
+
+mutation {
+  create_Post_FB(
+    img_URL:"https://img-4.linternaute.com/uwngHQt8ik4-hjzRznv8FLvbBu8=/1500x/smart/a0fb5b2acf2b4d83844b9d90eaa4a0f3/ccmcms-linternaute/11240996.jpg"
+    Name_page: "CinephileParadise",
+    Followers: 186,
+    Heure_post: "2024-05-06T10:00:00Z",
+    Descriptions: "Que pensez-vous de l'acteur principal de ce film ? 🤔 #ActorDiscussion",
+    Partages: 35,
+    Hashtags: "#actor #discussion #opinion",
+    Nombre_de_commentaire: 23,
+    Jadores: 45,
+    Jaimes: 90,
+    Solidaires: 7,
+    Rires: 22,
+    Colere: 2,
+    Tristes: 1,
+    Wouah: 17,
+    Url_post: "https://www.facebook.com/CinephileParadise/posts/246813579",
+    Popularity: 65,
+    Jour_de_la_semaine: "Vendredi",
+    Annee_post: 2024,
+    Mois: "Mai",
+    langue_post: "Français",
+    Season: "Printemps",
+    Nombre_Hashtags: 3,
+    Found_Hash: "actor, discussion, opinion",
+    Sentiment_post: "Positif",
+    Longueur_caracteres_text: 125,
+    sentiment_comments_POS: 21,
+    sentiment_comments_NEG: 2,
+    Timeline_visibility: "Public",
+    Instagram_eligibility: "Non éligible",
+    Can_reply_privately: true,
+    is_sponsored: false,
+    prediction_label: 1,
+    prediction_score: 1,
+    page_id: 3
+  ) {
+    id
+    Name_page
+    Descriptions
+    Url_post
+  }
+}
+
+mutation {
+  create_Post_FB(
+    img_URL:"https://fr.web.img5.acsta.net/pictures/16/06/16/12/01/072037.jpg"
+    Name_page: "CinephileParadise",
+    Followers: 186,
+    Heure_post: "2024-05-05T14:20:00Z",
+    Descriptions: "Un classique du cinéma français à ne pas manquer ce soir sur notre page ! 🇫🇷🎥 #FrenchCinemaNight",
+    Partages: 45,
+    Hashtags: "#frenchcinema #classic #movie",
+    Nombre_de_commentaire: 26,
+    Jadores: 55,
+    Jaimes: 110,
+    Solidaires: 9,
+    Rires: 28,
+    Colere: 3,
+    Tristes: 2,
+    Wouah: 19,
+    Url_post: "https://www.facebook.com/CinephileParadise/posts/369852147",
+    Popularity: 70,
+    Jour_de_la_semaine: "Jeudi",
+    Annee_post: 2024,
+    Mois: "Mai",
+    langue_post: "Français",
+    Season: "Printemps",
+    Nombre_Hashtags: 3,
+    Found_Hash: "frenchcinema, classic, movie",
+    Sentiment_post: "Positif",
+    Longueur_caracteres_text: 135,
+    sentiment_comments_POS: 23,
+    sentiment_comments_NEG: 3,
+    Timeline_visibility: "Public",
+    Instagram_eligibility: "Non éligible",
+    Can_reply_privately: true,
+    is_sponsored: false,
+    prediction_label: 1,
+    prediction_score: 1,
+    page_id: 3
+  ) {
+    id
+    Name_page
+    Descriptions
+    Url_post
+  }
+}
+
+
+mutation {
+  create_Post_FB(
+    img_URL:"https://cdn.files.platform.latudio.com/img/resize/1000/-/blog-article/ff3dbe0c71bd3622771a9a4deaa40a87/59/645daf6990641279f22e69563142e72a/429713/apprenez_l_anglais_avec_le_film_titanic__.jpg"
+    Name_page: "CinephileParadise",
+    Followers: 186,
+    Heure_post: "2024-05-02T09:30:00Z",
+    Descriptions: "Une journée pluvieuse parfaite pour regarder un film chez soi ! ☔️🎥 #RainyDayMovie",
+    Partages: 10,
+    Hashtags: "#rainyday #movie #cozy",
+    Nombre_de_commentaire: 5,
+    Jadores: 10,
+    Jaimes: 20,
+    Solidaires: 2,
+    Rires: 5,
+    Colere: 1,
+    Tristes: 1,
+    Wouah: 3,
+    Url_post: "https://www.facebook.com/CinephileParadise/posts/951753951",
+    Popularity: 20,
+    Jour_de_la_semaine: "Lundi",
+    Annee_post: 2024,
+    Mois: "Mai",
+    langue_post: "Français",
+    Season: "Printemps",
+    Nombre_Hashtags: 3,
+    Found_Hash: "rainyday, movie, cozy",
+    Sentiment_post: "Neutre",
+    Longueur_caracteres_text: 120,
+    sentiment_comments_POS: 3,
+    sentiment_comments_NEG: 2,
+    Timeline_visibility: "Public",
+    Instagram_eligibility: "Non éligible",
+    Can_reply_privately: true,
+    is_sponsored: false,
+    prediction_label: 0,
+    prediction_score: 0,
+    page_id: 3
+  ) {
+    id
+    Name_page
+    Descriptions
+    Url_post
+  }
+}
+
+mutation {
+  create_Post_FB(
+    img_URL:"https://3ba1f5b2.rocketcdn.me/wp-content/uploads/2019/12/Difference-Between-Film-and-Movie-.jpg"
+    Name_page: "CinephileParadise",
+    Followers: 186,
+    Heure_post: "2024-05-01T14:00:00Z",
+    Descriptions: "Un petit sondage : quel est votre genre de film le moins préféré ? 🎬 #LeastFavoriteGenre",
+    Partages: 8,
+    Hashtags: "#leastfavorite #film #survey",
+    Nombre_de_commentaire: 3,
+    Jadores: 8,
+    Jaimes: 15,
+    Solidaires: 1,
+    Rires: 3,
+    Colere: 1,
+    Tristes: 1,
+    Wouah: 2,
+    Url_post: "https://www.facebook.com/CinephileParadise/posts/852147369",
+    Popularity: 16,
+    Jour_de_la_semaine: "Dimanche",
+    Annee_post: 2024,
+    Mois: "Avril",
+    langue_post: "Français",
+    Season: "Printemps",
+    Nombre_Hashtags: 3,
+    Found_Hash: "leastfavorite, film, survey",
+    Sentiment_post: "Neutre",
+    Longueur_caracteres_text: 125,
+    sentiment_comments_POS: 2,
+    sentiment_comments_NEG: 1,
+    Timeline_visibility: "Public",
+    Instagram_eligibility: "Non éligible",
+    Can_reply_privately: true,
+    is_sponsored: false,
+    prediction_label: 0,
+    prediction_score: 0,
+    page_id: 3
+  ) {
+    id
+    Name_page
+    Descriptions
+    Url_post
+  }
+}
+
+mutation {
+  create_Post_FB(
+    img_URL:"https://fr.web.img4.acsta.net/pictures/24/02/21/09/51/1916092.jpg"
+    Name_page: "CinephileParadise",
+    Followers: 186,
+    Heure_post: "2024-05-04T16:40:00Z",
+    Descriptions: "Quel est votre genre de film préféré ? Partagez-le avec nous ! 🎬 #FavoriteGenre",
+    Partages: 25,
+    Hashtags: "#filmgenre #discussion #favorite",
+    Nombre_de_commentaire: 21,
+    Jadores: 35,
+    Jaimes: 70,
+    Solidaires: 6,
+    Rires: 18,
+    Colere: 1,
+    Tristes: 1,
+    Wouah: 14,
+    Url_post: "https://www.facebook.com/CinephileParadise/posts/582914739",
+    Popularity: 55,
+    Jour_de_la_semaine: "Mercredi",
+    Annee_post: 2024,
+    Mois: "Mai",
+    langue_post: "Français",
+    Season: "Printemps",
+    Nombre_Hashtags: 3,
+    Found_Hash: "filmgenre, discussion, favorite",
+    Sentiment_post: "Positif",
+    Longueur_caracteres_text: 130,
+    sentiment_comments_POS: 20,
+    sentiment_comments_NEG: 1,
+    Timeline_visibility: "Public",
+    Instagram_eligibility: "Non éligible",
+    Can_reply_privately: true,
+    is_sponsored: false,
+    prediction_label: 1,
+    prediction_score: 1,
+    page_id: 3
+  ) {
+    id
+    Name_page
+    Descriptions
+    Url_post
+  }
+}
+
+mutation {
+  create_Post_FB(
+    img_URL:"https://3ba1f5b2.rocketcdn.me/wp-content/uploads/2019/12/Difference-Between-Film-and-Movie-.jpg"
+    Name_page: "CinephileParadise",
+    Followers: 186,
+    Heure_post: "2024-05-03T11:15:00Z",
+    Descriptions: "Nous sommes ravis de vous annoncer notre prochaine soirée cinéma ! 🌟🎬 #MovieNight",
+    Partages: 40,
+    Hashtags: "#movienight #announcement #excited",
+    Nombre_de_commentaire: 18,
+    Jadores: 40,
+    Jaimes: 90,
+    Solidaires: 8,
+    Rires: 24,
+    Colere: 2,
+    Tristes: 2,
+    Wouah: 16,
+    Url_post: "https://www.facebook.com/CinephileParadise/posts/753159486",
+    Popularity: 65,
+    Jour_de_la_semaine: "Mardi",
+    Annee_post: 2024,
+    Mois: "Mai",
+    langue_post: "Français",
+    Season: "Printemps",
+    Nombre_Hashtags: 3,
+    Found_Hash: "movienight, announcement, excited",
+    Sentiment_post: "Positif",
+    Longueur_caracteres_text: 125,
+    sentiment_comments_POS: 16,
+    sentiment_comments_NEG: 2,
+    Timeline_visibility: "Public",
+    Instagram_eligibility: "Non éligible",
+    Can_reply_privately: true,
+    is_sponsored: false,
+    prediction_label: 1,
+    prediction_score: 1,
+    page_id: 3
+  ) {
+    id
+    Name_page
+    Descriptions
+    Url_post
+  }
+}
+-----------------------------------
+
+
+mutation {
+  create_Post_IG(
+    img_URL:"https://media.timeout.com/images/105897035/image.jpg"
+    Page_name: "CinephileParadise",
+    Followers: 205,
+    Post_text: "Quelle belle journée pour une séance de cinéma en plein air ! 🎥🍿 #CinemaUnderTheStars",
+    Usernames: "cinemalover123",
+    Likes: 50,
+    Total_NB_commentaires: 25,
+    len_post: 120,
+    langue_post: "Français",
+    Hashtags: "#cinema #movie #outdoorcinema",
+    hashtag_count: 3,
+    Found_Hash: 3,
+    Day_of_Week: "Lundi",
+    Time_post: "2024-05-09T12:00:00Z",
+    Day: 9,
+    Month: "Mai",
+    Year: 2024,
+    Date_post: "2024-05-09T00:00:00Z",
+    Sentiment_POSTT: "Positif",
+    sentiment_comments_POS: 20,
+    sentiment_comments_NEG: 5,
+    positive: 1,
+    negative: 0,
+    nature: 0,
+    prediction_label: 1,
+    prediction_score: 1,
+    page_id: 1
+  ) {
+    id
+    Page_name
+    Post_text
+  }
+}
+
+mutation {
+  create_Post_IG(
+    img_URL:"https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p7825626_p_v8_ae.jpg"
+    Page_name: "CinephileParadise",
+    Followers: 205,
+    Post_text: "Quel est votre film préféré de tous les temps ? 🎬 #FavoriteMovie",
+    Usernames: "moviebuff456",
+    Likes: 40,
+    Total_NB_commentaires: 20,
+    len_post: 100,
+    langue_post: "Français",
+    Hashtags: "#favorite #film #discussion",
+    hashtag_count: 3,
+    Found_Hash: 3,
+    Day_of_Week: "Dimanche",
+    Time_post: "2024-05-08T15:30:00Z",
+    Day: 8,
+    Month: "Mai",
+    Year: 2024,
+    Date_post: "2024-05-08T00:00:00Z",
+    Sentiment_POSTT: "Positif",
+    sentiment_comments_POS: 15,
+    sentiment_comments_NEG: 5,
+    positive: 1,
+    negative: 0,
+    nature: 0,
+    prediction_label: 1,
+    prediction_score: 1,
+    page_id: 1
+  ) {
+    id
+    Page_name
+    Post_text
+  }
+}
+
+mutation {
+  create_Post_IG(
+    img_URL:"https://fr.web.img4.acsta.net/pictures/24/02/21/09/51/1916092.jpg"
+    Page_name: "CinephileParadise",
+    Followers: 205,
+    Post_text: "Une journée pluvieuse parfaite pour regarder un film chez soi ! ☔️🎥 #RainyDayMovie",
+    Usernames: "rainydaycinema789",
+    Likes: 10,
+    Total_NB_commentaires: 8,
+    len_post: 90,
+    langue_post: "Français",
+    Hashtags: "#rainyday #movie #cozy",
+    hashtag_count: 3,
+    Found_Hash: 3,
+    Day_of_Week: "Lundi",
+    Time_post: "2024-05-02T09:30:00Z",
+    Day: 2,
+    Month: "Mai",
+    Year: 2024,
+    Date_post: "2024-05-02T00:00:00Z",
+    Sentiment_POSTT: "Neutre",
+    sentiment_comments_POS: 5,
+    sentiment_comments_NEG: 3,
+    positive: 0,
+    negative: 0,
+    nature: 1,
+    prediction_label: 0,
+    prediction_score: 0,
+    page_id: 1
+  ) {
+    id
+    Page_name
+    Post_text
+  }
+}
+
+mutation {
+  create_Post_IG(
+    img_URL:"https://3ba1f5b2.rocketcdn.me/wp-content/uploads/2019/12/Difference-Between-Film-and-Movie-.jpg"
+    Page_name: "CinephileParadise",
+    Followers: 205,
+    Post_text: "Un petit sondage : quel est votre genre de film le moins préféré ? 🎬 #LeastFavoriteGenre",
+    Usernames: "moviesurvey567",
+    Likes: 8,
+    Total_NB_commentaires: 6,
+    len_post: 95,
+    langue_post: "Français",
+    Hashtags: "#leastfavorite #film #survey",
+    hashtag_count: 3,
+    Found_Hash: 3,
+    Day_of_Week: "Dimanche",
+    Time_post: "2024-05-01T14:00:00Z",
+    Day: 1,
+    Month: "Mai",
+    Year: 2024,
+    Date_post: "2024-05-01T00:00:00Z",
+    Sentiment_POSTT: "Neutre",
+    sentiment_comments_POS: 4,
+    sentiment_comments_NEG: 2,
+    positive: 0,
+    negative: 0,
+    nature: 1,
+    prediction_label: 0,
+    prediction_score: 0,
+    page_id: 1
+  ) {
+    id
+    Page_name
+    Post_text
+  }
+}
+
+mutation {
+  create_Post_IG(
+    img_URL:"https://fr.web.img5.acsta.net/pictures/16/06/16/12/01/072037.jpg"
+    Page_name: "CinephileParadise",
+    Followers: 205,
+    Post_text: "La nouvelle bande-annonce du film très attendu vient de sortir ! Êtes-vous aussi enthousiaste que nous ? 🎬🔥 #NewTrailer",
+    Usernames: "moviebuff456",
+    Likes: 40,
+    Total_NB_commentaires: 20,
+    len_post: 100,
+    langue_post: "Français",
+    Hashtags: "#newtrailer #movie #excited",
+    hashtag_count: 3,
+    Found_Hash: 3,
+    Day_of_Week: "Dimanche",
+    Time_post: "2024-05-08T15:30:00Z",
+    Day: 8,
+    Month: "Mai",
+    Year: 2024,
+    Date_post: "2024-05-08T00:00:00Z",
+    Sentiment_POSTT: "Positif",
+    sentiment_comments_POS: 15,
+    sentiment_comments_NEG: 5,
+    positive: 1,
+    negative: 0,
+    nature: 0,
+    prediction_label: 1,
+    prediction_score: 1,
+    page_id: 1
+  ) {
+    id
+    Page_name
+    Post_text
+  }
+}
+
+mutation {
+  create_Post_IG(
+    img_URL:"https://cdn.files.platform.latudio.com/img/resize/1000/-/blog-article/ff3dbe0c71bd3622771a9a4deaa40a87/59/645daf6990641279f22e69563142e72a/429713/apprenez_l_anglais_avec_le_film_titanic__.jpg"
+    Page_name: "CinephileParadise",
+    Followers: 205,
+    Post_text: "Nouvelle critique de film : découvrez pourquoi ce film est un chef-d'œuvre ! 🌟🎞️ #MovieReview",
+    Usernames: "cinemalover789",
+    Likes: 35,
+    Total_NB_commentaires: 18,
+    len_post: 110,
+    langue_post: "Français",
+    Hashtags: "#moviereview #cinema #masterpiece",
+    hashtag_count: 3,
+    Found_Hash: 3,
+    Day_of_Week: "Samedi",
+    Time_post: "2024-05-07T18:00:00Z",
+    Day: 7,
+    Month: "Mai",
+    Year: 2024,
+    Date_post: "2024-05-07T00:00:00Z",
+    Sentiment_POSTT: "Positif",
+    sentiment_comments_POS: 12,
+    sentiment_comments_NEG: 6,
+    positive: 1,
+    negative: 0,
+    nature: 0,
+    prediction_label: 1,
+    prediction_score: 1,
+    page_id: 1
+  ) {
+    id
+    Page_name
+    Post_text
+  }
+}
+
+mutation {
+  create_Post_IG(
+    img_URL:"https://media.timeout.com/images/105897035/image.jpg"
+    Page_name: "CinephileParadise",
+    Followers: 205,
+    Post_text: "Quelle belle journée pour une séance de cinéma en plein air ! 🎥🍿 #CinemaUnderTheStars",
+    Usernames: "cinemalover123",
+    Likes: 50,
+    Total_NB_commentaires: 25,
+    len_post: 120,
+    langue_post: "Français",
+    Hashtags: "#cinema #movie #outdoorcinema",
+    hashtag_count: 3,
+    Found_Hash: 3,
+    Day_of_Week: "Lundi",
+    Time_post: "2024-05-09T12:00:00Z",
+    Day: 9,
+    Month: "Mai",
+    Year: 2024,
+    Date_post: "2024-05-09T00:00:00Z",
+    Sentiment_POSTT: "Positif",
+    sentiment_comments_POS: 20,
+    sentiment_comments_NEG: 5,
+    positive: 1,
+    negative: 0,
+    nature: 0,
+    prediction_label: 0,
+    prediction_score: 0,
+    page_id: 1
+  ) {
+    id
+    Page_name
+    Post_text
+  }
+}
+
+mutation {
+  create_Post_IG(
+    img_URL:"https://3ba1f5b2.rocketcdn.me/wp-content/uploads/2019/12/Difference-Between-Film-and-Movie-.jpg"
+    Page_name: "CinephileParadise",
+    Followers: 205,
+    Post_text: "Un petit sondage : quel est votre préféré ? 🎬 #LeastFavoriteGenre",
+    Usernames: "moviesurvey567",
+    Likes: 8,
+    Total_NB_commentaires: 6,
+    len_post: 95,
+    langue_post: "Français",
+    Hashtags: "#leastfavorite #film #survey",
+    hashtag_count: 3,
+    Found_Hash: 3,
+    Day_of_Week: "Dimanche",
+    Time_post: "2024-05-01T14:00:00Z",
+    Day: 1,
+    Month: "Mai",
+    Year: 2024,
+    Date_post: "2024-05-01T00:00:00Z",
+    Sentiment_POSTT: "Neutre",
+    sentiment_comments_POS: 4,
+    sentiment_comments_NEG: 2,
+    positive: 0,
+    negative: 0,
+    nature: 0,
+    prediction_label: 0,
+    prediction_score: 0,
+    page_id: 1
+  ) {
+    id
+    Page_name
+    Post_text
+  }
+}
+
+
+
+

@@ -2,6 +2,7 @@ scalar DateTime
 
 type Posts_IG {
   id: Int!
+  img_URL:String
   Page_name: String
   Followers: Int
   Post_text: String
@@ -43,6 +44,7 @@ type Query {
 
 type Mutation {
   create_Post_IG(
+    img_URL:String,
     Page_name: String,
     Followers: Int,
     Post_text: String,
@@ -73,6 +75,7 @@ type Mutation {
 
   update_Post_IG(
     id: Int!,
+    img_URL:String,
     Page_name: String,
     Followers: Int,
     Post_text: String,

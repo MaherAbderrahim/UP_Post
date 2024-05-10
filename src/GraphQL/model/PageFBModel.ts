@@ -5,6 +5,7 @@ export type PageFBModel = {
   name: string;
   id_FB: string;
   page_TOKEN: string;
+  img_URL:string;
   created_at: Date;
   updated_at: Date;
 

@@ -46,6 +46,7 @@ model Page_FB {
   name       String     @unique
   id_FB      String     @unique
   page_TOKEN String     @unique
+  img_URL    String 
   created_at DateTime   @default(now())
   updated_at DateTime   @updatedAt
   user_id    Int
@@ -63,6 +64,7 @@ model Page_IG {
   name       String     @unique
   id_IG      String     @unique
   user_TOKEN String     @unique
+  img_URL    String
   page_FB_id Int        @unique
   Page_FB    Page_FB    @relation(fields: [page_FB_id], references: [id])
   project_id Int        
@@ -74,6 +76,7 @@ model Posts_FB {
   id                       Int        @id @default(autoincrement())
   created_at               DateTime   @default(now())
   updated_at               DateTime   @updatedAt
+  img_URL                  String
   Name_page                String
   Followers                Int
   Heure_post               DateTime
@@ -115,6 +118,7 @@ model Posts_FB {
 
 model Posts_IG {
   id                    Int        @id @default(autoincrement())
+  img_URL               String
   Page_name             String
   Followers             Int
   Post_text             String

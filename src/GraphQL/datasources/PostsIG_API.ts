@@ -29,6 +29,7 @@ export class PostsIGService {
   }
 
   async create_Post_IG(
+    img_URL:string,
     Page_name: string,
     Followers: number,
     Post_text: string,
@@ -58,6 +59,7 @@ export class PostsIGService {
   ): Promise<PostsIGModel> {
     return await this.prisma.posts_IG.create({
       data: {
+        img_URL: img_URL,
         Page_name: Page_name,
         Followers: Followers,
         Post_text: Post_text,
@@ -94,6 +96,7 @@ export class PostsIGService {
 
   async update_Post_IG(
     id: number,
+    img_URL:string,
     Page_name: string,
     Followers: number,
     Post_text: string,
@@ -126,6 +129,7 @@ export class PostsIGService {
         id: id,
       },
       data: {
+        img_URL:img_URL,
         Page_name: Page_name,
         Followers: Followers,
         Post_text: Post_text,

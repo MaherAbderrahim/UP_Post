@@ -1,6 +1,7 @@
 import {PageIGModel,CommentsIGModel} from "."
 export type PostsIGModel = {
     id: number,
+    img_URL:string,
     Page_name: string,
     Followers: number,
     Post_text: string,

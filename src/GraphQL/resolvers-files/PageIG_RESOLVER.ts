@@ -18,15 +18,15 @@ const pageIGResolvers = {
   Mutation: {
     create_Page_IG: async (
       parent: any,
-      { name, id_IG, user_TOKEN, project_id, page_FB_id }: { name: string; id_IG: string; user_TOKEN: string; project_id: number; page_FB_id: number }
+      { name, id_IG, user_TOKEN, project_id, page_FB_id,img_URL }: { name: string; id_IG: string; user_TOKEN: string; project_id: number; page_FB_id: number,img_URL:string }
     ) => {
-      return await pageIGService.create_Page_IG(name, id_IG, user_TOKEN, project_id, page_FB_id);
+      return await pageIGService.create_Page_IG(name, id_IG, user_TOKEN, project_id, page_FB_id,img_URL);
     },
     update_Page_IG: async (
       parent: any,
-      { id, name, id_IG, user_TOKEN, project_id, page_FB_id }: { id: number; name: string; id_IG: string; user_TOKEN: string; project_id: number; page_FB_id: number }
+      { id, name, id_IG, user_TOKEN, project_id, page_FB_id,img_URL }: { id: number; name: string; id_IG: string; user_TOKEN: string; project_id: number; page_FB_id: number,img_URL:string }
     ) => {
-      return await pageIGService.update_Page_IG(id, name, id_IG, user_TOKEN, project_id, page_FB_id);
+      return await pageIGService.update_Page_IG(id, name, id_IG, user_TOKEN, project_id, page_FB_id,img_URL);
     },
     delete_Page_IG: async (parent: any, { id }: { id: number }) => {
       return await pageIGService.delete_Page_IG(id);

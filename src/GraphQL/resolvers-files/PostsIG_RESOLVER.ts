@@ -19,6 +19,7 @@ const postsIGResolvers = {
     create_Post_IG: async (
       parent: any,
       args: {
+        img_URL:string,
         Page_name: string;
         Followers: number;
         Post_text: string;
@@ -47,12 +48,41 @@ const postsIGResolvers = {
         page_id: number;
       }
     ) => {
-      return await postsIGService.create_Post_IG(args.Page_name, args.Followers, args.Post_text, args.Usernames, args.Likes, args.Total_NB_commentaires, args.len_post, args.langue_post, args.Hashtags, args.hashtag_count, args.Found_Hash, args.Day_of_Week, args.Time_post, args.Day, args.Month, args.Year, args.Date_post, args.Sentiment_POSTT, args.sentiment_comments_POS, args.sentiment_comments_NEG, args.positive, args.negative, args.nature, args.prediction_label, args.prediction_score, args.page_id);
+      return await postsIGService.create_Post_IG(
+        args.img_URL,
+        args.Page_name,
+        args.Followers,
+        args.Post_text,
+        args.Usernames,
+        args.Likes,
+        args.Total_NB_commentaires,
+        args.len_post,
+        args.langue_post,
+        args.Hashtags,
+        args.hashtag_count,
+        args.Found_Hash,
+        args.Day_of_Week,
+        args.Time_post,
+        args.Day,
+        args.Month,
+        args.Year,
+        args.Date_post,
+        args.Sentiment_POSTT,
+        args.sentiment_comments_POS,
+        args.sentiment_comments_NEG,
+        args.positive,
+        args.negative,
+        args.nature,
+        args.prediction_label,
+        args.prediction_score,
+        args.page_id
+      );
     },
     update_Post_IG: async (
       parent: any,
       args: {
         id: number;
+        img_URL:string;
         Page_name: string;
         Followers: number;
         Post_text: string;
@@ -81,7 +111,36 @@ const postsIGResolvers = {
         page_id: number;
       }
     ) => {
-      return await postsIGService.update_Post_IG(args.id, args.Page_name, args.Followers, args.Post_text, args.Usernames, args.Likes, args.Total_NB_commentaires, args.len_post, args.langue_post, args.Hashtags, args.hashtag_count, args.Found_Hash, args.Day_of_Week, args.Time_post, args.Day, args.Month, args.Year, args.Date_post, args.Sentiment_POSTT, args.sentiment_comments_POS, args.sentiment_comments_NEG, args.positive, args.negative, args.nature, args.prediction_label, args.prediction_score, args.page_id);
+      return await postsIGService.update_Post_IG(
+        args.id,
+        args.img_URL,
+        args.Page_name,
+        args.Followers,
+        args.Post_text,
+        args.Usernames,
+        args.Likes,
+        args.Total_NB_commentaires,
+        args.len_post,
+        args.langue_post,
+        args.Hashtags,
+        args.hashtag_count,
+        args.Found_Hash,
+        args.Day_of_Week,
+        args.Time_post,
+        args.Day,
+        args.Month,
+        args.Year,
+        args.Date_post,
+        args.Sentiment_POSTT,
+        args.sentiment_comments_POS,
+        args.sentiment_comments_NEG,
+        args.positive,
+        args.negative,
+        args.nature,
+        args.prediction_label,
+        args.prediction_score,
+        args.page_id
+      );
     },
     delete_Post_IG: async (parent: any, { id }: { id: number }) => {
       return await postsIGService.delete_Post_IG(id);

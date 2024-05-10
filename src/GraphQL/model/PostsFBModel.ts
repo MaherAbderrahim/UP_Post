@@ -1,6 +1,7 @@
 import {PageFBModel} from "."
 export type PostsFBModel = {
     id: number;
+    img_URL: string;
     Name_page: string;
     Followers: number;
     Heure_post: Date;

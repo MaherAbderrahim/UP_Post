@@ -29,6 +29,7 @@ export class PostsFBService {
   }
 
   async create_Post_FB(
+    img_URL:string,
     Name_page: string,
     Followers: number,
     Heure_post: Date,
@@ -66,6 +67,7 @@ export class PostsFBService {
   ): Promise<PostsFBModel> {
     return await this.prisma.posts_FB.create({
       data: {
+        img_URL: img_URL,
         Name_page: Name_page,
         Followers: Followers,
         Heure_post: Heure_post,
@@ -110,6 +112,7 @@ export class PostsFBService {
 
   async update_Post_FB(
     id: number,
+    img_URL:string,
     Name_page: string,
     Followers: number,
     Heure_post: Date,
@@ -150,6 +153,7 @@ export class PostsFBService {
         id: id,
       },
       data: {
+        img_URL:img_URL,
         Name_page: Name_page,
         Followers: Followers,
         Heure_post: Heure_post,
