@@ -1,7 +1,9 @@
+"use client"
 /* This example requires Tailwind CSS v2.0+ */
 import { CheckCircleIcon, ChevronRightIcon, MailIcon } from '@heroicons/react/solid'
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
-import add_project_model from '@/components/add_project_model'
+import AddProjectModel from '@/components/add_project_model';
+import { useState } from 'react';
 const applications = [
   {
     applicant: {
@@ -64,23 +66,21 @@ const wereact = [
 ]
 
 export default function Example() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <main>
-        <div className='pb-3 pt-3'>
-          <h1 className="text-2xl font-semibold text-gray-900">Projects</h1>
-          
+      <div className='flex justify-between pb-3 pt-5'>
+        <h1 className="text-2xl font-semibold text-gray-900">Projects</h1>
+        <div>
+          <button  onClick={() => setIsModalOpen(true)}>Créer un projet</button>
+          <AddProjectModel isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </div>
+      </div>
         <div className="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
         <div className="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-nowrap">
           <div className="ml-4 mt-4">
             <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <img
-                  className="h-12 w-12 rounded-full"
-                  src="/Beeclick.jpeg"
-                  alt=""
-                />
-              </div>
               <div className="ml-4">
                 <h3 className="text-lg leading-6 font-medium text-gray-900">Beeclick</h3>
                 <p className="text-sm text-gray-500">
@@ -138,14 +138,7 @@ export default function Example() {
           <div className="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-nowrap">
             <div className="ml-4 mt-4">
               <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <img
-                    className="h-12 w-12 rounded-full"
-                    src="/cobeez.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className="ml-4">
+                <div className="ml-4 pt-5">
                   <h3 className="text-lg leading-6 font-medium text-gray-900">Coobeez</h3>
                   <p className="text-sm text-gray-500">
                     Workcation is a property rental website. Etiam ullamcorper massa viverra consequat, 
@@ -204,14 +197,7 @@ export default function Example() {
           <div className="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-nowrap">
             <div className="ml-4 mt-4">
               <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <img
-                    className="h-12 w-12 rounded-full"
-                    src="/wereact_logo.jpeg"
-                    alt=""
-                  />
-                </div>
-                <div className="ml-4">
+                <div className="ml-4 pt-5">
                   <h3 className="text-lg leading-6 font-medium text-gray-900">WEREACT</h3>
                   <p className="text-sm text-gray-500">
                     Workcation is a property rental website. Etiam ullamcorper massa viverra consequat, 
