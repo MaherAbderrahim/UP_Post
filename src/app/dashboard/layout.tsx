@@ -34,7 +34,7 @@ import UserMeta from "@/components/user-meta";
 
   const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: ChartBarIcon },
-    { name: 'Projets', href: '/dashboard/Team', icon: UsersIcon },
+    { name: 'Projets', href: '/dashboard/Projets', icon: UsersIcon },
     { name: 'Posts', href: '/dashboard/Posts', icon: FolderIcon },
     { name: 'Create a post', href: '/dashboard/Create', icon: PlusCircleIcon },
   ];
