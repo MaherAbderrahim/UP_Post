@@ -11,10 +11,12 @@ type Users {
 type Query {
   get_All_Users: [Users!]!
   get_User_By_Id(id: Int!): Users
+  get_User_By_Email(email:String!):Users
 }
 
 type Mutation {
   create_User(email: String!): Users!
   update_User(id: Int!, email: String!): Users!
   delete_User(id: Int!): Users!
+  delete_User_By_Email(email:String!): Users!
 }

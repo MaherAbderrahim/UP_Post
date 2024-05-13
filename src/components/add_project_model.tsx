@@ -50,7 +50,7 @@ export default function AddProjectModel({ isOpen, onClose }:
                         <div>
                           <h3 className="text-lg leading-6 font-medium text-gray-900">Nouveau projet</h3>
                           <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                            This information will be displayed publicly so be careful what you share.
+                          Saisissez les informations relatives à votre nouveau projet.
                           </p>
                         </div>
 

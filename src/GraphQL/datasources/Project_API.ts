@@ -23,7 +23,19 @@ export class ProjectService {
   async get_All_User_Project(id:number):Promise<ProjectModel[]>{
     return await this.prisma.project.findMany({
       where: {
-        user_id:id,
+        Users:{
+          id:id
+        }
+      },
+    });
+  }
+
+  async get_All_User_Project_By_Email(email:string):Promise<ProjectModel[]>{
+    return await this.prisma.project.findMany({
+      where: {
+        Users:{
+          email:email
+        }
       },
     });
   }

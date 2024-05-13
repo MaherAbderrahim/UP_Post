@@ -3,7 +3,7 @@
 import { CheckCircleIcon, ChevronRightIcon, MailIcon } from '@heroicons/react/solid'
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import AddProjectModel from '@/components/add_project_model';
-import { useState } from 'react';
+import React,{ useState } from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql,useQuery } from '@apollo/client';
 
 
@@ -24,21 +24,115 @@ query Query {
 `
 /*recuperer tout les page d'un projet*/
 
-const Page=gql`
-query Get_All_Project_Pages_IG($projectId: Int!) {
-  get_All_Project_Pages_IG(project_id: $projectId) {
+const PageFB=gql`
+query Get_All_Page_FB {
+  get_All_Page_FB {
     id
+    img_URL
     name
   }
 }
 `
+const PageIG=gql`
+query Get_All_Page_IG {
+  get_All_Page_IG {
+    id
+    name
+    img_URL
+  }
+}
+`
+
+function GetAllPagesIG({id}:{id:number}){
+  const { loading, error, data } = useQuery(PageIG)
+  console.log(data)
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+  if (id==3) 
+  return data.get_All_Page_IG.slice(0, 1).map((page: any) => (
+    <div className="bg-white shadow overflow-hidden sm:rounded-md">
+          <ul role="list" className="divide-y divide-gray-200">
+            <li key={page.id}>
+              <a href="#" className="block hover:bg-gray-50">
+                <div className="flex items-center px-4 py-4 sm:px-6">
+                  <div className="min-w-0 flex-1 flex items-center">
+                    <div className="flex-shrink-0">
+                      <img className="h-12 w-12 rounded-full" src={page.img_URL} alt="" />
+                    </div>
+                    <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                      <div>
+                        <p className="text-sm font-medium text-indigo-600 truncate">{page.name}</p>
+                        <p className="mt-2 flex items-center text-sm text-gray-500">
+                          
+                        </p>
+                      </div>
+                      <div className="hidden md:block">
+                        <div className="hidden md:block">
+                            <FaInstagram className="text-pink-500 mt-3" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <ChevronRightIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+    ))
+  }
+
+function GetAllPagesFB({id}:{id:number}){
+  const { loading, error, data } = useQuery(PageFB)
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+  return data.get_All_Page_FB.slice(id-1, id).map((page: any) => (
+  <div className="bg-white shadow overflow-hidden sm:rounded-md">
+        <ul role="list" className="divide-y divide-gray-200">
+          <li key={page.id}>
+            <a href="#" className="block hover:bg-gray-50">
+              <div className="flex items-center px-4 py-4 sm:px-6">
+                <div className="min-w-0 flex-1 flex items-center">
+                  <div className="flex-shrink-0">
+                    <img className="h-12 w-12 rounded-full" src={page.img_URL} alt="" />
+                  </div>
+                  <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                    <div>
+                      <p className="text-sm font-medium text-indigo-600 truncate">{page.name}</p>
+                      <p className="mt-2 flex items-center text-sm text-gray-500">
+                        
+                      </p>
+                    </div>
+                    <div className="hidden md:block">
+                    <div className="hidden md:block">
+                            <FaFacebook className="text-blue-600 mt-3" />
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <ChevronRightIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+  ))
+}
 
 
 
 function GetAllProjects() {
+  
+
   const { loading, error, data } = useQuery(Projects);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
+  console.log(data)
+  /*parcourir les page*/
 
 
   return data.get_All_Projects.map((project: any) => (
@@ -65,62 +159,11 @@ function GetAllProjects() {
         </div>
         </div>
       </div>
-      <div>
-          <div className="bg-white shadow overflow-hidden sm:rounded-md">
-            <ul role="list" className="divide-y divide-gray-200">
-              {applications.map((application) => (
-                <li key="#">
-                  <a href="#" className="block hover:bg-gray-50">
-                    <div className="flex items-center px-4 py-4 sm:px-6">
-                      <div className="min-w-0 flex-1 flex items-center">
-                        <div className="flex-shrink-0">
-                          <img className="h-12 w-12 rounded-full" src={application.applicant.imageUrl} alt="" />
-                        </div>
-                        <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
-                          <div>
-                            <p className="text-sm font-medium text-indigo-600 truncate">{application.applicant.name}</p>
-                            <p className="mt-2 flex items-center text-sm text-gray-500">
-                              This is a professional account
-                            </p>
-                          </div>
-                          <div className="hidden md:block">
-                              {application.applicant.icon}
-                          </div>
-                        </div>
-                      </div>
-                      <div>
-                        <ChevronRightIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+      <GetAllPagesFB id={project.id}/>
+      <GetAllPagesIG id={project.id}/>
     </div>
   ));
 }
-const applications = [
-  {
-    applicant: {
-      name: 'Beeclick',
-      imageUrl:
-        '/beeclick.jpeg',
-      icon: <FaFacebook className="text-blue-600 mt-3" />,
-    },
-    href: 'https://www.facebook.com/BEECLIK.Delivery/?ti=as',
-  },
-  {
-    applicant: {
-      name: 'Beeclick',
-      imageUrl:
-        '/beeclick.jpeg',
-      icon: <FaInstagram className="text-pink-500 mt-3" />,
-    },
-    href: 'https://www.instagram.com/beeclik.delivery/',
-  },
-]
 
 export default function Example() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -135,7 +178,7 @@ export default function Example() {
             <AddProjectModel isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
           </div>
         </div>
-        <GetAllProjects />
+        <GetAllProjects/>
       </main>
     </ApolloProvider>
   )

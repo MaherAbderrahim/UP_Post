@@ -11,6 +11,9 @@ const userResolvers = {
     get_User_By_Id: async (parent: any, { id }: { id: number }) => {
       return await userService.get_User_By_Id(id);
     },
+    get_User_By_Email: async (parent: any, { email }: { email: string }) => {
+      return await userService.get_User_By_Email(email);
+    },
   },
   Mutation: {
     create_User: async (
@@ -32,6 +35,9 @@ const userResolvers = {
     },
     delete_User: async (parent: any, { id }: { id: number }) => {
       return await userService.delete_User(id);
+    },
+    delete_User_By_Email: async (parent: any, { email }: { email: string }) => {
+      return await userService.delete_User_By_Email(email);
     },
     // Ajoutez d'autres résolveurs de mutation selon vos besoins
   },

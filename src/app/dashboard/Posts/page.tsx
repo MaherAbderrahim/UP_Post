@@ -2,63 +2,90 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { FaThumbsUp, FaComment } from 'react-icons/fa';
+import { ApolloClient, InMemoryCache, ApolloProvider, gql,useQuery } from '@apollo/client';
 
-export type Post = {
-  title: string;
-  description: string;
-  imageUrl: string;
-  likes: number;
-  comments: number;
-  createdAt: string;
-  success: boolean;
+const client = new ApolloClient({
+  uri: 'http://localhost:4000/',
+  cache: new InMemoryCache(),
+});
+/*faire une requete pour recuperer tous les poste*/
+
+const Posts =gql`
+query Query {
+  get_All_Posts_IG {
+    Likes
+    img_URL
+    prediction_label
+    Post_text
+    sentiment_comments_NEG
+    sentiment_comments_POS
+    Total_NB_commentaires
+  }
+}
+`
+function GetAllPosts(){
+  const { loading, error, data } = useQuery(Posts);
+  
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+  
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      {data.get_All_Posts_IG.map((post: any) => (
+        <PostCard key={post.id} post={post} />
+      ))}
+    </div>
+  );
 }
 
-function PostCard({ post, isSelected, onClick }: { post: Post, isSelected: boolean, onClick: () => void }) {
+function PostCard({ post }: { post: any }) {
+  const [isSelected, setIsSelected] = useState(false);
+
   const handleClick = () => {
-    onClick();
+    setIsSelected(!isSelected);
   };
 
   return (
     <div
-      className={`flex flex-col border rounded-lg p-4 mb-4 cursor-pointer ${
+      className={`flex flex-col border rounded-lg p-4 mb-4 cursor-pointer border-gray-300 ${
         isSelected ? 'border-blue-500' : 'border-gray-300'
-      } ${post.success ? 'bg-green-100' : 'bg-red-100'}`}
+      } ${post.prediction_label === 1 ? 'bg-green-100' : 'bg-red-100'}`}
+      style={{ maxHeight: isSelected ? 'unset' : '400px' }} // Si sélectionné, la hauteur n'est pas limitée
       onClick={handleClick}
     >
       <img
-        src={post.imageUrl}
-        alt={post.title}
+        src={post.img_URL}
+        alt={post.Post_text}
         className="w-full h-auto rounded-lg mb-4"
+        style={{ maxHeight: isSelected ? '100%' : '200px', width: 'auto' }} // Si sélectionné, l'image prend la hauteur totale de la carte
       />
       <div className="flex flex-col">
         <div className="mb-2">
-          <h2 className="font-bold text-lg">{post.title}</h2>
+          <h2 className="font-bold text-lg">{post.Post_text}</h2>
         </div>
         <div className="mb-2 flex items-center justify-between">
           <div className="flex items-center">
             <span className="mr-2 flex items-center">
               <FaThumbsUp className="text-blue-500 mr-1" />
-              {post.likes}
+              {post.Likes}
             </span>
             <span className="mr-2 flex items-center">
               <FaComment className="text-blue-500 mr-1" />
-              {post.comments}
+              {post.Total_NB_commentaires}
             </span>
           </div>
           {isSelected && (
-            <div>
-              <Link href="/dashboard/Upgrade">
-                <button className="bg-green-500 text-white px-4 py-2 rounded-lg">
-                  Upgrade
-                </button>
-              </Link>
-            </div>
+            <Link href="/dashboard/Upgrade">
+              <button className="bg-green-500 text-white px-4 py-2 rounded-lg">
+                Upgrade
+              </button>
+          </Link>
           )}
         </div>
         {isSelected && (
           <div>
-            <p className="text-gray-600 mb-2">{post.description}</p>
-            <p className="text-gray-600">{`Date: ${post.createdAt}`}</p>
+            <p className="text-gray-600 mb-2">{`Positive Comments: ${post.sentiment_comments_POS}`}</p>
+            <p className="text-gray-600">{`Negative Comments: ${post.sentiment_comments_NEG}`}</p>
           </div>
         )}
       </div>
@@ -66,96 +93,18 @@ function PostCard({ post, isSelected, onClick }: { post: Post, isSelected: boole
   );
 }
 
-function InstagramPosts({ posts }: { posts: Post[] }) {
-  const [selectedPostIndex, setSelectedPostIndex] = useState<number | null>(null);
 
-  const handlePostClick = (index: number) => {
-    setSelectedPostIndex(index === selectedPostIndex ? null : index);
-  };
-
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {posts && posts.length > 0 ? (
-        posts.map((post, index) => (
-          <div key={index}>
-            <PostCard
-              post={post}
-              isSelected={index === selectedPostIndex}
-              onClick={() => handlePostClick(index)}
-            />
-          </div>
-        ))
-      ) : (
-        <p>No posts available.</p>
-      )}
-    </div>
-  );
-}
 
 export default function App() {
-  const posts: Post[] = [
-    {
-      success:true,
-      title: 'Post 1',
-      description: 'Description du post 1',
-      imageUrl: 'https://via.placeholder.com/500',
-      likes: 10,
-      comments: 5,
-      createdAt: '2024-04-21',
-    },
-    {
-      title: 'Post 2',
-      description: 'Description du post 2',
-      imageUrl: 'https://via.placeholder.com/500',
-      likes: 15,
-      comments: 7,
-      createdAt: '2024-04-20',
-      success:false,
-    },
-    {
-      title: 'Post 3',
-      description: 'Description du post 3',
-      imageUrl: 'https://via.placeholder.com/500',
-      likes: 20,
-      comments: 8,
-      createdAt: '2024-04-19',
-      success:true,
-    },
-    {
-      title: 'Post 1',
-      description: 'Description du post 1',
-      imageUrl: 'https://via.placeholder.com/500',
-      likes: 10,
-      comments: 5,
-      createdAt: '2024-04-21',
-      success:true,
-    },
-    {
-      title: 'Post 2',
-      description: 'Description du post 2',
-      imageUrl: 'https://via.placeholder.com/500',
-      likes: 15,
-      comments: 7,
-      createdAt: '2024-04-20',
-      success:false,
-    },
-    {
-      title: 'Post 3',
-      description: 'Description du post 3',
-      imageUrl: 'https://via.placeholder.com/500',
-      likes: 20,
-      comments: 8,
-      createdAt: '2024-04-19',
-      success:false,
-    },
-    // Ajoutez d'autres publications ici si nécessaire
-  ];
+
 
   return (
   <main>
     <div className='pb-5 pt-3'>
       <h1 className="text-2xl font-semibold text-gray-900">Postes</h1>
     </div>
-    <InstagramPosts posts={posts} />
+    <ApolloProvider client={client}>
+      <GetAllPosts/>
+    </ApolloProvider>
   </main>  );
 }

@@ -19,6 +19,13 @@ export class UserService {
       },
     });
   }
+  async get_User_By_Email(email:string): Promise<UsersModel | null> {
+    return await this.prisma.users.findUnique({
+      where: {
+        email: email,
+      },
+    });
+  }
 
   async create_User(email: string): Promise<UsersModel> {
     return await this.prisma.users.create({
@@ -45,5 +52,12 @@ export class UserService {
         id: id,
       },
     });
+  }
+    async delete_User_By_Email(email:string):Promise<UsersModel> {
+      return await this.prisma.users.delete({
+        where: {
+          email: email,
+        },
+      });
   }
 }

@@ -13,6 +13,9 @@ const projectResolvers = {
     get_All_User_Project:async(parent: any, { user_id }: { user_id: number }) => {
       return await projectService.get_All_User_Project(user_id);
     },  
+    get_All_User_Project_By_Email:async(parent: any, { email }: { email: string }) => {
+      return await projectService.get_All_User_Project_By_Email(email);
+    },
   },
   Mutation: {
     create_Project: async (
