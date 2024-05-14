@@ -8,20 +8,12 @@ type Post = {
   title: string;
   description: string;
   imageUrl: string;
-  likes: number;
-  comments: number;
-  createdAt: string;
-  success: boolean;
 }
 
 const post: Post = {
-  title: 'Post 1',
-  description: 'Description du post 1',
-  imageUrl: 'https://via.placeholder.com/500',
-  likes: 10,
-  comments: 5,
-  createdAt: '2024-04-21',
-  success: true,
+  title: "Get ready to sweat! 🏋️‍♀️💪 Exciting news, fitness fam! 🎉 Our brand-new Gym Buddy sport sale is NOW OPEN! 🛍️🏋️‍♂️ Score the best deals on top-notch gear and accessories to take your fitness journey to the next level! 💥 Don't miss out! 🕒️ Visit us today and get ready to crush your fitness goals! 💪🏼",
+  description: '#SweatMode #FitnessMotivation #WorkoutInspiration #SportsSale #GymEssentials #GymLife #FitnessJourney #GearUp #FitnessGoals #FitnessCommunity #FitnessDeals #SportSale',
+  imageUrl: 'https://scontent.ftun9-1.fna.fbcdn.net/v/t39.30808-6/440378669_122100126938303675_516270909942028182_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=AvZHa7JI-ZMQ7kNvgFrYju-&_nc_ht=scontent.ftun9-1.fna&oh=00_AYB1oHI0qPvtG7X-FmORn93OdmiWZ0reJ-XbWZGP8lPvnw&oe=6649820B',
 }
 
 function PostCard({ post }: { post: Post }) {
@@ -38,7 +30,6 @@ function PostCard({ post }: { post: Post }) {
         </div>
         <div>
           <p className="text-gray-600 mb-2">{post.description}</p>
-          <p className="text-gray-600">{`Date: ${post.createdAt}`}</p>
         </div>
       </div>
     </div>
@@ -103,24 +94,28 @@ export default function Page() {
             <ArrowCircleRightIcon className="animate-spin h-5 w-5 text-blue-500" />
           )}
           {submitted && (
+            <>
             <div className="p-4 shadow-md rounded flex items-start space-x-2">
             <CheckCircleIcon className="h-5 w-5 text-green-500" />
             <div>
               <h3>POST CREATED ....</h3>
+              
             </div>
           </div>
+            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+              Créer un nouveau poste
+            </button>
+          </>
           
           )}
         </form>
       </section>
-
       {/* Right column - Post */}
       {submitted &&  (
         <aside className="flex-1 flex flex-col justify-center items-center p-4">
           <PostCard post={post} />
         </aside>
       )}    
-        
     </main>
   )
 }
