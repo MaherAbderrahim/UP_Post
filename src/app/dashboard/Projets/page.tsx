@@ -25,8 +25,8 @@ query Query {
 /*recuperer tout les page d'un projet*/
 
 const PageFB=gql`
-query Get_All_Page_FB {
-  get_All_Page_FB {
+query Get_All_By_Name_Project_Pages_FB($name: String) {
+  get_All_By_Name_Project_Pages_FB(name: $name) {
     id
     img_URL
     name
@@ -84,11 +84,11 @@ function GetAllPagesIG({id}:{id:number}){
     ))
   }
 
-function GetAllPagesFB({id}:{id:number}){
+function GetAllPagesFB({name}:{name:number}){
   const { loading, error, data } = useQuery(PageFB)
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
-  return data.get_All_Page_FB.slice(id-1, id).map((page: any) => (
+  return data.get_All_By_Name_Project_Pages_FB.map((page: any) => (
   <div className="bg-white shadow overflow-hidden sm:rounded-md">
         <ul role="list" className="divide-y divide-gray-200">
           <li key={page.id}>
@@ -159,7 +159,7 @@ function GetAllProjects() {
         </div>
         </div>
       </div>
-      <GetAllPagesFB id={project.id}/>
+      <GetAllPagesFB name={project.name}/>
       <GetAllPagesIG id={project.id}/>
     </div>
   ));

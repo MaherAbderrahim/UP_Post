@@ -35,6 +35,16 @@ export class PageFBService {
       }
     })
   }
+  
+  async get_All_By_Name_Project_Pages_FB(name:string) :Promise<PageFBModel[]> {
+    return await this.prisma.page_FB.findMany({
+      where:{
+        Project:{
+          name:name
+        }
+      }
+    })
+  }
 
   async create_Page_FB(name: string, id_FB: string, page_TOKEN: string, user_id: number, project_id: number,img_URL:string): Promise<PageFBModel> {
     return await this.prisma.page_FB.create({

@@ -17,6 +17,9 @@ const pageFBResolvers = {
     get_All_Project_Pages_FB: async (parent: any, { id }: { id: number }) => {
       return await pageFBService.get_All_Project_Pages_FB(id);
     },
+    get_All_By_Name_Project_Pages_FB:async(parent:any,{name}:{name:string})=> {
+      return await pageFBService.get_All_By_Name_Project_Pages_FB(name);
+    },
   },
   Mutation: {
     create_Page_FB: async (

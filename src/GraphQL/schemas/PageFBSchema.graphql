@@ -17,8 +17,10 @@ type Page_FB {
 type Query {
   get_All_User_Pages_FB(user_id:Int!): [Page_FB]
   get_All_Project_Pages_FB(project_id:Int!) : [Page_FB]
+  get_All_By_Name_Project_Pages_FB(name:String!):[Page_FB]
   get_All_Page_FB: [Page_FB!]!
   get_Page_FB_By_Id(id: Int!): Page_FB
+  
 }
 
 type Mutation {
