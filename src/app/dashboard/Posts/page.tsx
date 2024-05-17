@@ -13,7 +13,6 @@ const client = new ApolloClient({
 const Posts =gql`
 query Query {
   get_All_Posts_IG {
-    id
     Likes
     img_URL
     prediction_label

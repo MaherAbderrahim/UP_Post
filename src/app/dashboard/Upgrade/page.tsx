@@ -63,6 +63,11 @@ function PostCard({ post }: { post: Post }) {
 }
 
 export default function page() {
+  useEffect(() => {
+    // Lire l'attribut "id" de l'URL
+    const postId = new URLSearchParams(window.location.search).get('id');
+  }, []);
+  
   const [isLoading, setIsLoading] = useState(false);
   const [isPostVisible, setIsPostVisible] = useState(false); // Add this line
 
