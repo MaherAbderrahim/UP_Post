@@ -13,6 +13,7 @@ const client = new ApolloClient({
 const Posts =gql`
 query Query {
   get_All_Posts_IG {
+    id
     Likes
     img_URL
     prediction_label
@@ -75,7 +76,7 @@ function PostCard({ post }: { post: any }) {
             </span>
           </div>
           {isSelected && (
-            <Link href="/dashboard/Upgrade">
+            <Link href={`/dashboard/Upgrade?id=${post.id}`}>
               <button className="bg-green-500 text-white px-4 py-2 rounded-lg">
                 Upgrade
               </button>
