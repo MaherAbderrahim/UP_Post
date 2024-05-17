@@ -11,6 +11,9 @@ const postsFBResolvers = {
     get_All_Page_FB_Posts: async (parent: any, { id }: { id: number }) => {
       return await postsFBService.get_All_Page_FB_Posts(id);
     },
+    get_All_Page_FB_Posts_By_name: async (parent: any, { name }: { name: string }) => {
+      return await postsFBService.get_All_Page_FB_Posts_By_name(name);
+    },
     get_Post_FB_By_Id: async (parent: any, { id }: { id: number }) => {
       return await postsFBService.get_Post_FB_By_Id(id);
     },

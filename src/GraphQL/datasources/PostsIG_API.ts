@@ -20,6 +20,16 @@ export class PostsIGService {
     });
   }
 
+  async get_All_Page_IG_Posts_By_name(name:string) : Promise<PostsIGModel[]>{
+    return await this.prisma.posts_IG.findMany({
+      where: {
+        Page_IG:{
+          name:name
+        },
+      },
+    });
+  }
+
   async get_All_Page_IG_Posts(id:number) : Promise<PostsIGModel[]>{
     return await this.prisma.posts_IG.findMany({
       where: {

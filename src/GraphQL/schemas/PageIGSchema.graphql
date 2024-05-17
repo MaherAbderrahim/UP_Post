@@ -15,6 +15,7 @@ type Page_IG {
 
 type Query {
   get_All_Project_Pages_IG(project_id:Int!) : [Page_IG]
+  get_All_By_Name_Project_Pages_IG(name:String!):[Page_IG]
   get_All_Page_IG: [Page_IG!]!
   get_Page_IG_By_Id(id: Int!): Page_IG
 }

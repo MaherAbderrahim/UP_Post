@@ -26,7 +26,7 @@ query Query {
 /*recuperer tout les page d'un projet*/
 
 const PageFB=gql`
-query Get_All_By_Name_Project_Pages_FB($name: String) {
+query Get_All_By_Name_Project_Pages_FB($name: String!) {
   get_All_By_Name_Project_Pages_FB(name: $name) {
     id
     img_URL
@@ -35,22 +35,23 @@ query Get_All_By_Name_Project_Pages_FB($name: String) {
 }
 `
 const PageIG=gql`
-query Get_All_Page_IG {
-  get_All_Page_IG {
+query Get_All_By_Name_Project_Pages_IG($name: String!) {
+  get_All_By_Name_Project_Pages_IG(name: $name) {
     id
-    name
     img_URL
+    name
   }
 }
 `
 
-function GetAllPagesIG({id}:{id:number}){
-  const { loading, error, data } = useQuery(PageIG)
+function GetAllPagesIG({name}:{name:string}){
+  const { loading, error, data } = useQuery(PageIG, {
+    variables: { name }
+  });
   console.log(data)
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
-  if (id==3) 
-  return data.get_All_Page_IG.slice(0, 1).map((page: any) => (
+  if (error) return <p>Error :(</p>; 
+  return data.get_All_By_Name_Project_Pages_IG.map((page: any) => (
     <div className="bg-white shadow overflow-hidden sm:rounded-md">
           <ul role="list" className="divide-y divide-gray-200">
             <li key={page.id}>
@@ -85,8 +86,11 @@ function GetAllPagesIG({id}:{id:number}){
     ))
   }
 
-function GetAllPagesFB({name}:{name:number}){
-  const { loading, error, data } = useQuery(PageFB)
+function GetAllPagesFB({name}:{name:string}){
+  const { loading, error, data } = useQuery(PageFB, {
+    variables: { name }
+  });
+  console.log(data)
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
   return data.get_All_By_Name_Project_Pages_FB.map((page: any) => (
@@ -161,7 +165,7 @@ function GetAllProjects() {
         </div>
       </div>
       <GetAllPagesFB name={project.name}/>
-      <GetAllPagesIG id={project.id}/>
+      <GetAllPagesIG name={project.name}/>
     </div>
   ));
 }
