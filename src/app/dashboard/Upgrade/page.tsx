@@ -2,7 +2,24 @@
 import { useState, useEffect } from 'react';
 import { ArrowNarrowRightIcon } from '@heroicons/react/outline'
 import { ArrowCircleRightIcon } from '@heroicons/react/solid';
+import { ApolloClient, InMemoryCache, ApolloProvider, gql,useQuery } from '@apollo/client';
 import Link from 'next/link';
+
+const client = new ApolloClient({
+  uri: 'http://localhost:4000/',
+  cache: new InMemoryCache(),
+});
+
+/*recuperer tout les projet*/
+const post =gql`
+query Query {
+  get_All_Projects {
+    id
+    description
+    name
+  }
+}
+`
 
 type Post = {
   description: string;
@@ -10,11 +27,6 @@ type Post = {
   imageUrl: string;
 }
 
-const post: Post = {
-  description: "Découvrez notre gamme de compléments alimentaires chez GymBuddy ! Besoin d'un coup de pouce pour atteindre vos objectifs sportifs ? Nos produits de qualité vous aident à maximiser vos performances et votre récupération. Rejoignez-nous dès aujourd'hui !",
-  hash: " ",
-  imageUrl: 'https://www.pharmashopi.com/images/Image/pages_information/complement-alimentaire-4.jpg',
-}
 
 const post_up: Post = {
   description: `🌟 Découvrez notre gamme de compléments alimentaires chez GymBuddy ! 🌟

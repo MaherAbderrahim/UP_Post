@@ -5,6 +5,7 @@ import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import AddProjectModel from '@/components/add_project_model';
 import React,{ useState } from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql,useQuery } from '@apollo/client';
+import Link from 'next/link';
 
 
 const client = new ApolloClient({
@@ -74,9 +75,9 @@ function GetAllPagesIG({name}:{name:string}){
                       </div>
                     </div>
                   </div>
-                  <div>
-                    <ChevronRightIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                  </div>
+                  <Link href={`/dashboard/Posts?name=${page.name}&type=Instagram`}>
+                      <ChevronRightIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  </Link>
                 </div>
               </a>
             </li>
