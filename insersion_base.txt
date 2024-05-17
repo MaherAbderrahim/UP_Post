@@ -121,11 +121,11 @@ mutation {
 }
 
 -------------------------------------------------------
-mutation {
-  create_Page_FB(name: "GymBuddy", id_FB: "332225146630388",img_URL:"https://scontent.ftun10-1.fna.fbcdn.net/v/t39.30808-6/440967245_122141454386214350_628071911291916059_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=T5e7AsTq7FAQ7kNvgHVIH_V&_nc_ht=scontent.ftun10-1.fna&oh=00_AYDptywckholM0m98tB7ns6L0rANUwXjh2Rk8XgzpCtPSg&oe=6642FC1A" ,page_TOKEN: "EAAD143672KABO1bYXDgGR3wPibK5SualnMFuCGwUHncavyq6yvzMXaoaThH5ZAefCvkZBQfGn03hp2OhTzgFxmuaEQbZB7y9cZCCZC4xFiZCiO7SIqBDYlRPsy7ZCnrIyBS2ZBDWKvfzenjfvnc83j9uNZBk58ZCbtGZBbkEb9Qo0drlplGhpeKMTITAbnXIkIQ4zJGyqChZBwcw", user_id: 1, project_id: 1) {
-    id
+  mutation {
+    create_Page_FB(name: "GymBuddy", id_FB: "332225146630388",img_URL:"https://scontent.ftun10-1.fna.fbcdn.net/v/t39.30808-6/440967245_122141454386214350_628071911291916059_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=T5e7AsTq7FAQ7kNvgHVIH_V&_nc_ht=scontent.ftun10-1.fna&oh=00_AYDptywckholM0m98tB7ns6L0rANUwXjh2Rk8XgzpCtPSg&oe=6642FC1A" ,page_TOKEN: "EAAD143672KABO1bYXDgGR3wPibK5SualnMFuCGwUHncavyq6yvzMXaoaThH5ZAefCvkZBQfGn03hp2OhTzgFxmuaEQbZB7y9cZCCZC4xFiZCiO7SIqBDYlRPsy7ZCnrIyBS2ZBDWKvfzenjfvnc83j9uNZBk58ZCbtGZBbkEb9Qo0drlplGhpeKMTITAbnXIkIQ4zJGyqChZBwcw", user_id: 1, project_id: 1) {
+      id
+    }
   }
-}
 
 mutation {
   create_Page_FB(name: "Michael Page", id_FB: "218349638033596",img_URL:"https://scontent.ftun10-2.fna.fbcdn.net/v/t39.30808-6/426634057_122096936198214350_4115592912173610746_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_ohc=abqxgEunTUUQ7kNvgGrQZ1e&_nc_ht=scontent.ftun10-2.fna&oh=00_AYD4oZQrownM-rVzUicbcggsi4igufpdg8PlfvqKHqHX8Q&oe=6642F6D6" ,page_TOKEN: "EAAD143672KABO6Yjl0vOFm6ZBCLuQhZBWXyv6Cf9nYeYpjrhIxNZCEYym9TaYtbIhMUNZCdeDzPmVGKcMPSv7dZAtdSFHmm84Jz6zSfi4uq4UaZBMxb9pnzTZCn1jpoyjlWzH6TZAyVQSIo2qvZBQVRzjiDv5v4yV3AvocPgjNjfi4tzFEUOT0qskXES6TIhP4Hqv1zHxyvoZD", user_id: 1, project_id: 1) {

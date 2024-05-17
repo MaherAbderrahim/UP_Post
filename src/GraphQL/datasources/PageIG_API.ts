@@ -16,6 +16,16 @@ export class PageIGService {
     })
   }
 
+  async get_All_By_Name_Project_Pages_IG(name:string) :Promise<PageIGModel[]> {
+    return await this.prisma.page_IG.findMany({
+      where:{
+        Project:{
+          name:name
+        }
+      }
+    })
+  }
+
   async get_All_Page_IG(): Promise<PageIGModel[]> {
     return await this.prisma.page_IG.findMany();
   }

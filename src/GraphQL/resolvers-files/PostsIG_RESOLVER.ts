@@ -11,6 +11,9 @@ const postsIGResolvers = {
     get_All_Page_IG_Posts: async (parent: any, { id }: { id: number }) => {
       return await postsIGService.get_All_Page_IG_Posts(id);
     },
+    get_All_Page_IG_Posts_By_name: async (parent: any, { name }: { name: string }) => {
+      return await postsIGService.get_All_Page_IG_Posts_By_name(name);
+    },
     get_Post_IG_By_Id: async (parent: any, { id }: { id: number }) => {
       return await postsIGService.get_Post_IG_By_Id(id);
     },

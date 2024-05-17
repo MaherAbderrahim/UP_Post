@@ -8,6 +8,9 @@ const client = new ApolloClient({
   uri: 'http://localhost:4000/',
   cache: new InMemoryCache(),
 });
+
+/*faire une requete pour recuperer touts les post d'une page*/
+
 /*faire une requete pour recuperer tous les poste*/
 
 const Posts =gql`

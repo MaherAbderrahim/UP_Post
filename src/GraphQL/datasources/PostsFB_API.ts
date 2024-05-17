@@ -20,6 +20,16 @@ export class PostsFBService {
     });
   }
 
+  async get_All_Page_FB_Posts_By_name(name:string) : Promise<PostsFBModel[]>{
+    return await this.prisma.posts_FB.findMany({
+      where: {
+        Page_FB:{
+          name:name
+        },
+      },
+    });
+  }
+
   async get_Post_FB_By_Id(id: number): Promise<PostsFBModel | null> {
     return await this.prisma.posts_FB.findUnique({
       where: {
