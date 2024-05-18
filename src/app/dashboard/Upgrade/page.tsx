@@ -11,20 +11,32 @@ const client = new ApolloClient({
 });
 
 /*recuperer tout les projet*/
-const post =gql`
-query Query {
-  get_All_Projects {
+const postFB =gql`
+query Get_Post_FB_By_Id($getPostFbByIdId: Int!) {
+  get_Post_FB_By_Id(id: $getPostFbByIdId) {
     id
-    description
-    name
+    Descriptions
+    Hashtags
+    img_URL
+  }
+}
+`
+
+const postIG =gql`
+query Get_Post_IG_By_Id($getPostIgByIdId: Int!) {
+  get_Post_IG_By_Id(id: $getPostIgByIdId) {
+    id
+    Hashtags
+    Post_text
+    img_URL
   }
 }
 `
 
 type Post = {
   description: string;
-  hash: string;
-  imageUrl: string;
+  Hashtags: string;
+  img_URL: string;
 }
 
 
@@ -35,8 +47,8 @@ const post_up: Post = {
   ✅ Des acides aminés essentiels pour une récupération optimale.
   ✅ Des boosters d'énergie pour vous donner un coup de fouet avant l'entraînement.
   Rejoignez la communauté GymBuddy dès aujourd'hui et donnez à votre corps les nutriments dont il a besoin pour exceller ! 💪💥`,
-  hash: '#GymBuddy #ComplémentsAlimentaires #PerformanceSportive #Fitness #Muscle #Récupération #Entraînement #Nutrition #BienÊtre #Santé #Objectifs #Athlète #Protéines #AcidesAminés #Énergie #FormePhysique',
-  imageUrl: 'https://th.bing.com/th/id/OIG2.0Nwn4DqSy_koamoGayHw?w=1024&h=1024&rs=1&pid=ImgDetMain&fbclid=IwZXh0bgNhZW0CMTAAAR3RqS06hsUa99J2nN510ea1-5tNc4ojGsqQKsr-b7ek8eleFucaPsBxFbc_aem_AfsXOI_3BQOLUoatSdXgHBs-Tn5E5UrFBf70d54vocet2REVx9wkgFpLu4JHwJNa6IzSDnWxQRvRhN_63121uvw5',
+  Hashtags: '#GymBuddy #ComplémentsAlimentaires #PerformanceSportive #Fitness #Muscle #Récupération #Entraînement #Nutrition #BienÊtre #Santé #Objectifs #Athlète #Protéines #AcidesAminés #Énergie #FormePhysique',
+  img_URL: 'https://th.bing.com/th/id/OIG2.0Nwn4DqSy_koamoGayHw?w=1024&h=1024&rs=1&pid=ImgDetMain&fbclid=IwZXh0bgNhZW0CMTAAAR3RqS06hsUa99J2nN510ea1-5tNc4ojGsqQKsr-b7ek8eleFucaPsBxFbc_aem_AfsXOI_3BQOLUoatSdXgHBs-Tn5E5UrFBf70d54vocet2REVx9wkgFpLu4JHwJNa6IzSDnWxQRvRhN_63121uvw5',
 }
 
 function PostCard({ post }: { post: Post }) {
@@ -44,7 +56,7 @@ function PostCard({ post }: { post: Post }) {
   return (
     <div className='flex flex-col border rounded-lg p-4 mb-4 border-gray-300 '>
       <img
-        src={post.imageUrl}
+        src={post.img_URL}
         alt=""
         className="w-full h-auto rounded-lg mb-4"
       />
@@ -55,19 +67,39 @@ function PostCard({ post }: { post: Post }) {
         <div className="mb-2 flex items-center justify-between">
         </div>
         <div>
-          <p className="text-gray-600 mb-2">{post.hash}</p>
+          <p className="text-gray-600 mb-2">{post.Hashtags}</p>
         </div>
       </div>
     </div>
   );
 }
 
+function getPostFB({id}:{id:number}){
+  const { loading, error, data } = useQuery(postFB, {
+    variables: { getPostFbByIdId:id }
+  });
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>; 
+  return <PostCard post={data.get_Post_FB_By_Id} />
+}
+
+function getPostIG({id}:{id:number}){
+  const { loading, error, data } = useQuery(postIG, {
+    variables: { getPostIgByIdId:id }
+  });
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>; 
+  return <PostCard post={data.get_Post_IG_By_Id} />
+}
+
+
 export default function page() {
-  useEffect(() => {
-    // Lire l'attribut "id" de l'URL
-    const postId = new URLSearchParams(window.location.search).get('id');
-  }, []);
-  
+
+  const postId = new URLSearchParams(window.location.search).get('id');
+  const type =new URLSearchParams(window.location.search).get('type');
+  if (postId==null){
+    return <p>Error :(</p>; 
+  }
   const [isLoading, setIsLoading] = useState(false);
   const [isPostVisible, setIsPostVisible] = useState(false); // Add this line
 
@@ -113,8 +145,6 @@ export default function page() {
       )}
     </div>
   </section>
-
-  {/* Secondary column (hidden on smaller screens) */}
   <aside className="lg:block lg:flex-shrink-0 lg:order-first lg:w-1/2 p-4">
     <div className="flex flex-col items-center mt-5 p-5 ">
       <PostCard post={post} />
@@ -129,5 +159,5 @@ export default function page() {
   </aside>
   </div>
 </main>
-  )
+)
 }
