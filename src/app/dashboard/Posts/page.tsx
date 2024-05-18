@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FaThumbsUp, FaComment } from 'react-icons/fa';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql,useQuery } from '@apollo/client';
@@ -35,7 +35,6 @@ query Get_All_Page_IG_Posts_By_name($name: String!) {
 const Posts =gql`
 query Query {
   get_All_Posts_IG {
-    id
     Likes
     img_URL
     prediction_label
@@ -47,6 +46,10 @@ query Query {
 }
 `
 function GetAllPosts(){
+  useEffect(() => {
+    const name = new URLSearchParams(window.location.search).get('name');
+    const type= new URLSearchParams(window.location.search).get('type');
+  }, []);
   const { loading, error, data } = useQuery(Posts);
   
   if (loading) return <p>Loading...</p>;
