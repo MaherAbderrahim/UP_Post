@@ -10,6 +10,25 @@ const client = new ApolloClient({
 });
 
 /*faire une requete pour recuperer touts les post d'une page*/
+const post_IG = gql`
+query Get_All_Page_IG_Posts_By_name($name: String!) {
+  get_All_Page_IG_Posts_By_name(name: $name) {
+    img_URL
+    Likes
+    sentiment_comments_NEG
+    sentiment_comments_POS
+    Total_NB_commentaires
+    Hashtags
+    Post_text
+  }
+}
+`
+
+/*const post_FB = gql`
+`
+*/
+
+
 
 /*faire une requete pour recuperer tous les poste*/
 
