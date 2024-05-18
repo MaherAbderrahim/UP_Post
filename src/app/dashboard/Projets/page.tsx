@@ -117,9 +117,9 @@ function GetAllPagesFB({name}:{name:string}){
                     </div>
                   </div>
                 </div>
-                <div>
-                  <ChevronRightIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                </div>
+                <Link href={`/dashboard/Posts?name=${page.name}&type=Facebook`}>
+                      <ChevronRightIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  </Link>
               </div>
             </a>
           </li>
