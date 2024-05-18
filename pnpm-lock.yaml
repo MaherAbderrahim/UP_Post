@@ -26,6 +26,9 @@ dependencies:
   '@aws-sdk/s3-presigned-post':
     specifier: ^3.554.0
     version: 3.554.0
+  '@clerk/clerk-react':
+    specifier: ^5.1.0
+    version: 5.1.0(react-dom@18.2.0)(react@18.2.0)
   '@clerk/nextjs':
     specifier: ^5.0.2
     version: 5.0.2(eslint@8.57.0)(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)(typescript@5.4.5)
@@ -1828,6 +1831,20 @@ packages:
       - typescript
     dev: false
 
+  /@clerk/clerk-react@5.1.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-drc/V0J+h9Jsz32QsL7WmuUhhhkU21KbNz5mwLPbSzBMoLg43sx6aRjJGCfBQYPxPsuFZWDlKoJhX6LZ8yxHcA==}
+    engines: {node: '>=18.17.0'}
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
+    dependencies:
+      '@clerk/shared': 2.1.1(react-dom@18.2.0)(react@18.2.0)
+      '@clerk/types': 4.4.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      tslib: 2.4.1
+    dev: false
+
   /@clerk/nextjs@5.0.2(eslint@8.57.0)(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)(typescript@5.4.5):
     resolution: {integrity: sha512-7FNV7tEzy1xMm+hG/lLT0Dh69xkd009PAZfqMQ9AHbjvrKWOTfUZOVkQTgwO7vUcj2V8DlmEmhFLIxfWie6ezA==}
     engines: {node: '>=18.17.0'}
@@ -1873,8 +1890,36 @@ packages:
       swr: 2.2.0(react@18.2.0)
     dev: false
 
+  /@clerk/shared@2.1.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-cj8VZdEtuqghHBFApl2fFgBtjYZ0NN085uXPqSvdBS62EIKpSENCqm7Ug1H5R2WSuCIv819ZZEBxPiYZM0TNFg==}
+    engines: {node: '>=18.17.0'}
+    requiresBuild: true
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      glob-to-regexp: 0.4.1
+      js-cookie: 3.0.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      std-env: 3.7.0
+      swr: 2.2.0(react@18.2.0)
+    dev: false
+
   /@clerk/types@4.1.0:
     resolution: {integrity: sha512-e9vsD7EdQE0q9mPwPMq1kPtPC9BYGR8BucEoEu+pEyXXD5cdSkzM+WvhUonnTHNzYE/W/X5d1zFDNvCV5YfS5Q==}
+    engines: {node: '>=18.17.0'}
+    dependencies:
+      csstype: 3.1.1
+    dev: false
+
+  /@clerk/types@4.4.0:
+    resolution: {integrity: sha512-OaT02uLG1P/jBFNyoPM3n9nLdV4H0etTpa/l3iTW4IgOLiAINToLpMOvEpWzKWUq9nvmOouZlBzPVMozu7dwDg==}
     engines: {node: '>=18.17.0'}
     dependencies:
       csstype: 3.1.1

@@ -17,7 +17,6 @@ import { CheckIcon } from '@heroicons/react/solid'
 
 /* This example requires Tailwind CSS v2.0+ */
 import React,{ Fragment, useState,useEffect, Children } from 'react'
-
 import {
   CalendarIcon,
   ArrowCircleUpIcon,
@@ -125,9 +124,6 @@ export default function RootLayout ( { children,
 }: Readonly<{
   children: React.ReactNode;
 }>)   {
-  //select menu const
-  const [selected, setSelected] = useState(people[3])
-  const [selected1, setSelected1] = useState(people1[2])
   
   const pathname = usePathname();
     const [current, setCurrent] = useState(getLastWorldAfterSlash(pathname));

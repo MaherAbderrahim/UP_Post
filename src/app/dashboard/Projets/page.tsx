@@ -6,6 +6,7 @@ import AddProjectModel from '@/components/add_project_model';
 import React,{ useState } from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql,useQuery } from '@apollo/client';
 import Link from 'next/link';
+import {  useUser,  } from "@clerk/nextjs";
 
 
 const client = new ApolloClient({
@@ -15,11 +16,11 @@ const client = new ApolloClient({
 
 /*recuperer tout les projet*/
 const Projects =gql`
-query Query {
-  get_All_Projects {
+query Query($email: String!) {
+  get_All_User_Project_By_Email(email: $email) {
+    name
     id
     description
-    name
   }
 }
 `
@@ -131,16 +132,17 @@ function GetAllPagesFB({name}:{name:string}){
 
 
 function GetAllProjects() {
-  
-
-  const { loading, error, data } = useQuery(Projects);
+  const {  user } = useUser();
+  const { loading, error, data } = useQuery(Projects, {
+    variables: { email: user?.primaryEmailAddress?.emailAddress },
+  });
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
   console.log(data)
   /*parcourir les page*/
 
-
-  return data.get_All_Projects.map((project: any) => (
+  if (data && data.get_All_Projects) {
+    return data.get_All_Projects.map((project: any) => (
     <div key={project.id}>
       <div className="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
         <div className="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-nowrap">
@@ -168,6 +170,9 @@ function GetAllProjects() {
       <GetAllPagesIG name={project.name}/>
     </div>
   ));
+} else {
+  return <p>No projects found</p>;
+}
 }
 
 export default function Example() {

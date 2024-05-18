@@ -3,8 +3,9 @@ import { UserButton,useUser  } from "@clerk/nextjs";
 import Link from 'next/link';
 
 export default function userMeta() {
-    const { isSignedIn, user, isLoaded } = useUser();
-    if (isSignedIn) {
+  const { isSignedIn, user } = useUser();
+    if (isSignedIn && user.primaryEmailAddress) {
+      console.log(user.primaryEmailAddress.emailAddress)
         return (
             <div className="flex-shrink-0 w-full group block">
                 <div className="flex items-center">
@@ -22,5 +23,4 @@ export default function userMeta() {
             
         );
       }
-  
 }
