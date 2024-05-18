@@ -11,12 +11,23 @@ const client = new ApolloClient({
 });
 
 /*recuperer tout les projet*/
-const post =gql`
-query Query {
-  get_All_Projects {
+const postFB =gql`
+query Get_Post_FB_By_Id($getPostFbByIdId: Int!) {
+  get_Post_FB_By_Id(id: $getPostFbByIdId) {
     id
-    description
-    name
+    Descriptions
+    Hashtags
+    img_URL
+  }
+}
+`
+const postIG =gql`
+query Get_Post_IG_By_Id($getPostIgByIdId: Int!) {
+  get_Post_IG_By_Id(id: $getPostIgByIdId) {
+    id
+    Hashtags
+    Post_text
+    img_URL
   }
 }
 `
@@ -62,12 +73,47 @@ function PostCard({ post }: { post: Post }) {
   );
 }
 
+function getPostFB({id}:{id:number}){
+  const { loading, error, data } = useQuery(postFB, {
+    variables: { getPostFbByIdId:id }
+  });
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>; 
+  return <PostCard post={data.get_Post_FB_By_Id} />
+}
+
+function getPostIG({id}:{id:number}){
+  const { loading, error, data } = useQuery(postIG, {
+    variables: { getPostIgByIdId:id }
+  });
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>; 
+  return <PostCard post={data.get_Post_IG_By_Id} />
+}
+
 export default function page() {
-  useEffect(() => {
-    // Lire l'attribut "id" de l'URL
-    const postId = new URLSearchParams(window.location.search).get('id');
-  }, []);
-  
+
+  const postId = new URLSearchParams(window.location.search).get('id');
+  const type =new URLSearchParams(window.location.search).get('type');
+  if (postId==null){
+    return <p>Error :(</p>; 
+  }
+  if (type=="Facebook"){
+    var postFB = getPostFB({id:parseInt(postId)});
+    const post:Post={ 
+      description:postFB.props.post.Descriptions,
+      hash:postFB.props.post.Hashtags,
+      imageUrl:postFB.props.post.img_URL
+    }
+  }
+  else if (type=="Instagram"){
+    var postIG = getPostIG({id:parseInt(postId)});
+    const post:Post={
+      description:postIG.props.post.Post_text,
+      hash:postIG.props.post.Hashtags,
+      imageUrl:postIG.props.post.img_URL
+    }
+  }
   const [isLoading, setIsLoading] = useState(false);
   const [isPostVisible, setIsPostVisible] = useState(false); // Add this line
 
