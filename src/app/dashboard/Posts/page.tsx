@@ -55,33 +55,43 @@ query Get_All_Page_FB_Posts_By_name($name: String!) {
 /*faire une requete pour recuperer tous les poste*/
 
 function GetAllPosts(){
-  const name = new URLSearchParams(window.location.search).get('name');
-  const type= new URLSearchParams(window.location.search).get('type');
-  console.log("type=",type)
-  if (type=="Instagram"){
-    const { loading, error, data } = useQuery(post_IG, {
-      variables: { name }
-    });
-    if(loading) return("loading...")
-    console.log(data)
+  const [name, setName] = useState<string | null>(null);
+  const [type, setType] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') { // Check if window is defined
+      setName(new URLSearchParams(window.location.search).get('name'));
+      setType(new URLSearchParams(window.location.search).get('type'));
+    }
+  }, [window?.location?.search]); // Listen for changes in the URL
+
+  const { loading: loadingIG, error: errorIG, data: dataIG } = useQuery(post_IG, {
+    variables: { name },
+    skip: type !== 'Instagram', // Skip this query if type is not Instagram
+  });
+
+  const { loading: loadingFB, error: errorFB, data: dataFB } = useQuery(post_FB, {
+    variables: { name },
+    skip: type !== 'Facebook', // Skip this query if type is not Facebook
+  });
+
+  if (type === 'Instagram') {
+    if(loadingIG) return("loading...")
+    console.log(dataIG)
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      {data.get_All_Page_IG_Posts_By_name.map((post: any) => (
+      {dataIG.get_All_Page_IG_Posts_By_name.map((post: any) => (
         <PostCardIG key={post.id} post={post} />
       ))}
     </div>
     );
   }
-  else if(type=="Facebook"){
-    const { loading, error, data } = useQuery(post_FB, {
-      variables: { name }
-    });
-    console.log("name=",name)
-    if(loading) return("loading...")
-    console.log(data)
+ else if (type === 'Facebook') {
+  if(loadingFB) return("loading...")
+  console.log(dataFB)
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      {data.get_All_Page_FB_Posts_By_name.map((post: any) => (
+      {dataFB.get_All_Page_FB_Posts_By_name.map((post: any) => (
         <PostCardFB key={post.id} post={post} />
       ))}
     </div>
@@ -92,7 +102,7 @@ function GetAllPosts(){
     return(
       <div>
         <p>
-          please select a post
+          please select a page 
         </p>
       </div>
     )
