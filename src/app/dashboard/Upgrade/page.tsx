@@ -12,8 +12,8 @@ const client = new ApolloClient({
 
 /*recuperer tout les projet*/
 const postFB =gql`
-query Get_Post_FB_By_Id($getPostFbByIdId: Int!) {
-  get_Post_FB_By_Id(id: $getPostFbByIdId) {
+query Get_Post_FB_By_Id($postId: Int!) {
+  get_Post_FB_By_Id(id: $postId) {
     id
     Descriptions
     Hashtags
@@ -23,8 +23,8 @@ query Get_Post_FB_By_Id($getPostFbByIdId: Int!) {
 `
 
 const postIG =gql`
-query Get_Post_IG_By_Id($getPostIgByIdId: Int!) {
-  get_Post_IG_By_Id(id: $getPostIgByIdId) {
+query Get_Post_IG_By_Id($postId: Int!) {
+  get_Post_IG_By_Id(id: $postId) {
     id
     Hashtags
     Post_text
@@ -111,11 +111,7 @@ function GetPost(){
   
   }, [window?.location?.search]); // Listen for changes in the URL
 
-
-  if (postId==null){
-    return <p>Error :(</p>; 
-  }
-
+  console.log("id= ",postId)
   const { loading: loadingIG, error: errorIG, data: dataIG } = useQuery(postIG, 
     {
       variables: { postId },
@@ -134,16 +130,16 @@ function GetPost(){
     return <p>Error :(</p>;
   }
   if (type === 'Instagram') {
+    console.log(dataIG)
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      {dataIG.get_Post_IG_By_Id.map((post: any) => (
-        <PostCardIG post={post} />
-      ))}
-    </div>
+        <PostCardIG post={dataIG.get_Post_IG_By_Id} />
+      </div>
     );
     }
   else 
     if (type === 'Facebook') {
+      console.log(dataFB)
       return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {dataFB.get_Post_FB_By_Id.map((post: any) => (
@@ -213,21 +209,22 @@ export default function App() {
       )}
     </div>
   </section>
-  <aside className="lg:block lg:flex-shrink-0 lg:order-first lg:w-1/2 p-4">
-    <div className="flex flex-col items-center mt-5 p-5 ">
-    <ApolloProvider client={client}>
-      <GetPost />
-
-    </ApolloProvider>
-      <Link href="/dashboard/Posts">
-        <button
-          className="w-full mt-4 px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-900"
-        >
-          Back to Posts
-        </button>
-      </Link> 
-    </div>
-  </aside>
+  <aside className="lg:block lg:flex-shrink-0 lg:order-first lg:w-1/2 p-4"> {/* Modifiez lg:w-2/3 pour ajuster la largeur de la carte */}
+          <div className="flex flex-col justify-center h-full items-center mt-5 p-5 ">
+            <div className="w-full h-auto mb-4"> {/* Modifiez h-auto pour ajuster la hauteur de la carte */}
+              <ApolloProvider client={client}>
+                <GetPost />
+              </ApolloProvider>
+            </div>
+            <Link href="/dashboard/Posts">
+              <button
+                className="w-full mt-4 px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-900"
+              >
+                Back to Posts
+              </button>
+            </Link>
+          </div>
+        </aside>
   </div>
 </main>
 )
