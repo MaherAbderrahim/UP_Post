@@ -139,10 +139,11 @@ function GetAllProjects() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
   console.log(data)
+  console.log(data.get_All_User_Project_By_Email)
   /*parcourir les page*/
 
-  if (data && data.get_All_Projects) {
-    return data.get_All_Projects.map((project: any) => (
+  if (data && data.get_All_User_Project_By_Email) {
+    return data.get_All_User_Project_By_Email.map((project: any) => (
     <div key={project.id}>
       <div className="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
         <div className="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-nowrap">
