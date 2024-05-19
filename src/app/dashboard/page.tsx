@@ -13,8 +13,15 @@ export default function page() {
           </div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
             <div className="py-4">  
-              <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" >
-                <p className="text-center text-gray-500">Replace with your content</p>
+
+              <div>
+                <iframe
+                  title="PowerBI-Dashboard"
+                  src="https://app.powerbi.com/view?r=eyJrIjoiNGI2NjEwNmMtYWNlYi00N2M4LWI0OWItMTU3YmM5ZmViOGEzIiwidCI6ImRiZDY2NjRkLTRlYjktNDZlYi05OWQ4LTVjNDNiYTE1M2M2MSIsImMiOjl9"
+                  width="100%"
+                  height="600"
+                  frameBorder="0"
+                ></iframe>
               </div>
             </div>
           </div>
