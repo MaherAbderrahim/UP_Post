@@ -1,16 +1,68 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useRef, useState } from 'react'
+import { Fragment, useRef, useState, useEffect  } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { CheckIcon } from '@heroicons/react/outline'
+import { ApolloClient, InMemoryCache, ApolloProvider, gql,useQuery, useMutation } from '@apollo/client';
+import {  useUser,  } from "@clerk/nextjs";
+
 
 interface AddProjectModelProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+const project_mute = gql`
+mutation Create_Project($name: String!, $userId: Int!, $description: String) {
+  create_Project(name: $name, user_id: $userId, description: $description) {
+    description
+    id  
+    name
+  }
+}
+` 
+const user_id = gql`
+query Query($email: String!) {
+  get_User_By_Email(email: $email) {
+    id
+  }
+}
+`
+
 export default function AddProjectModel({ isOpen, onClose }:
    AddProjectModelProps) {
-  const cancelButtonRef = useRef(null)
+    const {  user } = useUser();
+    const cancelButtonRef = useRef(null)
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [userId, setUserId] = useState(null);
+  
+    const { data } = useQuery(user_id, {
+      variables: { email: user?.primaryEmailAddress?.emailAddress },
+    });
+    
+    
+    const [createProject] = useMutation(project_mute);
+
+    useEffect(() => {
+      if ( data && data.get_User_By_Email) {
+        setUserId(data.get_User_By_Email.id);
+      }
+    }, [data]);
+  
+    const handleSubmit = async (event:any) => {
+      event.preventDefault();
+      // You can now use the projectName and projectDescription variables here
+      // For example, you can call your mutation here
+      if (userId) {
+        try {
+          const { data } = await createProject({ variables: { name, userId, description } });
+          onClose();
+        } catch (error) {
+          console.error("Error creating project", error);
+        }
+      }
+      onClose();
+    }
+
 
   return (
     <Transition.Root show={isOpen} as={Fragment}>
@@ -44,7 +96,7 @@ export default function AddProjectModel({ isOpen, onClose }:
             <div className="relative inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
               <div>
                 {/*Here is the start of the form*/}
-                  <form className="space-y-8 divide-y divide-gray-200">
+                  <form className="space-y-8 divide-y divide-gray-200" onSubmit={handleSubmit}>
                     <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                       <div>
                         <div>
@@ -61,12 +113,13 @@ export default function AddProjectModel({ isOpen, onClose }:
                             </label>
                             <div className="mt-1 sm:mt-0 sm:col-span-2">
                               <div className="max-w-lg flex rounded-md shadow-sm">
-                                <input
-                                  type="text"
-                                  name="project_name"
-                                  id="pr_name"
-                                  className="flex-1 block w-full focus:ring-indigo-500 focus:border-indigo-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-                                />
+                              <input
+                                type="text"
+                                name="project_name"
+                                id="pr_name"
+                                className="flex-1 block w-full focus:ring-indigo-500 focus:border-indigo-500 min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
+                                onChange={(e) => setName(e.target.value)}
+                              />
                               </div>
                             </div>
                           </div>
@@ -76,13 +129,14 @@ export default function AddProjectModel({ isOpen, onClose }:
                               Description
                             </label>
                             <div className="mt-1 sm:mt-0 sm:col-span-2">
-                              <textarea
-                                id="about"
-                                name="about"
-                                rows={3}
-                                className="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md"
-                                defaultValue={''}
-                              />
+                            <textarea
+                              id="about"
+                              name="about"
+                              rows={3}
+                              className="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md"
+                              defaultValue={''}
+                              onChange={(e) => setDescription(e.target.value)}
+                            />
                             </div>
                           </div>
                         </div>
@@ -93,9 +147,9 @@ export default function AddProjectModel({ isOpen, onClose }:
               </div>
               <div className="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
                 <button
-                  type="button"
+                  type="submit"
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm"
-                  onClick={onClose}
+                  onClick={handleSubmit}
                 >
                   submit
                 </button>

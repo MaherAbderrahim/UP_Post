@@ -51,7 +51,7 @@ function GetAllPagesIG({name}:{name:string}){
   });
   console.log(data)
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>; 
+  if (error) return <p></p>; 
   return data.get_All_By_Name_Project_Pages_IG.map((page: any) => (
     <div className="bg-white shadow overflow-hidden sm:rounded-md">
           <ul role="list" className="divide-y divide-gray-200">
@@ -93,7 +93,7 @@ function GetAllPagesFB({name}:{name:string}){
   });
   console.log(data)
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (error) return <p></p>;
   return data.get_All_By_Name_Project_Pages_FB.map((page: any) => (
   <div className="bg-white shadow overflow-hidden sm:rounded-md">
         <ul role="list" className="divide-y divide-gray-200">
@@ -137,14 +137,14 @@ function GetAllProjects() {
     variables: { email: user?.primaryEmailAddress?.emailAddress },
   });
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (error) return <p></p>;
   console.log(data)
   console.log(data.get_All_User_Project_By_Email)
   /*parcourir les page*/
 
   if (data && data.get_All_User_Project_By_Email) {
     return data.get_All_User_Project_By_Email.map((project: any) => (
-    <div key={project.id}>
+    <div key={project.id} className='pt-4'>
       <div className="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
         <div className="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-nowrap">
           <div className="ml-4 mt-4">
