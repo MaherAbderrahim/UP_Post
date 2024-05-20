@@ -3,6 +3,7 @@
 import { CheckCircleIcon, ChevronRightIcon, MailIcon } from '@heroicons/react/solid'
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import AddProjectModel from '@/components/add_project_model';
+import AddPageModel from '@/components/add_page_model';
 import React,{ useState } from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql,useQuery } from '@apollo/client';
 import Link from 'next/link';
@@ -160,6 +161,7 @@ function GetAllPagesFB({name}:{name:string}){
 
 function GetAllProjects() {
   const {  user } = useUser();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { loading, error, data } = useQuery(Projects, {
     variables: { email: user?.primaryEmailAddress?.emailAddress },
   });
