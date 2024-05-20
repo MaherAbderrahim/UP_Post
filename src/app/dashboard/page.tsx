@@ -14,12 +14,12 @@ export default function page() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
             <div className="py-4">  
 
-              <div>
+              <div className="pt-10">
                 <iframe
                   title="PowerBI-Dashboard"
                   src="https://app.powerbi.com/view?r=eyJrIjoiNGI2NjEwNmMtYWNlYi00N2M4LWI0OWItMTU3YmM5ZmViOGEzIiwidCI6ImRiZDY2NjRkLTRlYjktNDZlYi05OWQ4LTVjNDNiYTE1M2M2MSIsImMiOjl9"
                   width="100%"
-                  height="600"
+                  height="900"
                   frameBorder="0"
                 ></iframe>
               </div>

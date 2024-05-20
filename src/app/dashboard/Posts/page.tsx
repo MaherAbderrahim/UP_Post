@@ -148,7 +148,7 @@ function PostCardIG({ post }: { post: any }) {
             </span>
           </div>
           {isSelected && (
-            <Link href={`/dashboard/Upgrade?id=${post.id}&type=Instagram`}>
+            <Link href={`/dashboard/Upgrade?id=${post.id}&type=Instagram&name=${new URLSearchParams(window.location.search).get('name')}`}>
               <button className="bg-green-500 text-white px-4 py-2 rounded-lg">
                 Upgrade
               </button>
@@ -203,7 +203,7 @@ function PostCardFB({ post }: { post: any }) {
             </span>
           </div>
           {isSelected && (
-            <Link href={`/dashboard/Upgrade?id=${post.id}&type=Facebook`}>
+            <Link href={`/dashboard/Upgrade?id=${post.id}&type=Facebook&name=${new URLSearchParams(window.location.search).get('name')}`}>
               <button className="bg-green-500 text-white px-4 py-2 rounded-lg">
                 Upgrade
               </button>

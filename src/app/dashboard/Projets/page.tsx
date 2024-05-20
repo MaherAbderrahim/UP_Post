@@ -7,6 +7,33 @@ import React,{ useState } from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql,useQuery } from '@apollo/client';
 import Link from 'next/link';
 import {  useUser,  } from "@clerk/nextjs";
+import AddPageModel from '@/components/add_page_model';
+
+function ParentComponent() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  return (
+    <div>
+      <button
+        type="button"
+        className="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        onClick={handleOpenModal}
+      >
+        Ajouter une nouvelle page
+      </button>
+
+      <AddPageModel isOpen={isModalOpen} onClose={handleCloseModal} />
+    </div>
+  );
+}
 
 
 const client = new ApolloClient({
@@ -158,12 +185,7 @@ function GetAllProjects() {
             </div>
           </div>
           <div className="ml-4 mt-2 flex-shrink-0">
-          <button
-            type="button"
-            className="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Ajouter une nouvelle page
-          </button>
+          <ParentComponent/>
         </div>
         </div>
       </div>

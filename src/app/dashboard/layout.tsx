@@ -130,6 +130,11 @@ export default function RootLayout ( { children,
     const [sidebarOpen, setSidebarOpen] = useState(false)
 
     useEffect(() => {
+      // Update 'current' state whenever 'pathname' changes
+      setCurrent(getLastWorldAfterSlash(pathname));
+    }, [pathname]);
+  
+    useEffect(() => {
       localStorage.setItem('navItem', current);
     }, [current]);
 
