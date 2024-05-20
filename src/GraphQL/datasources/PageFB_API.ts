@@ -19,6 +19,13 @@ export class PageFBService {
       },
     });
   }
+  async get_Page_FB_By_FB_Id(page_id:string):Promise<PageFBModel | null> {
+    return await this.prisma.page_FB.findUnique({
+      where: {
+        id_FB: page_id,
+      },
+    });
+  }
 
   async get_All_User_Pages_FB(id:number): Promise<PageFBModel[]> {
     return await this.prisma.page_FB.findMany({

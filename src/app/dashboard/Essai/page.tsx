@@ -1,43 +1,170 @@
 "use client"
 import React, { useState } from 'react';
-import axios from 'axios';
+import { ApolloClient, InMemoryCache, ApolloProvider, gql,useQuery } from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: 'http://localhost:4000/',
+  cache: new InMemoryCache(),
+});
+
+const CREATE_USER_FB = gql`
+  mutation Mutation($name: String!, $idFb: String!, $userToken: String!) {
+    create_Users_FB(name: $name, id_FB: $idFb, user_TOKEN: $userToken) {
+      name
+      id_FB
+      id
+    }
+  }
+`;
+
+const CREATE_PAGE_FB = gql`
+  mutation Create_Page_FB($name: String!, $idFb: String!, $pageToken: String!, $userId: Int!, $projectId: Int!, $imgUrl: String!) {
+    create_Page_FB(name: $name, id_FB: $idFb, page_TOKEN: $pageToken, user_id: $userId, project_id: $projectId, img_URL: $imgUrl) {
+      id_FB
+      img_URL
+      name
+    }
+  }
+`;
+
+// Première fonction pour obtenir le token utilisateur
+const getUserToken = async (code: string) => {
+  const apiUrlUser = `http://127.0.0.1:8000/get_user_long_lived_access_token/?code=${code}`;
+  try {
+    const response = await fetch(apiUrlUser);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("Erreur lors de l'appel de l'API de User", error);
+  }
+};
+
+const getUserNameId = async (token: string) => {
+  const apiUrlUserNameId = `http://127.0.0.1:8000/get_use_name_id/?user_long_lived_access_token=${token}`;
+  try {
+    const response = await fetch(apiUrlUserNameId);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("Erreur lors de l'appel de l'API de User Name ID", error);
+  }
+};
+
+// Deuxième fonction pour obtenir les informations de la page
+const getPageInfo = async (token: string) => {
+  const apiUrlPage= `http://127.0.0.1:8000/get_page_FB_access_token/?user_long_lived_access_token=${token}`;
+  try {
+    const response = await fetch(apiUrlPage);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const { data } = await response.json(); // Accédez au tableau data
+    console.log(data);
+    // Vérifiez si data est un tableau
+    if (Array.isArray(data)) {
+      return data.map(page => ({id: page.id, name: page.name, access_token: page.access_token}));
+    } else {
+      console.error("Erreur : la réponse de l'API n'est pas un tableau");
+    }
+  } catch (error) {
+    console.error("Erreur lors de l'appel de l'API des page", error);
+  }
+};
+
+const getPagePosts = async (pageid: string, page_token: string) => {
+  const apiUrlPagePosts = `http://127.0.0.1:8000/get_data_FB/?pageid=${pageid}&page_token=${page_token}`;
+  try {
+    const response = await fetch(apiUrlPagePosts);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("Erreur lors de l'appel de l'API des posts de la page", error);
+  }
+};
+
 
 const MaPage = () => {
   const [loading, setLoading] = useState(false);
-
-  const handleClick = async () => {
+  const [loading2, setLoading2] = useState(false);
+  const code="AQBGnx_2-xWhPxa5sVvUxSHtU5gWW9qq4sSzbNyJdziTkEuh-B7bsFux26D0Nc2C_89kojsa9wkSaiP5_S98E2ShH39XHMc5f3-JsWNZVYgooOC1Ptmm63DnqjvWg8yZ7l1McynIiVpDTBffyQRUw_FMLDjcXwEIUA5fiMYbP_WzqsqQtbEtf3EYgazgppYmIXXpXypdrjOBvamcy9TiIVm6_8grTZ08mSunAbvOorxq_zkLzn2IJBjGEYQhSHICgyngKcVBYwOZEJKClfMtfuZMDrci1Vo3n8SBPDQ7-WtZl2JWunLwtUNe0iI8m9p2NNTiZBEvTc2TNnbDH82fADnh6Jn_zwBBk4C2JrwtgmVL0HXjk4Rfp9ePVjLMPjDSb-s#_=_"
+  // Mettez à jour votre fonction handleClickFacebook pour inclure l'appel à getPagePosts
+  const handleClickFacebook = async () => {
     setLoading(true);
-  
-    // URL de votre API
-    const apiUrl = 'http://127.0.0.1:8000/get_data_FB/?pageid=';
-  
-    try {
-      const response = await fetch(apiUrl);
-  
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+    const userToken = await getUserToken(code);
+    
+    // Obtenez le nom et l'ID de l'utilisateur
+    const userNameId = await getUserNameId(userToken);
+    console.log(userNameId);
+
+    // Créez un nouvel utilisateur FB avec le nom et l'ID obtenus
+    
+    const { data } = await client.mutate({
+      mutation: CREATE_USER_FB,
+      variables: { name: userNameId.name, idFb: userNameId.id, userToken: userToken },
+    });
+    console.log(data);
+    const userid=data.id
+
+
+    const pageInfo = await getPageInfo(userToken);
+    console.log(pageInfo);
+
+    // Pour chaque page, obtenez les posts et stockez-les dans une constante
+    const allPagePosts = [];
+    if (pageInfo) { // Vérifiez si pageInfo est défini
+      for (const page of pageInfo) {
+        const pagePosts = await getPagePosts(page.id, page.access_token);
+        allPagePosts.push(pagePosts);
+        const page_img_url=pagePosts.b
+         // Créez une nouvelle page FB
+        const { data:datapage } = await client.mutate({
+          mutation: CREATE_PAGE_FB,
+          variables: { name: page.name, idFb: page.id, pageToken: page.access_token, userId: parseInt(userid), projectId: 1, imgUrl: "page.img_URL" },
+        });
+        console.log(datapage);
       }
-  
-      const data = await response.json();
-  
-      // Afficher la réponse dans la console
-      console.log(data);
-    } catch (error) {
-      console.error("Erreur lors de l'appel de l'API", error);
-    } finally {
-      setLoading(false);
     }
+    console.log(allPagePosts);
+    setLoading(false);
+  };
+
+  const handleClickInstagram = () => {
+    // Votre code pour Instagram ici
+  };
+
+  const handleRedirect = () => {
+    const redirectUrl = "https://www.facebook.com/v2.10/dialog/oauth?client_id=270357432621216&redirect_uri=https://vachetaureau.netlify.app/&scope=business_management,ads_management,instagram_manage_comments,instagram_manage_insights,instagram_content_publish,page_events,pages_show_list,pages_read_engagement,pages_read_user_content,instagram_basic";
+    window.open(redirectUrl, '_blank');
   };
   
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-      <h1>Ajouter une page</h1>
-      <button onClick={handleClick} disabled={loading}>
-        {loading ? 'Chargement...' : 'Ajouter poche'}
+      <h1 style={{ position: 'absolute', top: 0 }}>Ajouter une page</h1>
+      <button onClick={handleRedirect} disabled={loading} style={{ backgroundColor: 'gray', color: 'white', marginTop: '50%' }}>
+        {loading ? 'Chargement...' : 'Obtenir le code'}
       </button>
+      <div style={{ display: 'flex', flexDirection: 'row', marginTop: '10px' }}>
+        <button onClick={handleClickFacebook} disabled={loading2} style={{ backgroundColor: 'blue', color: 'white', marginRight: '10px' }}>
+          {loading2 ? 'Chargement...' : 'Facebook'}
+        </button>
+        <button onClick={handleClickInstagram} disabled={loading2} style={{ backgroundColor: 'red', color: 'white' }}>
+          {loading2 ? 'Chargement...' : 'Instagram'}
+        </button>
+      </div>
     </div>
   );
 };
 
 export default MaPage;
-

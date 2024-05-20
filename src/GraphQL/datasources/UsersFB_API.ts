@@ -19,6 +19,13 @@ export class UsersFBService {
       },
     });
   }
+  async get_User_FB_By_FB_Id(fb_id:string):Promise<UsersFBModel | null> {
+    return await this.prisma.users_FB.findUnique({
+      where: {
+        id_FB: fb_id,
+      },
+    });
+  }
 
   async create_Users_FB(name: string, id_FB: string, user_TOKEN: string): Promise<UsersFBModel> {
     return await this.prisma.users_FB.create({

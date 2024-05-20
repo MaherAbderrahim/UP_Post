@@ -11,6 +11,9 @@ const usersFBResolvers = {
     get_Users_FB_By_Id: async (parent: any, { id }: { id: number }) => {
       return await usersFBService.get_Users_FB_By_Id(id);
     },
+    get_User_FB_By_FB_Id: async (parent: any, { fb_id }: { fb_id: string }) => {
+      return await usersFBService.get_User_FB_By_FB_Id(fb_id);
+    },
   },
   Mutation: {
     create_Users_FB: async (

@@ -20,6 +20,7 @@ type Query {
   get_All_By_Name_Project_Pages_FB(name:String!):[Page_FB]
   get_All_Page_FB: [Page_FB!]!
   get_Page_FB_By_Id(id: Int!): Page_FB
+  get_Page_FB_By_FB_Id(id_FB: String!): Page_FB
   
 }
 
