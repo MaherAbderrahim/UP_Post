@@ -1,6 +1,5 @@
 'use client'
 import { useState, useEffect } from 'react';
-import { ArrowNarrowRightIcon } from '@heroicons/react/outline'
 import { ArrowCircleRightIcon } from '@heroicons/react/solid';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql,useQuery } from '@apollo/client';
 import Link from 'next/link';
@@ -52,7 +51,6 @@ const post_up: Post = {
 }
 
 function PostCardFB({ post }: { post: any }) {
-
   return (
     <div className='flex flex-col border rounded-lg p-4 mb-4 border-gray-300 '>
       <img
@@ -75,7 +73,6 @@ function PostCardFB({ post }: { post: any }) {
 }
 
 function PostCardIG({ post }: { post: any }) {
-
   return (
     <div className='flex flex-col border rounded-lg p-4 mb-4 border-gray-300 '>
       <img
@@ -132,7 +129,7 @@ function GetPost(){
   if (type === 'Instagram') {
     console.log(dataIG)
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="flex flex-col items-center mt-5 p-5 ">
         <PostCardIG post={dataIG.get_Post_IG_By_Id} />
       </div>
     );
@@ -141,10 +138,8 @@ function GetPost(){
     if (type === 'Facebook') {
       console.log(dataFB)
       return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {dataFB.get_Post_FB_By_Id.map((post: any) => (
-          <PostCardFB post={post} />
-        ))}
+        <div className="flex flex-col items-center mt-5 p-5 ">
+          <PostCardFB post={dataFB.get_Post_FB_By_Id} />
       </div>
       );
     }
@@ -182,50 +177,54 @@ export default function App() {
       </div>
   {/* Primary column */}
   <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
-  <section className="min-w-0 flex-1 flex flex-col overflow-y-auto lg:order-last lg:w-1/2 p-4">
-    <div className="flex flex-col items-center justify-center h-full">
-      {!isLoading &&!isPostVisible && (
-        <button
-          onClick={handleClick}
-          className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
-        >
-          Upgrade 
-        </button>
-      )}
-      {isLoading && (
-        <ArrowCircleRightIcon className="animate-spin h-5 w-5 text-blue-500" />
-      )}
-      {isPostVisible && (
-        <div className="flex flex-col items-center mt-5 p-5 ">
-          <PostCardFB post={post_up} />
-          <Link href="">
-            <button
-              className="w-full mt-4 px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-900"
-            >
-              Post now...
-            </button>
-          </Link> 
-      </div>
-      )}
-    </div>
-  </section>
-  <aside className="lg:block lg:flex-shrink-0 lg:order-first lg:w-1/2 p-4"> {/* Modifiez lg:w-2/3 pour ajuster la largeur de la carte */}
-          <div className="flex flex-col justify-center h-full items-center mt-5 p-5 ">
-            <div className="w-full h-auto mb-4"> {/* Modifiez h-auto pour ajuster la hauteur de la carte */}
-              <ApolloProvider client={client}>
-                <GetPost />
-              </ApolloProvider>
-            </div>
-            <Link href="/dashboard/Posts">
+    {/* First column */}
+    <section className="min-w-0 flex-1 flex flex-col overflow-y-auto lg:order-last lg:w-1/2 p-4">
+      <div className="flex flex-col items-center justify-center h-full">
+        {!isLoading &&!isPostVisible && (
+          <button
+            onClick={handleClick}
+            className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+          >
+            Upgrade 
+          </button>
+        )}
+        {isLoading && (
+          <ArrowCircleRightIcon className="animate-spin h-5 w-5 text-blue-500" />
+        )}
+        {isPostVisible && (
+          <div className="flex flex-col items-center mt-5 p-5 ">
+            <PostCardFB post={post_up} />
+            <Link href="">
               <button
                 className="w-full mt-4 px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-900"
               >
-                Back to Posts
+                Post now...
               </button>
-            </Link>
+            </Link> 
           </div>
-        </aside>
-  </div>
+        )}
+      </div>
+    </section>
+
+    {/* Second column */}
+    <aside className="lg:block lg:flex-shrink-0 lg:order-first lg:w-1/2 p-4">
+      <div className="flex flex-col justify-center h-full items-center mt-5 p-5 ">
+        <div className="flex flex-col items-center mt-5 p-5 ">
+          <ApolloProvider client={client}>
+              <GetPost />
+          </ApolloProvider>
+            <Link href={`/dashboard//Posts?name=${new URLSearchParams(window.location.search).get('name')}&type=${new URLSearchParams(window.location.search).get('type')}`}>
+              <button
+                className="w-full mt-4 px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-900"
+              >
+                Back to posts    
+              </button>
+            </Link> 
+          </div>  
+      </div>
+    </aside>
+</div>
+
 </main>
 )
 }
