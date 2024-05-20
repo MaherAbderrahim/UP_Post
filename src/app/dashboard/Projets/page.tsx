@@ -3,7 +3,6 @@
 import { CheckCircleIcon, ChevronRightIcon, MailIcon } from '@heroicons/react/solid'
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import AddProjectModel from '@/components/add_project_model';
-import AddPageModel from '@/components/add_page_model';
 import React,{ useState } from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql,useQuery } from '@apollo/client';
 import Link from 'next/link';
