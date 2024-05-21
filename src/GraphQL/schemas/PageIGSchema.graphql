@@ -18,6 +18,7 @@ type Query {
   get_All_By_Name_Project_Pages_IG(name:String!):[Page_IG]
   get_All_Page_IG: [Page_IG!]!
   get_Page_IG_By_Id(id: Int!): Page_IG
+  get_Page_IG_By_IG_Id(id_IG: String!): Page_IG
 }
 
 type Mutation {

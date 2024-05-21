@@ -38,6 +38,14 @@ export class PageIGService {
     });
   }
 
+  async get_Page_IG_By_IG_Id(id_IG:string):Promise<PageIGModel | null> {
+    return await this.prisma.page_IG.findUnique({
+      where: {
+        id_IG: id_IG,
+      },
+    });
+  }
+
   async create_Page_IG(name: string, id_IG: string, user_TOKEN: string, project_id: number, page_FB_id: number,img_URL:string): Promise<PageIGModel> {
     return await this.prisma.page_IG.create({
       data: {

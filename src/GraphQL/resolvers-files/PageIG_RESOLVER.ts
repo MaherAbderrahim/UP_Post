@@ -11,6 +11,9 @@ const pageIGResolvers = {
     get_Page_IG_By_Id: async (parent: any, { id }: { id: number }) => {
       return await pageIGService.get_Page_IG_By_Id(id);
     },
+    get_Page_IG_By_IG_Id:async (parent: any, { id_IG }: { id_IG: string }) => {
+      return await pageIGService.get_Page_IG_By_IG_Id(id_IG);
+    },
     get_All_Project_Pages_IG: async (parent: any, { id }: { id: number }) => {
       return await pageIGService.get_All_Project_Pages_IG(id);
     },
