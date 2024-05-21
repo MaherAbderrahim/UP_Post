@@ -99,9 +99,10 @@ const getPageFBPosts = async (pageid: string, page_token: string) => {
 interface AddPageModelProps {
   isOpen: boolean;
   onClose: () => void;
+  projectId: number;
 }
 
-export default function AddPageModel({ isOpen, onClose }: AddPageModelProps) {
+export default function AddPageModel({ isOpen, onClose, projectId}: AddPageModelProps) {
   const { user } = useUser();
   const cancelButtonRef = useRef(null)
   const [loading, setLoading] = useState(false);
@@ -149,8 +150,9 @@ export default function AddPageModel({ isOpen, onClose }: AddPageModelProps) {
     setLoading(false);
   };
 
-  const handleClickInstagram = () => {
+  const handleClickInstagram = (projectId: number) => {
     // Votre code pour Instagram ici
+    console.log("project id : ", projectId)
   };
 
   const handleRedirect = () => {
@@ -209,7 +211,7 @@ export default function AddPageModel({ isOpen, onClose }: AddPageModelProps) {
                 <button
                   type="button"
                   className="inline-flex items-center justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-pink-600 text-base font-medium text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 sm:text-sm"
-                  onClick={handleClickInstagram} 
+                  onClick={() => handleClickInstagram(projectId)} 
                   disabled={loading2}
                 >
                   <InstagramIcon className="h-5 w-5 mr-2" aria-hidden="true" />
