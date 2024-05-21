@@ -30,7 +30,7 @@ function ParentComponent() {
         Ajouter une nouvelle page
       </button>
 
-      <AddPageModel isOpen={isModalOpen} onClose={handleCloseModal} />
+      <AddPageModel isOpen={isModalOpen} onClose={handleCloseModal} projectId={69}/>
     </div>
   );
 }
