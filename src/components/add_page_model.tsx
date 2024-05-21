@@ -18,6 +18,15 @@ const CREATE_USER_FB = gql`
   }
 `;
 
+const GET_USER=gql`
+query Get_User_FB_By_FB_Id($idFb: String!) {
+  get_User_FB_By_FB_Id(id_FB: $idFb) {
+    id
+    name
+  }
+}
+`
+
 const CREATE_PAGE_FB = gql`
 mutation Create_Page_FB($name: String!, $idFb: String!, $pageToken: String!, $userId: Int!, $projectId: Int!, $imgUrl: String!) {
   create_Page_FB(name: $name, id_FB: $idFb, page_TOKEN: $pageToken, user_id: $userId, project_id: $projectId, img_URL: $imgUrl) {
@@ -28,6 +37,13 @@ mutation Create_Page_FB($name: String!, $idFb: String!, $pageToken: String!, $us
 `
 ;
 
+const GET_PAGE=gql`
+query Get_Page_FB_By_FB_Id($idFb: String!) {
+  get_Page_FB_By_FB_Id(id_FB: $idFb) {
+    id
+  }
+}
+`
 // Première fonction pour obtenir le token utilisateur
 const getUserToken = async (code: string) => {
   const apiUrlUser = `http://127.0.0.1:8000/get_user_long_lived_access_token/?code=${code}`;
@@ -103,10 +119,11 @@ interface AddPageModelProps {
 
 export default function AddPageModel({ isOpen, onClose }: AddPageModelProps) {
   const { user } = useUser();
-  const cancelButtonRef = useRef(null)
+  const cancelButtonRef = useRef(null);
+  const [user_id,setuser_id]=useState(null);
   const [loading, setLoading] = useState(false);
   const [loading2, setLoading2] = useState(false);
-  const code="AQDhVHJqO_eoCWC6bLeeXgQrTBzqDDM_qIIxqhll_r0XWm0Jg2PU_mmmy0sSt1KYh3VLuCKNgR48jKBqKhxgm1sOC8flWG0iLmp1PuHFAKIddDE3ElIRl0LRGFeJgvJwQJsWVweZZzQ-NUdmeykX6zH6JUt4KwYuawzrtPiU8wOUPyzzj18RhvVj6aakj6H9ZuRC3pa5kdjBgTrwpuTbHUCRxrUtn7J-BsbBeAHLuf2ef--NGk_DhSwZ9xHhxkZo1nDZmYm3-A8NGKzMQkIsVgcehY2ifghA0qQa72lWt0YiyCrWQngAIi7IVxCj5qwjxojuJt-pCgkfuyDqFluG1Y0ihU1bhpxyJBKRmBHr4zWeCbpf84FuYvvehzXIySbI5zk#_=_"
+  const code="AQCg1Ui396gjzGkYQP_vPV6h5VOxwguRnB55hLRI8MW1fUkcl5buBV8PetBBrirl-QdL2TkeHMdvy8B3nqWnZSWjsTRLO-D1b9pvmZmmb1Qqj4A-FkzTpCAjAnYfRYHEMbsV1cRZPVtMtlw0MFLwC54GRULBOojtd3xs0ZPyll1TmzF5_Plj1T72kx2nsKevC8YZ4n284bzQ5UJGXsRxg5WyBu0rS2eemEUACJWVerUCFs0ntKNvfw0s-AsGE6Kmps-KBNnSx58GDqaLni0H7ewzdJeG28qXtX2-GztEs7nA2p7mvv3miaH7EOQWrMcj1UyFvolYI1zdD4ILfzbLGBhLw0eNBo5nwb-JkhW54t_HBzr9ojrYRJcZI_fVPMHYwKI#_=_"
   // Mettez à jour votre fonction handleClickFacebook pour inclure l'appel à getPageFBPosts
   const handleClickFacebook = async () => {
     setLoading(true);
@@ -115,36 +132,56 @@ export default function AddPageModel({ isOpen, onClose }: AddPageModelProps) {
     
     // Obtenez le nom et l'ID de l'utilisateur
     const userNameId = await getUserNameId(userToken);
-    console.log("userNameId : ",userNameId);
+    console.log("userNameId : ",userNameId.id);
 
-    // Créez un nouvel utilisateur FB avec le nom et l'ID obtenus
     
-    const { data } = await client.mutate({
-      mutation: CREATE_USER_FB,
-      variables: { name: userNameId.name, idFb: userNameId.id, userToken: userToken },
-    });
-    console.log("creation_user: ", data.create_Users_FB);
-    const userid=data.create_Users_FB.id
-    
+    const existinguser= await client.query(
+      {
+        query:GET_USER,
+        variables:{
+          idFb:userNameId.id
+        }
+      }
+    )
+    // Créez un nouvel utilisateur FB avec le nom et l'ID obtenus s'il nexiste pas dans la base 
+    if(existinguser.data.getUser===null){
+
+      const { data } = await client.mutate({
+        mutation: CREATE_USER_FB,
+        variables: { name: userNameId.name, idFb: userNameId.id, userToken: userToken },
+      });
+      console.log("creation_user: ", data.create_Users_FB);
+      setuser_id(data.create_Users_FB.id)
+    }
+
 
     const pageInfo = await getPageFBInfo(userToken);
     console.log("pageInfo : ",pageInfo);
-
+    
     // Pour chaque page, obtenez les posts et stockez-les dans une constante
     const allPagePosts = [];
     if (pageInfo) { // Vérifiez si pageInfo est défini
       for (const page of pageInfo) {
         const pagePosts = await getPageFBPosts(page.id, page.access_token);
         allPagePosts.push(pagePosts);
-        const page_img_url=pagePosts.b
-         // Créez une nouvelle page FB
-        const { data:datapage } = await client.mutate({
-          mutation: CREATE_PAGE_FB,
-          variables: { name: page.name, idFb: page.id, pageToken: page.access_token, userId: userid, projectId: 1, imgUrl: pagePosts.picture.data.url },
-        });
-        console.log("creation datapage  : ",datapage);
-      }
-    }
+        //verifier si la page existe
+        const existingpage= await client.query(
+          {
+            query:GET_PAGE,
+            variables:{
+              idFb:page.id
+            }
+          }
+        )
+        if(existingpage.data.getPage===null){
+          const { data:datapage } = await client.mutate({
+            mutation: CREATE_PAGE_FB,
+            variables: { name: page.name, idFb: page.id, pageToken: page.access_token, userId: user_id, projectId: 1, imgUrl: pagePosts.picture.data.url },
+          });
+          console.log("creation datapage  : ",datapage);
+          }
+        }
+      }        
     console.log("Posts: ",allPagePosts);
     setLoading(false);
   };
