@@ -11,8 +11,8 @@ const usersFBResolvers = {
     get_Users_FB_By_Id: async (parent: any, { id }: { id: number }) => {
       return await usersFBService.get_Users_FB_By_Id(id);
     },
-    get_User_FB_By_FB_Id: async (parent: any, { fb_id }: { fb_id: string }) => {
-      return await usersFBService.get_User_FB_By_FB_Id(fb_id);
+    get_User_FB_By_FB_Id: async (parent: any, { id_FB }: { id_FB: string }) => {
+      return await usersFBService.get_User_FB_By_FB_Id(id_FB);
     },
   },
   Mutation: {
@@ -42,7 +42,6 @@ const usersFBResolvers = {
     },
     // Ajoutez d'autres résolveurs de mutation selon vos besoins
   },
-
 };
 
 export default usersFBResolvers;

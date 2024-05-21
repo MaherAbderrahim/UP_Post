@@ -11,8 +11,8 @@ const pageFBResolvers = {
     get_Page_FB_By_Id: async (parent: any, { id }: { id: number }) => {
       return await pageFBService.get_Page_FB_By_Id(id);
     },
-    get_Page_FB_By_FB_Id:async (parent: any, { page_id }: { page_id: string }) => {
-      return await pageFBService.get_Page_FB_By_FB_Id(page_id);
+    get_Page_FB_By_FB_Id:async (parent: any, { id_FB }: { id_FB: string }) => {
+      return await pageFBService.get_Page_FB_By_FB_Id(id_FB);
     },
     get_All_User_Pages_FB: async (parent: any, { id }: { id: number }) => {
       return await pageFBService.get_All_User_Pages_FB(id);

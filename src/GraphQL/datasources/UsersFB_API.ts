@@ -19,10 +19,10 @@ export class UsersFBService {
       },
     });
   }
-  async get_User_FB_By_FB_Id(fb_id:string):Promise<UsersFBModel | null> {
+  async get_User_FB_By_FB_Id(id_FB:string):Promise<UsersFBModel | null> {
     return await this.prisma.users_FB.findUnique({
       where: {
-        id_FB: fb_id,
+        id_FB: id_FB,
       },
     });
   }

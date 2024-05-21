@@ -13,7 +13,7 @@ type Users_FB {
 type Query {
   get_All_Users_FB: [Users_FB!]!
   get_Users_FB_By_Id(id: Int!): Users_FB
-  get_User_FB_By_FB_Id(fb_id: String!): Users_FB
+  get_User_FB_By_FB_Id(id_FB: String!): Users_FB
 }
 
 type Mutation {
