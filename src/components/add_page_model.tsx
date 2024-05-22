@@ -245,7 +245,7 @@ export default function AddPageModel({ isOpen, onClose, projectId}: AddPageModel
   const handleClickInstagram = async (projectId: number) => {
     setLoading3(true);
     const userToken = "EAAD143672KABO7K01bh9eyZBVL9sJ725OBfQTa7IyzsAUpoKlExknvMuLidKu5KOUrG8tQJT4TXXaVrz47tTr6f2Pt5FzMtQOppscMGQ2gq7p1ylef7KTueGuOokjrKYRmuzA7IIjOZBq8MbvHyZCNX1aq9aeitTSXuUCce65bW3i4S4pVXJ33fVF8vEWaP";
-    
+    console.log("project id = ",projectId)
     // Obtenez le nom et l'ID de l'utilisateur
     const userNameId = await getUserNameId(userToken);
     console.log("userNameId : ",userNameId.id);

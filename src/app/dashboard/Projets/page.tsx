@@ -9,7 +9,7 @@ import Link from 'next/link';
 import {  useUser,  } from "@clerk/nextjs";
 import AddPageModel from '@/components/add_page_model';
 
-function ParentComponent() {
+function ParentComponent(project_id:any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -30,7 +30,7 @@ function ParentComponent() {
         Ajouter une nouvelle page
       </button>
 
-      <AddPageModel isOpen={isModalOpen} onClose={handleCloseModal} projectId={69}/>
+      <AddPageModel isOpen={isModalOpen} onClose={handleCloseModal} projectId={project_id}/>
     </div>
   );
 }
@@ -186,7 +186,7 @@ function GetAllProjects() {
             </div>
           </div>
           <div className="ml-4 mt-2 flex-shrink-0">
-          <ParentComponent/>
+          <ParentComponent key={project.id}/>
         </div>
         </div>
       </div>
