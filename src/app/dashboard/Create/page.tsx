@@ -11,8 +11,8 @@ type Post = {
 }
 
 const post: Post = {
-  title: "Get ready to sweat! 🏋️‍♀️💪 Exciting news, fitness fam! 🎉 Our brand-new Gym Buddy sport sale is NOW OPEN! 🛍️🏋️‍♂️ Score the best deals on top-notch gear and accessories to take your fitness journey to the next level! 💥 Don't miss out! 🕒️ Visit us today and get ready to crush your fitness goals! 💪🏼",
-  description: '#SweatMode #FitnessMotivation #WorkoutInspiration #SportsSale #GymEssentials #GymLife #FitnessJourney #GearUp #FitnessGoals #FitnessCommunity #FitnessDeals #SportSale',
+  description: "Get ready to sweat! 🏋️‍♀️💪 Exciting news, fitness fam! 🎉 Our brand-new Gym Buddy sport sale is NOW OPEN! 🛍️🏋️‍♂️ Score the best deals on top-notch gear and accessories to take your fitness journey to the next level! 💥 Don't miss out! 🕒️ Visit us today and get ready to crush your fitness goals! 💪🏼",
+  hash: '#SweatMode #FitnessMotivation #WorkoutInspiration #SportsSale #GymEssentials #GymLife #FitnessJourney #GearUp #FitnessGoals #FitnessCommunity #FitnessDeals #SportSale',
   imageUrl: 'https://scontent.ftun9-1.fna.fbcdn.net/v/t39.30808-6/440378669_122100126938303675_516270909942028182_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=sQKPEXb4NfMQ7kNvgEUS2C7&_nc_ht=scontent.ftun9-1.fna&oh=00_AYDVVidQVvwMYcEXRI4epkUokiUcTi4Jz-PLUvn03G-N9A&oe=6654EF0B',
 }
 
