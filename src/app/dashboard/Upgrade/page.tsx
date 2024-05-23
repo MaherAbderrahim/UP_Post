@@ -94,6 +94,25 @@ function PostCardIG({ post }: { post: any }) {
   );
 }
 
+async function UpgradePost(post:Post){
+  const url=""
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    const postUP :Post={
+      Descriptions: data.Descriptions,
+      Hashtags: data.Hashtags,
+      img_URL: data.img_URL
+    }
+    return postUP;
+  } catch (error) {
+    console.error("Erreur lors de l'appel de l'API des posts de la page", error);
+  }
+}
+
 function GetPost(){
   const [postId, setpostId] = useState<number | null>(null);
   const [type, setType] = useState<string | null>(null);

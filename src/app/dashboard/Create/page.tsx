@@ -5,8 +5,8 @@ import { ArrowCircleRightIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
 
 type Post = {
-  title: string;
   description: string;
+  hash: string;
   imageUrl: string;
 }
 
@@ -16,20 +16,38 @@ const post: Post = {
   imageUrl: 'https://scontent.ftun9-1.fna.fbcdn.net/v/t39.30808-6/440378669_122100126938303675_516270909942028182_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=sQKPEXb4NfMQ7kNvgEUS2C7&_nc_ht=scontent.ftun9-1.fna&oh=00_AYDVVidQVvwMYcEXRI4epkUokiUcTi4Jz-PLUvn03G-N9A&oe=6654EF0B',
 }
 
+async function UpgradePost(post:Post){
+  const url=""
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    const postUP :Post={
+      description: data.Descriptions,
+      hash: data.Hashtags,
+      imageUrl: data.img_URL
+    }
+    return postUP;
+  } catch (error) {
+    console.error("Erreur lors de l'appel de l'API des posts de la page", error);
+  }
+}
+
 function PostCard({ post }: { post: Post }) {
   return (
     <div className='flex flex-col border rounded-lg p-4 mb-4 border-gray-300 '>
       <img
         src={post.imageUrl}
-        alt={post.title}
         className="w-full h-auto rounded-lg mb-4"
       />
       <div className="flex flex-col">
         <div className="mb-2">
-          <h2 className="font-bold text-lg">{post.title}</h2>
+          <h2 className="font-bold text-lg">{post.description}</h2>
         </div>
         <div>
-          <p className="text-gray-600 mb-2">{post.description}</p>
+          <p className="text-gray-600 mb-2">{post.hash}</p>
         </div>
       </div>
     </div>
