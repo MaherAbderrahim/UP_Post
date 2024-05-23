@@ -52,7 +52,7 @@ query Get_Page_IG_By_IG_Id($idIg: String!) {
   }
 }
 `
-const CREAT_PAGE_IG=gql`
+const CREATE_PAGE_IG=gql`
 mutation Create_Page_IG($name: String!, $idIg: String!, $userToken: String!, $projectId: Int!, $pageFbId: Int!, $imgUrl: String!) {
   create_Page_IG(name: $name, id_IG: $idIg, user_TOKEN: $userToken, project_id: $projectId, page_FB_id: $pageFbId, img_URL: $imgUrl) {
     id
@@ -161,6 +161,47 @@ interface AddPageModelProps {
   projectId: number;
 }
 
+const create_User_FB = async (name:any,id:number,user_TOKEN:any) => {
+  const { data } = await client.mutate({
+    mutation: CREATE_USER_FB,
+    variables: { name: name, idFb: id, userToken: user_TOKEN },
+  });
+  console.log("creation_user: ", data.create_Users_FB);
+  return data.create_Users_FB.id
+}
+
+const create_Page_FB = async(name: any,FBid: any,access_token: any,userid: any,project_id: number,imgurl: any)=> {
+  const { data } = await client.mutate({
+    mutation: CREATE_PAGE_FB,
+    variables: { 
+      name: name, 
+      idFb: FBid, 
+      pageToken: access_token, 
+      userId: userid, 
+      projectId: project_id, 
+      imgUrl: imgurl },
+  });
+  console.log("creation_page_FB: ", data.create_Page_FB);
+  return data.create_Page_FB.id
+}
+
+const create_Page_IG = async(name: any,IGid: any,userToken: any,projectId: any,page_FB_id: any,imgUrl: any)=> {
+  const { data } = await client.mutate({
+    mutation: CREATE_PAGE_IG,
+    variables: { 
+      name: name,
+      idIg: IGid,
+      userToken: userToken,
+      projectId:projectId, 
+      pageFbId: page_FB_id,
+      imgUrl: imgUrl
+    },
+  });
+  console.log("creation_page_FB: ", data.create_Page_FB);
+  return data.create_Page_FB.id
+}
+
+
 export default function AddPageModel({ isOpen, onClose, projectId}: AddPageModelProps) {
   const cancelButtonRef = useRef(null);
   const [user_id,setuser_id]=useState(null);
@@ -169,7 +210,7 @@ export default function AddPageModel({ isOpen, onClose, projectId}: AddPageModel
   const [loading3, setLoading3] = useState(false);
 
 
-  const code="AQABtcH7tpG2frktNnSynu_7kDagIw_7ibMB4vrpoCGcLDqzrTx43Fn62dDtLbyxdn0G8HMX6sGeARyoCqCYIHbamsd61yHd69KkKc6JUYYYwgg23L2UXBLddtfYR8wgkelhSjm-AaOxKF05BnH92-Pauyk2cb4a8SVcJubyBe-5yR4RjqdeqYNulon0IfWkoJB3JcEtvAG-2WAZgLIQvSx3spmXzPrgGdowNzQ3bFKbBSelgHRfFf5ArQA2dNECoLoo1RrmKYp4CCRIbgpXQxc8aT2OswvUH1-Ni1tJ1YOdRQ7PvmQ9rC1rSdKT73iuxCPm4iW-Q6pd88aKUrCkU8J-hsbrlFMz0M4c6xEDCLtOj__Euhnc31f7IYkN2FylHJw#_=_"
+  const code="AQD76rwg26y4S-iyZGM8GcrM_ui2QMRN-hReBjG-oWjjZlfYbA9f8PdF_Dzvt47Fwg80bXaCB9gHU9eHEM12RuP2qJeOHH9DAS35u09CAnO7ua6ELCVUKh9m4f1mmsE9_11MwNJLbTGIy1bEQxHrVyrVYtCcznnff2ZryOGg1SHpwU3zb5aP7JgRr18GcgH8e0lAUnCt9bXJlLP-NKbt3QC6M8uXWQ02wZJk2hmdb38CjCHqV-OqAnA9RDZcsYds6idpyqxHM6aIJ0NjSzSA5shw-ghfxD7mjtQpT8bfuY75Et_85Zg2lI9MhjHMk8H6OROyLV0NnOd9Pbf-0vvDyIzr5QuKo86H7W4RKepKi622KauNXteSswYzVmtrjKmqpn8#_=_"
   
   
   // Mettez à jour votre fonction handleClickFacebook pour inclure l'appel à getPageFBPosts
@@ -195,53 +236,59 @@ export default function AddPageModel({ isOpen, onClose, projectId}: AddPageModel
     console.log("existinguser = ",existinguser)
     // Créez un nouvel utilisateur FB avec le nom et l'ID obtenus s'il nexiste pas dans la base 
     if(existinguser.data.get_User_FB_By_FB_Id===null){
-
-      const { data } = await client.mutate({
-        mutation: CREATE_USER_FB,
-        variables: { name: userNameId.name, idFb: userNameId.id, userToken: userToken },
-      });
-      console.log("creation_user: ", data.create_Users_FB);
-      setuser_id(data.create_Users_FB.id)
-    }
-
-
-    const pageInfo = await getPageFBInfo(userToken);
-    console.log("pageInfo : ",pageInfo);
-    
-    // Pour chaque page, obtenez les posts et stockez-les dans une constante
-    const allPagePosts = [];
-    if (pageInfo) { // Vérifiez si pageInfo est défini
-      for (const page of pageInfo) {
-        const pagePosts = await getPageFBPosts(page.id, page.access_token);
-        allPagePosts.push(pagePosts);
-        //verifier si la page existe
-        const existingpage= await client.query(
-          {
-            query:GET_PAGE_FB,
-            variables:{
-              idFb:page.id
+      const pageInfo = await getPageFBInfo(userToken);
+      console.log("pageInfo : ",pageInfo);
+      const allPagePosts = [];
+      if (pageInfo) { // Vérifiez si pageInfo est défini
+        for (const page of pageInfo) {
+          const pagePosts = await getPageFBPosts(page.id, page.access_token);
+          allPagePosts.push(pagePosts);
+          const existingpage= await client.query(
+            {
+              query:GET_PAGE_FB,
+              variables:{
+                idFb:page.id
+              }
             }
+          )
+          console.log("Posts: ",allPagePosts);
+          if(existingpage.data.get_Page_FB_By_FB_Id===null){
+            const pageid=create_Page_FB(page.name,page.id,page.access_token,parseInt(await create_User_FB(userNameId.name, userNameId.id, userToken)),1,pagePosts.picture.data.url)
           }
-        )
-        if(existingpage.data.get_Page_FB_By_FB_Id===null){
-          const { data:datapage } = await client.mutate({
-            mutation: CREATE_PAGE_FB,
-            variables: { 
-              name: page.name, 
-              idFb: page.id, 
-              pageToken: page.access_token, 
-              userId: user_id, 
-              projectId: 1, 
-              imgUrl: pagePosts.picture.data.url },
-          });
-          console.log("creation data page  : ",datapage);
+          setLoading2(false);
+        };
+      }
+    }
+    else{
+      const pageInfo = await getPageFBInfo(userToken);
+      console.log("pageInfo : ",pageInfo);
+      const allPagePosts = [];
+      if (pageInfo) { // Vérifiez si pageInfo est défini
+        for (const page of pageInfo) {
+          const pagePosts = await getPageFBPosts(page.id, page.access_token);
+          allPagePosts.push(pagePosts);
+          const existingpage= await client.query(
+            {
+              query:GET_PAGE_FB,
+              variables:{
+                idFb:page.id
+              }
+            }
+          )
+          console.log("Posts: ",allPagePosts);
+          
+          if(existingpage.data.get_Page_FB_By_FB_Id===null){
+            const pageid=create_Page_FB(page.name,page.id,page.access_token,existinguser.data.get_User_FB_By_FB_Id.id,1,pagePosts.picture.data.url)
+            console.log(pageid)
           }
-        }
-      }        
-    console.log("Posts: ",allPagePosts);
-    setLoading2(false);
-  };
+          setLoading2(false);
+        };
+      }
+    }
+  }        
+    
 
+  
   const handleClickInstagram = async (projectId: number) => {
     setLoading3(true);
     const userToken = "EAAD143672KABO7K01bh9eyZBVL9sJ725OBfQTa7IyzsAUpoKlExknvMuLidKu5KOUrG8tQJT4TXXaVrz47tTr6f2Pt5FzMtQOppscMGQ2gq7p1ylef7KTueGuOokjrKYRmuzA7IIjOZBq8MbvHyZCNX1aq9aeitTSXuUCce65bW3i4S4pVXJ33fVF8vEWaP";
@@ -321,7 +368,7 @@ export default function AddPageModel({ isOpen, onClose, projectId}: AddPageModel
       )
       if(existingpage.data.get_Page_IG_By_IG_Id===null){
         const { data } = await client.mutate({
-          mutation: CREAT_PAGE_IG,
+          mutation: CREATE_PAGE_IG,
           variables: { 
             name: IGinfo.name,
             idIg: IGinfo.id,

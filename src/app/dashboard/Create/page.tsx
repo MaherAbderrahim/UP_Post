@@ -5,15 +5,34 @@ import { ArrowCircleRightIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
 
 type Post = {
-  title: string;
   description: string;
+  hash: string;
   imageUrl: string;
 }
 
 const post: Post = {
-  title: "Get ready to sweat! 🏋️‍♀️💪 Exciting news, fitness fam! 🎉 Our brand-new Gym Buddy sport sale is NOW OPEN! 🛍️🏋️‍♂️ Score the best deals on top-notch gear and accessories to take your fitness journey to the next level! 💥 Don't miss out! 🕒️ Visit us today and get ready to crush your fitness goals! 💪🏼",
-  description: '#SweatMode #FitnessMotivation #WorkoutInspiration #SportsSale #GymEssentials #GymLife #FitnessJourney #GearUp #FitnessGoals #FitnessCommunity #FitnessDeals #SportSale',
+  description: "Get ready to sweat! 🏋️‍♀️💪 Exciting news, fitness fam! 🎉 Our brand-new Gym Buddy sport sale is NOW OPEN! 🛍️🏋️‍♂️ Score the best deals on top-notch gear and accessories to take your fitness journey to the next level! 💥 Don't miss out! 🕒️ Visit us today and get ready to crush your fitness goals! 💪🏼",
+  hash: '#SweatMode #FitnessMotivation #WorkoutInspiration #SportsSale #GymEssentials #GymLife #FitnessJourney #GearUp #FitnessGoals #FitnessCommunity #FitnessDeals #SportSale',
   imageUrl: 'https://scontent.ftun9-1.fna.fbcdn.net/v/t39.30808-6/440378669_122100126938303675_516270909942028182_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=AvZHa7JI-ZMQ7kNvgFrYju-&_nc_ht=scontent.ftun9-1.fna&oh=00_AYB1oHI0qPvtG7X-FmORn93OdmiWZ0reJ-XbWZGP8lPvnw&oe=6649820B',
+}
+
+async function UpgradePost(post:Post){
+  const url=""
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    const postUP :Post={
+      description: data.Descriptions,
+      hash: data.Hashtags,
+      imageUrl: data.img_URL
+    }
+    return postUP;
+  } catch (error) {
+    console.error("Erreur lors de l'appel de l'API des posts de la page", error);
+  }
 }
 
 function PostCard({ post }: { post: Post }) {
@@ -21,15 +40,14 @@ function PostCard({ post }: { post: Post }) {
     <div className='flex flex-col border rounded-lg p-4 mb-4 border-gray-300 '>
       <img
         src={post.imageUrl}
-        alt={post.title}
         className="w-full h-auto rounded-lg mb-4"
       />
       <div className="flex flex-col">
         <div className="mb-2">
-          <h2 className="font-bold text-lg">{post.title}</h2>
+          <h2 className="font-bold text-lg">{post.description}</h2>
         </div>
         <div>
-          <p className="text-gray-600 mb-2">{post.description}</p>
+          <p className="text-gray-600 mb-2">{post.hash}</p>
         </div>
       </div>
     </div>
