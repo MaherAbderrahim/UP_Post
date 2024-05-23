@@ -13,7 +13,7 @@ type Post = {
 const post: Post = {
   title: "Get ready to sweat! 🏋️‍♀️💪 Exciting news, fitness fam! 🎉 Our brand-new Gym Buddy sport sale is NOW OPEN! 🛍️🏋️‍♂️ Score the best deals on top-notch gear and accessories to take your fitness journey to the next level! 💥 Don't miss out! 🕒️ Visit us today and get ready to crush your fitness goals! 💪🏼",
   description: '#SweatMode #FitnessMotivation #WorkoutInspiration #SportsSale #GymEssentials #GymLife #FitnessJourney #GearUp #FitnessGoals #FitnessCommunity #FitnessDeals #SportSale',
-  imageUrl: 'https://scontent.ftun9-1.fna.fbcdn.net/v/t39.30808-6/440378669_122100126938303675_516270909942028182_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=AvZHa7JI-ZMQ7kNvgFrYju-&_nc_ht=scontent.ftun9-1.fna&oh=00_AYB1oHI0qPvtG7X-FmORn93OdmiWZ0reJ-XbWZGP8lPvnw&oe=6649820B',
+  imageUrl: 'https://scontent.ftun9-1.fna.fbcdn.net/v/t39.30808-6/440378669_122100126938303675_516270909942028182_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=sQKPEXb4NfMQ7kNvgEUS2C7&_nc_ht=scontent.ftun9-1.fna&oh=00_AYDVVidQVvwMYcEXRI4epkUokiUcTi4Jz-PLUvn03G-N9A&oe=6654EF0B',
 }
 
 function PostCard({ post }: { post: Post }) {
@@ -91,22 +91,20 @@ export default function Page() {
             </button>
           )}
           {loading &&  (
-            <ArrowCircleRightIcon className="animate-spin h-5 w-5 text-blue-500" />
+            <div className="loading-container mx-auto"><ArrowCircleRightIcon className="animate-spin h-5 w-5 text-blue-500" /></div>
           )}
           {submitted && (
             <>
-            <div className="p-4 shadow-md rounded flex items-start space-x-2">
-            <CheckCircleIcon className="h-5 w-5 text-green-500" />
-            <div>
-              <h3>POST CREATED ....</h3>
-              
-            </div>
-          </div>
             <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg">
-              Créer un nouveau poste
+              Créer un nouveau poste   
             </button>
+            <div className="p-4 shadow-md rounded flex items-start space-x-2">
+              <CheckCircleIcon className="h-5 w-5 text-green-500" />
+                <div>
+                  <h3>POST CREATED ....</h3>
+                </div>
+            </div>
           </>
-          
           )}
         </form>
       </section>

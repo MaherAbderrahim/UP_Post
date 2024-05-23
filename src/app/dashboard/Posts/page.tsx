@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { FaThumbsUp, FaComment } from 'react-icons/fa';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql,useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
+import { ChevronRightIcon } from '@heroicons/react/outline';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/',
@@ -100,11 +101,16 @@ function GetAllPosts(){
   }
   else{
     return(
-      <div>
-        <p>
-          please select a page 
+    <div className="flex h-screen justify-center items-center">
+      <div className="text-center">
+        <p className="text-xl">
+          <a href="/dashboard/Projets" className="hover:underline">
+              please select a page
+          </a>
+          
         </p>
       </div>
+    </div>
     )
   }
 
