@@ -210,15 +210,15 @@ export default function AddPageModel({ isOpen, onClose, projectId}: AddPageModel
   const [loading3, setLoading3] = useState(false);
 
 
-  const code="AQD76rwg26y4S-iyZGM8GcrM_ui2QMRN-hReBjG-oWjjZlfYbA9f8PdF_Dzvt47Fwg80bXaCB9gHU9eHEM12RuP2qJeOHH9DAS35u09CAnO7ua6ELCVUKh9m4f1mmsE9_11MwNJLbTGIy1bEQxHrVyrVYtCcznnff2ZryOGg1SHpwU3zb5aP7JgRr18GcgH8e0lAUnCt9bXJlLP-NKbt3QC6M8uXWQ02wZJk2hmdb38CjCHqV-OqAnA9RDZcsYds6idpyqxHM6aIJ0NjSzSA5shw-ghfxD7mjtQpT8bfuY75Et_85Zg2lI9MhjHMk8H6OROyLV0NnOd9Pbf-0vvDyIzr5QuKo86H7W4RKepKi622KauNXteSswYzVmtrjKmqpn8#_=_"
-  
-  
+  // Token d'accès FB : à fournir via l'environnement (.env), jamais en dur dans le code.
+  // Le flux OAuth "propre" passe par getUserToken(code) — voir le bouton "Obtenir le code".
+  const userTokenFb = process.env.NEXT_PUBLIC_FB_USER_TOKEN_FB ?? "";
+
   // Mettez à jour votre fonction handleClickFacebook pour inclure l'appel à getPageFBPosts
   const handleClickFacebook = async () => {
     setLoading2(true);
     
-    //const userToken = await getUserToken(code);
-    const userToken = "EAAD143672KABO3KvBbEgkBmCXXR93L0kxm6EINxV4ZBFLWMQZCkSuqi4ILOx3kITiEMkhj1FanJTwZATxYPdZA9RKRvaGZBZAYXH7e70tYlAyNmNBZCxkv3A8fgMlnZABvo2COuS6YHmxhw2ysZAhDCiLJtxJxxi66JEIeaLZBMipe5HuKvKUM4lORorNxBZCOZBt5eY";
+    const userToken = userTokenFb;
     
     // Obtenez le nom et l'ID de l'utilisateur
     const userNameId = await getUserNameId(userToken);
@@ -291,7 +291,7 @@ export default function AddPageModel({ isOpen, onClose, projectId}: AddPageModel
   
   const handleClickInstagram = async (projectId: number) => {
     setLoading3(true);
-    const userToken = "EAAD143672KABO7K01bh9eyZBVL9sJ725OBfQTa7IyzsAUpoKlExknvMuLidKu5KOUrG8tQJT4TXXaVrz47tTr6f2Pt5FzMtQOppscMGQ2gq7p1ylef7KTueGuOokjrKYRmuzA7IIjOZBq8MbvHyZCNX1aq9aeitTSXuUCce65bW3i4S4pVXJ33fVF8vEWaP";
+    const userToken = process.env.NEXT_PUBLIC_FB_USER_TOKEN_IG ?? "";
     console.log(projectId)
     // Obtenez le nom et l'ID de l'utilisateur
     const userNameId = await getUserNameId(userToken);

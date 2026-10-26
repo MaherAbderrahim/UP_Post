@@ -27,6 +27,9 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
+.env.*
+!.env.example
 
 # vercel
 .vercel
@@ -35,4 +38,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.env
+# package manager stores
+.pnpm-store/
+.pnpm-debug.log*

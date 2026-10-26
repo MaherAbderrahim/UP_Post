@@ -87,7 +87,7 @@ function GetAllPagesIG({name}:{name:string}){
   if (loading) return <p>Loading...</p>;
   if (error) return <p></p>; 
   return data.get_All_By_Name_Project_Pages_IG.map((page: any) => (
-    <div className="bg-white shadow overflow-hidden sm:rounded-md">
+    <div key={page.id} className="bg-white shadow overflow-hidden sm:rounded-md">
           <ul role="list" className="divide-y divide-gray-200">
             <li key={page.id}>
               <a href="#" className="block hover:bg-gray-50">
@@ -129,7 +129,7 @@ function GetAllPagesFB({name}:{name:string}){
   if (loading) return <p>Loading...</p>;
   if (error) return <p></p>;
   return data.get_All_By_Name_Project_Pages_FB.map((page: any) => (
-  <div className="bg-white shadow overflow-hidden sm:rounded-md">
+  <div key={page.id} className="bg-white shadow overflow-hidden sm:rounded-md">
         <ul role="list" className="divide-y divide-gray-200">
           <li key={page.id}>
             <a href="#" className="block hover:bg-gray-50">

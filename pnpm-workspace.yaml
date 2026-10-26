@@ -1,0 +1,14 @@
+allowBuilds:
+  '@apollo/protobufjs': set this to true or false
+  '@clerk/shared': set this to true or false
+  '@prisma/client': set this to true or false
+  '@prisma/engines': set this to true or false
+  prisma: set this to true or false
+  unrs-resolver: set this to true or false
+# Réglages pnpm (pnpm 10.16+ lit les paramètres ici).
+# Autorise les scripts de build de Prisma, nécessaires pour générer le client
+# et télécharger les moteurs de requêtes.
+onlyBuiltDependencies:
+  - '@prisma/client'
+  - '@prisma/engines'
+  - prisma

@@ -464,7 +464,7 @@ export default function Example() {
         titleComponent={
           <>
             <h1 className="text-4xl font-semibold text-black dark:text-white">
-            Suivez l'évolution de vos publications <br />
+            Suivez l&apos;évolution de vos publications <br />
               <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
               en temps réel
               </span>
@@ -561,7 +561,7 @@ export default function Example() {
                 Améliorez vos publications avec notre plateforme innovante
                 </h2>
                 <p className="mt-4 text-lg text-gray-500">
-                Pour les publications qui n'atteignent pas leur plein potentiel, notre service utilise des algorithmes avancés pour les améliorer. 
+                Pour les publications qui n&apos;atteignent pas leur plein potentiel, notre service utilise des algorithmes avancés pour les améliorer. 
                 En passant par notre Service, les utilisateurs peuvent obtenir une version optimisée de leurs publications, 
                 garantissant un meilleur engagement et une plus grande portée.
                 </p>

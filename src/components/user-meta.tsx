@@ -2,7 +2,7 @@ import React from 'react'
 import { UserButton,useUser  } from "@clerk/nextjs";
 import Link from 'next/link';
 
-export default function userMeta() {
+export default function UserMeta() {
   const { isSignedIn, user } = useUser();
     if (isSignedIn && user.primaryEmailAddress) {
       console.log(user.primaryEmailAddress.emailAddress)
